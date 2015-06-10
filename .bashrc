@@ -4,3 +4,5 @@ export EDITOR=vim
 
 
 PS1='$? \w\[\e[32m\]$(parse_git_branch)\[\e[36m\] \[\e[0m\] \$ '
+
+/opt/boxen/env.sh
