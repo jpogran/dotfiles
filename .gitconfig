@@ -1,5 +1,5 @@
 [user]
-  name = James Pogran
+  name  = James Pogran
   email = james.pogran@puppetlabs.com
 
 [alias]
@@ -26,28 +26,23 @@
   # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
   whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-
 [color]
-
   # Use colors in Git commands that are capable of colored output when
   # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
   ui = auto
 
 [color "branch"]
-
   current = yellow reverse
   local   = yellow
   remote  = green
 
 [color "diff"]
-
   meta = yellow bold
   frag = magenta bold # line info
   old  = red # deletions
   new  = green # additions
 
 [color "status"]
-
   added     = yellow
   changed   = green
   untracked = cyan
@@ -62,7 +57,7 @@
   required = true
 
 [hub]
-protocol = https
+  protocol = https
 
 [credential]
   helper = /opt/boxen/bin/boxen-git-credential
@@ -72,5 +67,10 @@ protocol = https
 
 [pull]
   rebase = true
+
 [rerere]
-	enabled = true
+  enabled = true
+
+[merge]
+  conflictstyle = diff3
+	tool = ksdiff

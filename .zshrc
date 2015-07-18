@@ -6,12 +6,14 @@ export ZSH=/Users/jpogran/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="arrow"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-syntax-highlighting repo sudo ruby brew bundler vagrant sublime extract osx bower)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
 # User configuration
 
@@ -46,3 +48,4 @@ source /opt/boxen/env.sh
 export PATH=$PATH:~/packer
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
