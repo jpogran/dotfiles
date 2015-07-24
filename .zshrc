@@ -10,7 +10,14 @@ export ZSH=/Users/jpogran/.oh-my-zsh
 # ZSH_THEME="bureau"
 # ZSH_THEME="agnoster"
 DEFAULT_USER='jpogran'
-ZSH_THEME="jpogran"
+
+# ZSH_THEME="jpogran"
+# POWERLEVEL9K_MODE='awesome-patched'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/

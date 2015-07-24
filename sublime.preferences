@@ -7,8 +7,9 @@
 	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
 	"default_encoding": "UTF-8",
 	"drag_text": false,
+	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Inconsolata",
-	"font_size": 20,
+	"font_size": 17,
 	"highlight_line": false,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -24,12 +25,13 @@
 		80,
 		120
 	],
-	"save_on_focus_lost": false,
+	"save_on_focus_lost": true,
 	"show_encoding": true,
 	"show_line_endings": true,
 	"show_tab_close_buttons": true,
 	"tab_size": 2,
 	"theme": "Soda Dark 3.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_automatic_white_space": false
+	"trim_automatic_white_space": false,
+	"word_wrap": false
 }
