@@ -4,7 +4,7 @@
 	"caret_extra_top": 1,
 	"caret_extra_width": 1,
 	"caret_style": "phase",
-	"color_scheme": "Packages/User/Monokai Soda.tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
 	"default_encoding": "UTF-8",
 	"drag_text": false,
 	"ensure_newline_at_eof_on_save": true,

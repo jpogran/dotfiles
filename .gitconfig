@@ -73,4 +73,3 @@
 
 [merge]
   conflictstyle = diff3
-	tool = ksdiff
