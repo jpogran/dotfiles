@@ -16,7 +16,13 @@
   remotes  = remote -v
 
   # Amend the currently staged files to the latest commit
-  amend = commit --amend --reuse-message=HEAD
+  amend  = commit --amend --reuse-message=HEAD
+  up     = !git fetch origin && git rebase origin/master
+  co     = checkout
+  cob    = checkout -b
+  undo   = reset HEAD~1 --mixed
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  bdone  = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 
 [core]
   excludesfile = /opt/boxen/config/git/gitignore
