@@ -1,40 +1,40 @@
 {
-  "bold_folder_labels": true,
-  "caret_extra_bottom": 1,
-  "caret_extra_top": 1,
-  "caret_extra_width": 1,
-  "caret_style": "phase",
-  "color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
-  "default_encoding": "UTF-8",
-  "drag_text": false,
-  "draw_white_space": "all",
-  "ensure_newline_at_eof_on_save": true,
-  "font_face": "Inconsolata",
-  "font_size": 13,
-  "highlight_line": false,
-  "highlight_modified_tabs": true,
-  "ignored_packages":
-  [
-    "Vintage",
-    "Markdown"
-  ],
-  "indent_subsequent_lines": true,
-  "indent_to_bracket": true,
-  "line_numbers": true,
-  "margin": 2,
-  "rulers":
-  [
-    80,
-    120
-  ],
-  "save_on_focus_lost": false,
-  "show_encoding": true,
-  "show_line_endings": true,
-  "show_tab_close_buttons": true,
-  "tab_size": 2,
-  "theme": "Soda Dark 3.sublime-theme",
-  "translate_tabs_to_spaces": true,
-  "trim_automatic_white_space": false,
-  "word_wrap": "false",
-  "wrap_width": 0
+	"bold_folder_labels": true,
+	"caret_extra_bottom": 1,
+	"caret_extra_top": 1,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
+	"color_scheme": "Packages/User/SublimeLinter/Monokai Soda (SL).tmTheme",
+	"default_encoding": "UTF-8",
+	"drag_text": false,
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Inconsolata",
+	"font_size": 16,
+	"highlight_line": false,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage"
+	],
+	"indent_subsequent_lines": true,
+	"indent_to_bracket": true,
+	"line_numbers": true,
+	"margin": 2,
+	"rulers":
+	[
+		80,
+		120
+	],
+	"save_on_focus_lost": false,
+	"show_encoding": true,
+	"show_line_endings": true,
+	"show_tab_close_buttons": true,
+	"tab_size": 2,
+	"theme": "Soda Dark 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_automatic_white_space": false,
+	"word_wrap": "false",
+	"wrap_width": 0
 }
