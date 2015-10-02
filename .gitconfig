@@ -5,7 +5,8 @@
 [alias]
   lg = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph --date-order"
   # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  l  = log --pretty=oneline -n 20 --graph --abbrev-commit
+  ll = log --oneline -n 20
 
   # View the current working tree status using the short format
   s = status -s
@@ -20,6 +21,7 @@
   up     = !git fetch origin && git rebase origin/master
   co     = checkout
   cob    = checkout -b
+  cot    = checkout -t
   undo   = reset HEAD~1 --mixed
 
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
