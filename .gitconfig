@@ -9,7 +9,8 @@
   ll = log --oneline -n 20
 
   # View the current working tree status using the short format
-  s = status -s
+  s  = status -s
+  st = status
 
   # Show verbose output about tags, branches or remotes
   tags     = tag -l
@@ -24,11 +25,12 @@
   cot    = checkout -t
   undo   = reset HEAD~1 --mixed
 
+  pr     = "!f() { git fetch origin pull/$1/head:$1 && git co $1; }; f"
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
-  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+  bdone  = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 
 [core]
-  excludesfile = /opt/boxen/config/git/gitignore
+	excludesfile = /opt/boxen/config/git/gitignore
 
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
   # [default] trailing-space: looks for spaces at the end of a line
@@ -82,3 +84,9 @@
 
 [merge]
   conflictstyle = diff3
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
