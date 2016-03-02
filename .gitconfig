@@ -7,6 +7,7 @@
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l  = log --pretty=oneline -n 20 --graph --abbrev-commit
   ll = log --oneline -n 20
+  ln = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
 
   # View the current working tree status using the short format
   s  = status -s
@@ -84,9 +85,8 @@
 
 [merge]
   conflictstyle = diff3
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+	tool = bc3
+[diff]
+	tool = bc3
+[mergetool]
+	bc3 = trustExitcode
