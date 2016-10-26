@@ -1,4 +1,4 @@
-execute pathogen#infect()
+"execute pathogen#infect()
 
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
 
@@ -27,3 +27,4 @@ set shiftwidth=2
 set softtabstop=2
 
 set guifont=Envy\ Code\ R:h13
+set pastetoggle=<F2>
