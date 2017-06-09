@@ -26,5 +26,5 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-set guifont=Envy\ Code\ R:h13
+"set guifont=Envy\ Code\ R:h13
 set pastetoggle=<F2>
