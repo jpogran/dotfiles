@@ -1,9 +1,12 @@
 {
   "editor.tabCompletion": true,
-  "editor.fontFamily": "'Source Code Pro for Powerline', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Source Code Pro for Powerline'",
   "editor.fontSize": 12,
   "editor.lineNumbers": "on",
-  "editor.rulers": [80,120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
@@ -42,7 +45,6 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderIndicators": true,
   "editor.formatOnSave": false,
-
   "files.encoding": "utf8",
   "files.insertFinalNewline": true,
   "files.exclude": {
@@ -51,5 +53,35 @@
   },
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000,
-  "files.hotExit": "onExit"
+  "files.hotExit": "onExit",
+  "window.openFilesInNewWindow": "on",
+  "window.openFoldersInNewWindow": "on",
+  "window.title": "${dirty}${separator}${activeEditorMedium}${separator}${rootName}",
+  "window.zoomLevel": 0,
+  "explorer.openEditors.visible": 10,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.bundle": true
+  },
+  "search.useIgnoreFilesByDefault": true,
+  "extensions.autoUpdate": true,
+  "terminal.external.windowsExec": "%COMSPEC%",
+  "terminal.external.osxExec": "iterm.app",
+  "terminal.external.linuxExec": "xterm",
+  "terminal.integrated.shell.linux": "/bin/zsh",
+  "terminal.integrated.shellArgs.linux": [],
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.shellArgs.osx": [
+    "-l"
+  ],
+  "terminal.integrated.shell.windows": "cmd.exe",
+  "terminal.integrated.fontFamily": "'Source Code Pro for Powerline'",
+  "terminal.integrated.fontSize": 10,
+  "powershell.powerShellExePath": "",
+  "puppet.languageserver.address": "127.0.0.1",
+  "puppet.languageserver.port": 8081,
+  "puppet.languageserver.timeout": 10,
+  "puppet.languageserver.preLoadPuppet": true,
+  "puppet.languageserver.debugFilePath": "",
+  "puppet.languageclient.minimumUserLogLevel": "verbose"
 }
