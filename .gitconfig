@@ -1,6 +1,58 @@
 [user]
   name  = James Pogran
-  email = james.pogran@puppetlabs.com
+  email = james.pogran@puppet.com
+
+[hub]
+  protocol = https
+
+[core]
+  attributesfile = ~/.gitattributes
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = always
+
+[color "branch"]
+  current = green bold
+  local = green
+  remote = yellow
+
+[color "diff"]
+  frag = magenta
+  meta = yellow
+  new = green
+  old = red
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = "red bold 52"
+  newNormal = "green bold"
+  newHighlight = "green bold 22"
+
+[color "status"]
+  added = green reverse
+  changed = yellow reverse
+  untracked = red reverse
+
+[diff "bin"]
+  # Use `hexdump` to diff binary files
+  textconv = hexdump -v -C
+
+[help]
+  # Correct typos
+  autocorrect = 1
+
+[pretty]
+  custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
+  #                     │        │            │            │             └─ author name
+  #                     │        │            │            └─ message
+  #                     │        │            └─ date (relative)
+  #                     │        └─ decorations (branch, heads or tags)
+  #                     └─ hash (abbreviated)
+
+# Use separate file for username / github token / etc
+[include]
+  path = ~/.gitconfig.local
 
 [alias]
   lg = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph --date-order"
@@ -29,64 +81,3 @@
   pr     = "!f() { git fetch origin pull/$1/head:$1 && git co $1; }; f"
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
   bdone  = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-
-[core]
-	excludesfile = /opt/boxen/config/git/gitignore
-
-  # Treat spaces before tabs and all kinds of trailing whitespace as an error
-  # [default] trailing-space: looks for spaces at the end of a line
-  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
-
-[color]
-  # Use colors in Git commands that are capable of colored output when
-  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-  ui = auto
-
-[color "branch"]
-  current = yellow reverse
-  local   = yellow
-  remote  = green
-
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold # line info
-  old  = red # deletions
-  new  = green # additions
-
-[color "status"]
-  added     = yellow
-  changed   = green
-  untracked = cyan
-
-[help]
-  # Automatically correct and execute mistyped commands
-  autocorrect = 1
-
-[filter "lfs"]
-  clean    = git lfs clean %f
-  smudge   = git lfs smudge %f
-  required = true
-
-[hub]
-  protocol = https
-
-[credential]
-  helper = /opt/boxen/bin/boxen-git-credential
-
-[push]
-  default = simple
-
-[pull]
-  rebase = true
-
-[rerere]
-  enabled = true
-
-[merge]
-  conflictstyle = diff3
-	tool = bc3
-[diff]
-	tool = bc3
-[mergetool]
-	bc3 = trustExitcode

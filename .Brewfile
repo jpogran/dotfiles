@@ -10,6 +10,7 @@ tap "homebrew/test-bot"
 
 cask "visual-studio-code"
 cask "iterm2"
+brew "zsh"
 brew "icu4c"
 brew "node"
 brew "jpeg"
