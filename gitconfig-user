@@ -1,0 +1,22 @@
+[user]
+	name = James Pogran
+	email = james.pogran@puppet.com
+[shell]
+	# Default SSH username.
+	username = jpogran
+[bintray]
+	# Bintray username.
+	username = jpogran
+[github]
+	# GitHub username for command-line tools.
+	user = jpogran
+[alias]
+	# Push the current branch upstream to jpogran using the same
+	# branch name for the remote branch.
+	um = !(git remote -v | grep -q jpogran || hub fork) \
+	    && git push --set-upstream jpogran $(git current-branch)
+	# Push the current branch to jpogran and open a pull request.
+	umpr = !git um && hub pull-request -o
+[core]
+	editor = code --wait
+	autocrlf = true

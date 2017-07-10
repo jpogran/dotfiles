@@ -57,7 +57,7 @@
   "window.openFilesInNewWindow": "on",
   "window.openFoldersInNewWindow": "on",
   "window.title": "${dirty}${separator}${activeEditorMedium}${separator}${rootName}",
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 2,
   "explorer.openEditors.visible": 10,
   "search.exclude": {
     "**/node_modules": true,

@@ -1,0 +1,16 @@
+[alias]
+	l = log --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+	lg = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+	ll = log --oneline -n 20
+	ln = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
+	s = status -s
+	st = status
+	amend = commit --amend --reuse-message=HEAD
+	branches = branch -a
+  tags = tag -l
+  remotes = remote -v
+	co = checkout
+	cob = checkout -b
+	cot = checkout -t
+	undo = reset HEAD~1 --mixed
+	pr = "{ git fetch origin pull//head: && git co ; }; f"
