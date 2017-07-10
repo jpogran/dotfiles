@@ -17,3 +17,5 @@ if [ ! -f ~/src/third/powerline-fonts ]; then
     ./install.sh
     cd ..
 fi
+
+rbenv install 2.4.1 -s
