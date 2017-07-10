@@ -2,9 +2,9 @@
   path = ~/.gitconfig-shell
 [include]
   path = ~/.gitconfig-alias
-[includeIf "gitdir:~/src"]
+[includeIf "gitdir:~/src/"]
 	path = ~/.gitconfig-personal
-[includeIf "gitdir:~/src/puppetlabs"]
+[includeIf "gitdir:~/src/puppetlabs/"]
 	path = ~/.gitconfig-work
 [help]
 	autocorrect = 1
@@ -17,4 +17,3 @@
 [core]
 	editor = code --wait
 	commit = verbose
-	autocrlf = true
