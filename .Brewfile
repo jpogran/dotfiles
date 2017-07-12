@@ -24,6 +24,7 @@ brew "ruby-build"
 brew "rbenv"
 brew "rbenv-default-gems"
 brew "wget"
+brew "packer"
 
 cask "spectacle"
 cask "visual-studio-code"
