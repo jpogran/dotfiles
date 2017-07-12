@@ -26,6 +26,7 @@ brew "rbenv-default-gems"
 brew "wget"
 brew "packer"
 
+cask "skype"
 cask "spectacle"
 cask "visual-studio-code"
 cask "iterm2"
