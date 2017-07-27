@@ -1,4 +1,5 @@
 [alias]
+	cm = commit -m
 	l = log --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
 	lg = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
 	ll = log --oneline -n 20

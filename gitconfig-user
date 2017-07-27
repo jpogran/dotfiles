@@ -18,5 +18,5 @@
 	# Push the current branch to jpogran and open a pull request.
 	umpr = !git um && hub pull-request -o
 [core]
-	editor = code --wait
+	editor = vim
 	autocrlf = true

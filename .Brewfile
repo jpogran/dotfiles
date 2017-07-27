@@ -34,7 +34,11 @@ cask "google-chrome"
 cask "textexpander"
 cask "textmate"
 cask "vagrant"
+cask "virtualbox"
 cask "hipchat"
+cask "tunnelblick"
+cask "powershell"
 
 mas "1Password", id: 443987910
 mas "Slack", id: 803453959
+mas "GIPHY CAPTURE", id: 668208984
