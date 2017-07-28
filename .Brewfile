@@ -38,6 +38,7 @@ cask "virtualbox"
 cask "hipchat"
 cask "tunnelblick"
 cask "powershell"
+cask "google-chrome"
 
 mas "1Password", id: 443987910
 mas "Slack", id: 803453959
