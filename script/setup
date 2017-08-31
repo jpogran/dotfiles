@@ -5,4 +5,4 @@ DOTFILESDIRREL=$(dirname $0)
 cd $DOTFILESDIRREL/..
 DOTFILESDIR=$(pwd -P)
 
-powershell "$DOTFILESDIR/setup.ps1"
+./install
