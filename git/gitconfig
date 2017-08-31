@@ -12,10 +12,10 @@
 [push]
 	default = simple
 [include]
-  path = ~/src/my/dotfiles/git/gitconfig-alias
+  path = ~/.dotfiles/git/gitconfig-alias
 [include]
-  path = ~/src/my/dotfiles/git/gitconfig-local
+  path = ~/.dotfiles/git/gitconfig-local
 [includeIf "gitdir:~/src/"]
-	path = ~/src/my/dotfiles/git/gitconfig-personal
+	path = ~/.dotfiles/git/gitconfig-personal
 [includeIf "gitdir:~/src/puppetlabs/"]
-	path = ~/src/my/dotfiles/git/gitconfig-work
+	path = ~/.dotfiles/git/gitconfig-work
