@@ -18,6 +18,10 @@ plugins=(zsh-syntax-highlighting syntax-highlighting git common-aliases bundler 
 
 source $ZSH/oh-my-zsh.sh
 
+function ni() {
+  mkdir -p "$(dirname "$1")/" && touch "$1"
+}
+
 [ -f ~/.zsh.local ] && source ~/.zsh.local
 
 eval "$(hub alias -s)"
