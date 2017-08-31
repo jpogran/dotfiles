@@ -1,0 +1,21 @@
+[help]
+	autocorrect = 1
+[color]
+  ui = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[core]
+	editor = code --wait
+	commit = verbose
+[push]
+	default = simple
+[include]
+  path = ~/.gitconfig-alias
+[include]
+  path = ~/.gitconfig-local
+[includeIf "gitdir:~/src/"]
+	path = ~/.gitconfig-personal
+[includeIf "gitdir:~/src/puppetlabs/"]
+	path = ~/.gitconfig-work
