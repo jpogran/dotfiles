@@ -1,0 +1,17 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.gitconfig: git/gitconfig
+    ~/.gitignore: git/gitignore
+    ~/.Brewfile: homebrew/brewfile
+    ~/.config/powershell/profile.ps1: powershell/profile.ps1
+    ~/.gemrc: ruby/gemrc
+    ~/.gemfile: ruby/gemfile
+    ~/.pryrc: ruby/pryrc
+    ~/.vimrc: vim/vimrc
+    ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
+    ~/.zshrc: zsh/zshrc
