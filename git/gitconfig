@@ -1,21 +1,40 @@
 [help]
-	autocorrect = 1
+  autocorrect = 1
 [color]
   ui = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  diff = auto
+
 [core]
-	editor = code --wait
-	commit = verbose
+  editor = code --wait
+  commit = verbose
+
 [push]
-	default = simple
-[include]
-  path = ~/.dotfiles/git/gitconfig-alias
-[include]
-  path = ~/.dotfiles/git/gitconfig-local
+  default = simple
+
+[alias]
+  cm       = commit -m
+  l        = log --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  lg       = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  ll       = log --oneline -n 20
+  ln       = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
+  s        = status -s
+  st       = status
+  amend    = commit --amend --reuse-message = HEAD
+  branches = branch -a
+  tags     = tag -l
+  remotes  = remote -v
+  co       = checkout
+  cob      = checkout -b
+  cot      = checkout -t
+  undo     = reset HEAD~1 --mixed
+  pr       = "{ git fetch origin pull//head: && git co ; }; f"
+
 [includeIf "gitdir:~/src/"]
-	path = ~/.dotfiles/git/gitconfig-personal
+  path = ~/.dotfiles/git/gitconfig-personal
 [includeIf "gitdir:~/src/puppetlabs/"]
-	path = ~/.dotfiles/git/gitconfig-work
+  path = ~/.dotfiles/git/gitconfig-work
+[include]
+  path = ~/.gitconfig-local

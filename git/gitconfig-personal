@@ -2,7 +2,6 @@
 	name = James Pogran
 	email = james.pogran@outlook.com
 [shell]
-	# Default SSH username.
 	username = jpogran
 [github]
 	# GitHub username for command-line tools.
