@@ -1,8 +1,13 @@
 - defaults:
     link:
+      create: true
       relink: true
+      force: true
 
 - clean: ['~']
+- clean:
+    ~/.gitconfig:
+      force: true
 
 - link:
     ~/.gitconfig: git/gitconfig
@@ -15,3 +20,4 @@
     ~/.vimrc: vim/vimrc
     ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
     ~/.zshrc: zsh/zshrc
+    ~/.vmfloaty.yml: misc/vmfloaty.yml
