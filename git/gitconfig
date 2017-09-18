@@ -22,7 +22,7 @@
   ln       = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
   s        = status -s
   st       = status
-  amend    = commit --amend --reuse-message = HEAD
+  amend    = commit --amend --reuse-message=HEAD
   branches = branch -a
   tags     = tag -l
   remotes  = remote -v
@@ -30,7 +30,9 @@
   cob      = checkout -b
   cot      = checkout -t
   undo     = reset HEAD~1 --mixed
-  pr       = "{ git fetch origin pull//head: && git co ; }; f"
+  # pr       = "!f() { git fetch origin pull//head: && git co ; }; f"
+  pr       = "!f() { git fetch -fu ${2:-$(git remote |grep ^origin || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 
 [includeIf "gitdir:~/src/"]
   path = ~/.dotfiles/git/gitconfig-personal
@@ -38,3 +40,5 @@
   path = ~/.dotfiles/git/gitconfig-work
 [include]
   path = ~/.gitconfig-local
+[hub]
+	protocol = https

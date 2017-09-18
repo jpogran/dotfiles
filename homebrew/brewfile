@@ -25,6 +25,7 @@ brew "rbenv"
 brew "rbenv-default-gems"
 brew "wget"
 brew "packer"
+brew "exiftool"
 
 cask "skype"
 cask "spectacle"
@@ -40,6 +41,7 @@ cask "tunnelblick"
 cask "powershell"
 cask "google-chrome"
 cask "screenhero"
+cask "gemini"
 
 mas "1Password", id: 443987910
 mas "Slack", id: 803453959
