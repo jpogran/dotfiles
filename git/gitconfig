@@ -42,3 +42,11 @@
   path = ~/.gitconfig-local
 [hub]
 	protocol = https
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[user]
+	name = James Pogran
+	email = jpogran@outlook.com
