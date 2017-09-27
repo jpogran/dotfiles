@@ -1,7 +1,0 @@
-gem 'pry' #this may already be included in the gemfile
-gem 'pry-stack_explorer', :require => false
-#if RUBY_VERSION =~ /^2/
-#  gem 'pry-byebug'
-#else
-#  gem 'pry-debugger'
-#end

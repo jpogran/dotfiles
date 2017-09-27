@@ -13,12 +13,12 @@
     ~/.gitconfig: git/gitconfig
     ~/.gitconfig-local: git/gitconfig-osx
     ~/.gitignore: git/gitignore
-    ~/.Brewfile: homebrew/brewfile
-    ~/.config/powershell/profile.ps1: powershell/profile.ps1
-    ~/.gemrc: ruby/gemrc
-    ~/.gemfile: ruby/gemfile
-    ~/.pryrc: ruby/pryrc
-    ~/.vimrc: vim/vimrc
-    ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
-    ~/.zshrc: zsh/zshrc
-    ~/.vmfloaty.yml: misc/vmfloaty.yml
+    ~/.Brewfile: brewfile
+    ~/.config/powershell/profile.ps1: profile.ps1
+    ~/.gemrc: gemrc
+    ~/Gemfile.local: gemfile.local
+    ~/.pryrc: pryrc
+    ~/.vimrc: vimrc
+    ~/Library/Application Support/Code/User/settings.json: vscode.json
+    ~/.zshrc: zshrc
+    ~/.vmfloaty.yml: vmfloaty.yml

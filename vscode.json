@@ -1,7 +1,5 @@
 {
   "editor.tabCompletion": true,
-  "editor.fontFamily": "'Source Code Pro for Powerline'",
-  "editor.fontSize": 12,
   "editor.lineNumbers": "on",
   "editor.rulers": [
     80,
