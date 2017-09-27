@@ -22,3 +22,4 @@
     ~/Library/Application Support/Code/User/settings.json: vscode.json
     ~/.zshrc: zshrc
     ~/.vmfloaty.yml: vmfloaty.yml
+    ~/.iterm/themes/SolarizedDark.itermcolors: SolarizedDark.itermcolors
