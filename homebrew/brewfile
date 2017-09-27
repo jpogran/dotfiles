@@ -1,12 +1,14 @@
 cask_args appdir: "/Applications"
 
-tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/dev-tools"
 tap "homebrew/formula-analytics"
 tap "homebrew/services"
 tap "homebrew/test-bot"
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "caskroom/fonts"
 
 brew "zsh"
 brew "icu4c"
@@ -35,13 +37,20 @@ cask "google-chrome"
 cask "textexpander"
 cask "textmate"
 cask "vagrant"
-cask "virtualbox"
+cask "virtualbox-beta"
 cask "hipchat"
 cask "tunnelblick"
 cask "powershell"
 cask "google-chrome"
 cask "screenhero"
 cask "gemini"
+
+
+cask "font-inconsolata"
+cask "font-liberation-sans"
+cask "font-open-sans"
+cask "font-source-code-pro"
+cask "font-source-sans-pro"
 
 mas "1Password", id: 443987910
 mas "Slack", id: 803453959
