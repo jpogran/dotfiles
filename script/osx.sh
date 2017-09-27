@@ -39,7 +39,7 @@ defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 defaults write com.apple.Finder FXPreferredViewStyle Nlsv
 
 # Show hidden files and file extensions by default
-defaults write com.apple.finder AppleShowAllFiles -bool true
+# defaults write com.apple.finder AppleShowAllFiles -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Disable the warning when changing file extensions
@@ -52,7 +52,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Enable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false

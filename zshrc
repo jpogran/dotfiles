@@ -10,7 +10,7 @@ export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
 DEFAULT_USER="jpogran"
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
