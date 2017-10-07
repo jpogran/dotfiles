@@ -17,6 +17,7 @@
     ~/.config/powershell/profile.ps1: profile.ps1
     ~/.gemrc: gemrc
     ~/Gemfile.local: gemfile.local
+    ~/.hushlogin: hushlogin
     ~/.pryrc: pryrc
     ~/.vimrc: vimrc
     ~/Library/Application Support/Code/User/settings.json: vscode.json
