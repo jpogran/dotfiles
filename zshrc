@@ -22,6 +22,33 @@ function ni() {
   mkdir -p "$(dirname "$1")/" && touch "$1"
 }
 
+function all-up() {
+  vagrant up master pe-agent
+  vagrant suspend master pe-agent
+  vagrant up pullserver dsc-agent
+  vagrant suspend pullserver dsc-agent
+}
+
+function all-down() {
+  vagrant suspend
+}
+
+function puppet-up() {
+  vagrant up master pe-agent
+}
+
+function dsc-up() {
+  vagrant up pullserver dsc-agent
+}
+
+function puppet-suspend() {
+  vagrant suspend master pe-agent
+}
+
+function dsc-suspend() {
+  vagrant suspend pullserver dsc-agent
+}
+
 [ -f ~/.zsh.local ] && source ~/.zsh.local
 
 eval "$(hub alias -s)"

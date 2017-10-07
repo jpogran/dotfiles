@@ -62,17 +62,16 @@
   },
   "search.useIgnoreFilesByDefault": true,
   "extensions.autoUpdate": true,
-  "terminal.external.windowsExec": "%COMSPEC%",
+  "terminal.external.windowsExec": "powershell",
   "terminal.external.osxExec": "iterm.app",
   "terminal.external.linuxExec": "xterm",
+  "terminal.integrated.shell.windows": "powershell.exe",
   "terminal.integrated.shell.linux": "/bin/zsh",
   "terminal.integrated.shellArgs.linux": [],
   "terminal.integrated.shell.osx": "/bin/zsh",
   "terminal.integrated.shellArgs.osx": [
     "-l"
   ],
-  "terminal.integrated.shell.windows": "cmd.exe",
   "terminal.integrated.fontFamily": "'Source Code Pro for Powerline'",
-  "terminal.integrated.fontSize": 10,
-  "powershell.powerShellExePath": ""
+  "terminal.integrated.fontSize": 10
 }

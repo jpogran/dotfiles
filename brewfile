@@ -34,6 +34,7 @@ cask "powershell"
 cask "google-chrome"
 cask "screenhero"
 cask "gemini"
+cask "box-sync"
 
 cask "font-inconsolata"
 cask "font-liberation-sans"
