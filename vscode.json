@@ -1,4 +1,8 @@
 {
+  "editor.fontWeight": "300",
+  "editor.fontSize":18,
+  "editor.fontFamily": "Source Code Pro",
+  "editor.fontLigatures":true,
   "editor.tabCompletion": true,
   "editor.lineNumbers": "on",
   "editor.rulers": [
@@ -72,6 +76,8 @@
   "terminal.integrated.shellArgs.osx": [
     "-l"
   ],
-  "terminal.integrated.fontFamily": "'Source Code Pro for Powerline'",
-  "terminal.integrated.fontSize": 10
+  "terminal.integrated.fontSize": 20,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.fontAliasing": "antialiased",
+  "window.zoomLevel": -1
 }
