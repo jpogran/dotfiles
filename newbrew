@@ -1,0 +1,20 @@
+cask_args appdir: "/Applications"
+
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/dev-tools"
+tap "homebrew/formula-analytics"
+tap "homebrew/services"
+tap "homebrew/test-bot"
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "caskroom/fonts"
+
+brew "git"
+brew "hub"
+brew "zsh"
+
+cask "visual-studio-code"
+cask "powershell"
+
+mas "1Password", id: 443987910
