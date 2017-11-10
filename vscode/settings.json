@@ -1,0 +1,62 @@
+{
+  "editor.fontFamily":"Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontWeight": "normal",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.rulers": [ 80,120 ],
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.scrollBeyondLastLine": true,
+  "editor.minimap.enabled": false,
+  "editor.wordWrap": "off",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderWhitespace": "boundary",
+  "editor.renderLineHighlight": "line",
+  "editor.trimAutoWhitespace": true,
+  "editor.dragAndDrop": false,
+
+  "workbench.startupEditor": "none",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.sideBar.location": "left",
+  "workbench.fontAliasing": "antialiased",
+  "workbench.iconTheme": "vs-seti",
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.bundle":true,
+    "**/node_modules":true
+  },
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.bundle/**":true
+  },
+  
+  "terminal.explorerKind": "integrated",
+  "terminal.external.windowsExec": "undefined\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.external.osxExec": "iterm.app",
+  "terminal.external.linuxExec": "xterm",
+  
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "terminal.integrated.shellArgs.osx": ["-l"],
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "terminal.integrated.shellArgs.windows": [],
+  "terminal.integrated.fontFamily": "",
+  "terminal.integrated.fontSize": 12,
+
+  "powershell.powerShellExePath": "",
+  "powershell.developer.powerShellExeIsWindowsDevBuild": false,
+
+  "puppet.languageclient.minimumUserLogLevel": "debug",
+  "window.zoomLevel": 0,
+  "workbench.panel.location": "right"
+}

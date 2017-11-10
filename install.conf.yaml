@@ -14,13 +14,14 @@
     ~/.gitconfig-local: git/gitconfig-osx
     ~/.gitignore: git/gitignore
     ~/.Brewfile: brewfile
-    ~/.config/powershell/profile.ps1: profile.ps1
+    ~/.config/powershell/Microsoft.PowerShell_profile.ps1: profile.ps1
     ~/.gemrc: gemrc
     ~/Gemfile.local: gemfile.local
     ~/.hushlogin: hushlogin
     ~/.pryrc: pryrc
     ~/.vimrc: vimrc
-    ~/Library/Application Support/Code/User/settings.json: vscode.json
+    ~/Library/Application Support/Code/User/settings.json: vscode/settings.json
+    ~/Library/Application Support/Code/User/keybindings.json: vscode/keybindings.json
     ~/.zshrc: zshrc
     ~/.vmfloaty.yml: vmfloaty.yml
     ~/.iterm/themes/SolarizedDark.itermcolors: SolarizedDark.itermcolors

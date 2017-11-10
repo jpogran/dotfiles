@@ -49,4 +49,5 @@
 	smudge = git-lfs smudge -- %f
 [user]
 	name = James Pogran
-	email = jpogran@outlook.com
+	email = james.pogran@puppet.com
+	signingkey = 8CA73A20F7C9862F
