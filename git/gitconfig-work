@@ -1,8 +1,3 @@
 [user]
-	name = James Pogran
 	email = james.pogran@puppet.com
-[shell]
-	username = jpogran
-[github]
-	# GitHub username for command-line tools.
-	user = jpogran
+  signingkey = 8CA73A20F7C9862F

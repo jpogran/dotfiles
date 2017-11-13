@@ -1,18 +1,34 @@
+[user]
+  name  = jpogran
+  email = james.pogran@outlook.com
+[shell]
+  username = jpogran
+[github]
+  user = jpogran
 [help]
   autocorrect = 1
 [color]
-  ui = auto
-  status = auto
-  branch = auto
+  ui          = auto
+  status      = auto
+  branch      = auto
   interactive = auto
-  diff = auto
-
+  diff        = auto
 [core]
   editor = code --wait
   commit = verbose
-
 [push]
   default = simple
+[hub]
+  protocol = https
+[filter "lfs"]
+  process  = git-lfs filter-process
+  required = true
+  clean    = git-lfs clean -- %f
+  smudge   = git-lfs smudge -- %f
+[diff]
+  tool = default-difftool
+[difftool "default-difftool"]
+  cmd = code --wait --diff $LOCAL $REMOTE
 
 [alias]
   cm       = commit -m
@@ -34,20 +50,9 @@
   pr       = "!f() { git fetch -fu ${2:-$(git remote |grep ^origin || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 
-[includeIf "gitdir:~/src/"]
+[includeIf "gitdir:~/src/my/"]
   path = ~/.dotfiles/git/gitconfig-personal
 [includeIf "gitdir:~/src/puppetlabs/"]
   path = ~/.dotfiles/git/gitconfig-work
 [include]
   path = ~/.gitconfig-local
-[hub]
-	protocol = https
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-[user]
-	name = James Pogran
-	email = james.pogran@puppet.com
-	signingkey = 8CA73A20F7C9862F

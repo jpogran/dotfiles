@@ -2,9 +2,5 @@
 	helper = osxkeychain
 [core]
 	editor = vim
-[diff]
-  tool = default-difftool
-[difftool "default-difftool"]
-  cmd = code --wait --diff $LOCAL $REMOTE
 [diff "bin"]
   textconv = hexdump -v -C
