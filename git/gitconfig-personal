@@ -1,5 +1,6 @@
 [user]
-  email = james.pogran@outlook.com
+  email      = james.pogran@outlook.com
+  signingkey = 45CAED724A0A0B34
 [alias]
   # Push the current branch upstream to jpogran using the same
   # branch name for the remote branch.
