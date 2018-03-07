@@ -21,3 +21,6 @@ Import-Module '/Users/jpogran/src/profile/posh-git/src/posh-git.psd1'
 $global:GitPromptSettings.DefaultPromptSuffix           = '`n$(''>'' * ($nestedPromptLevel + 1)) '
 $GitPromptSettings.DefaultPromptPrefix                  = '[$(hostname)] '
 $GitPromptSettings.DefaultPromptAbbreviateHomeDirectory = $true
+
+Import-Module oh-my-posh
+Set-Theme agnoster

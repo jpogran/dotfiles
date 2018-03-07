@@ -21,21 +21,23 @@
 [core]
   editor = code --wait
   commit = verbose
+	whitespace = cr-at-eol
 [push]
   default = simple
 [hub]
   protocol = https
 [filter "lfs"]
-  process  = git-lfs filter-process
+	process = git-lfs filter-process
   required = true
   clean    = git-lfs clean -- %f
-  smudge   = git-lfs smudge -- %f
+	smudge = git-lfs smudge -- %f
 [diff]
   tool = default-difftool
 [difftool "default-difftool"]
   cmd = code --wait --diff $LOCAL $REMOTE
 
 [alias]
+  commit   = commit -v
   cm       = commit -m
   l        = log --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
   lg       = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"

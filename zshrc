@@ -9,6 +9,8 @@ export INSTALLATION_TYPE="git"
 export BUNDLE_PATH=.bundle/gems
 export BUNDLE_BIN=.bundle/bin
 
+export GOPATH=$HOME/src/go
+
 DEFAULT_USER="jpogran"
 POWERLEVEL9K_MODE='awesome-fontconfig'
 ZSH_THEME="powerlevel9k/powerlevel9k"
