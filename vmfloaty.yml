@@ -1,6 +1,0 @@
-#file at /Users/me/.vmfloaty.yml
-url: 'http://vmpooler.delivery.puppetlabs.net'
-# Sensitive info, do not commit token here. Replace
-# at target node
-user: ''
-token: ''

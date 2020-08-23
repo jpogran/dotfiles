@@ -1,4 +1,0 @@
-# Sensitive info, do not commit token here. Replace
-# at target node
-:default:
-  :vmpooler_token: ""
