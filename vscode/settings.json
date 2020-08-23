@@ -1,38 +1,48 @@
 {
-  "editor.fontFamily":"Menlo, Monaco, 'Fira Code', Consolas, 'Courier New', monospace",
-  "editor.rulers": [ 80,120 ],
-  "editor.tabSize": 2,
-  "editor.minimap.enabled": false,
+  "debug.openDebug": "neverOpen",
   "editor.dragAndDrop": false,
-  "editor.trimAutoWhitespace": false,
-  "editor.renderWhitespace": "all",
-
-  "diffEditor.ignoreTrimWhitespace": false,
-
-  "files.trimTrailingWhitespace": false,
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    // "**/.bundle":true,
-    "**/node_modules":true
-  },
+  "editor.fontFamily": "'Cascadia Code PL', Consolas, 'Courier New', monospace",
+  "terminal.integrated.fontFamily": "CaskaydiaCove NF",
+  "terminal.integrated.shell.windows": "C:/Program Files/PowerShell/7/pwsh.exe",
+  "editor.fontLigatures": true,
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": true,
+  "editor.renderFinalNewline": true,
+  "editor.renderIndentGuides": true,
+  "workbench.editor.enablePreview": false,
+  "editor.renderLineHighlight": "line",
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80, 120],
+  "editor.scrollBeyondLastLine": true,
+  "editor.tabSize": 2,
+  "files.defaultLanguage": "markdown",
   "files.encoding": "utf8",
-  "files.watcherExclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/.bundle/**":true
-  },
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-
-  "gitlens.blame.ignoreWhitespace": false,
-
-  "puppet.languageclient.minimumUserLogLevel": "debug",
-  "window.zoomLevel": 0,
+  "files.eol": "\n",
+  "git.enableStatusBarSync": false,
+  "workbench.activityBar.visible": false,
   "workbench.startupEditor": "newUntitledFile",
-  "gitlens.keymap": "alternate"
+  "workbench.statusBar.visible": true,
+  "window.menuBarVisibility": "toggle",
+  "powershell.powerShellDefaultVersion": "PowerShell Preview (x64)",
+  "powershell.integratedConsole.showOnStartup": false,
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "puppet.editorService.loglevel": "debug",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[git-commit]": {
+    "editor.rulers": [72],
+    "editor.wordWrapColumn": 72,
+    "editor.wordWrap": "wordWrapColumn"
+  },
+  "[markdown]": {
+    "editor.wordWrapColumn": 80,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.quickSuggestions": false,
+    "editor.formatOnSave": false
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
