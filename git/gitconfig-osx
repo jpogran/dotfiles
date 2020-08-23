@@ -1,6 +1,0 @@
-[credential]
-	helper = osxkeychain
-[core]
-	editor = vim
-[diff "bin"]
-  textconv = hexdump -v -C
