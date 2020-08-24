@@ -1,8 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
 export EDITOR='vim'
-export BUNDLE_PATH=.bundle/gems
-export BUNDLE_BIN=.bundle/bin
-
 export GOPATH=$HOME/src/go
 
 DEFAULT_USER="jpogran"
