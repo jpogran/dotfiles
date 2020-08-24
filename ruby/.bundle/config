@@ -1,0 +1,4 @@
+---
+BUNDLE_PATH: ".bundle/gems"
+BUNDLE_WITHOUT: "server:test:packaging"
+BUNDLE_JOBS: "4"
