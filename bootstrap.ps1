@@ -1,7 +1,5 @@
 Copy-Item -Force -Path (Join-Path $PSScriptRoot "git/*") -Destination ${HOME}
 Copy-Item -Force -Path (Join-Path $PSScriptRoot "ruby/*") -Destination ${HOME}
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "vim/*") -Destination ${HOME}
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "zsh/*") -Destination ${HOME}
 
 switch ($PSVersionTable.PSVersion.Major) {
   7 {
