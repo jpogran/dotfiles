@@ -1,6 +1,6 @@
 # Install gems without docs by default
 ---
-gem: --no-ri --no-rdoc
+gem: --no-ri --no-document
 
 :benchmark: false
 :verbose: false
