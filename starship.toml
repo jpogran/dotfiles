@@ -1,0 +1,26 @@
+# ~/.config/starship.toml
+
+add_newline = false
+scan_timeout = 10
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[[battery.display]]
+threshold = 90
+style = "bold red"
+
+[character]
+symbol = "🚀"
+error_symbol = "⛔"
+use_symbol_for_status = true
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+
+[git_commit]
+commit_hash_length = 4
+only_detached = false
