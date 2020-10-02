@@ -20,9 +20,9 @@
 [rebase]
   autoStash = true
 [diff]
-  tool = default-difftool
+  tool = vscode
   renames = copies
-[difftool "default-difftool"]
+[difftool "vscode"]
   prompt = false
   cmd = code --wait --diff $LOCAL $REMOTE
 [alias]
