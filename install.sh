@@ -1,6 +1,5 @@
 #!/bin/bash
-
-cp -r git ${HOME}
-cp -r ruby ${HOME}
-cp -r vim ${HOME}
-cp -r zsh ${HOME}
+find git -type f -exec cp {} ${HOME} \;
+find ruby -type f -exec cp {} ${HOME} \;
+find vim -type f -exec cp {} ${HOME} \;
+find zsh -type f -exec cp {} ${HOME} \;
