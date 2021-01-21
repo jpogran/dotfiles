@@ -1,16 +1,20 @@
-{{ if ne .chezmoi.os "windows" }}
-Appdata
-Documents/PowerShell
+CODE_OF_CONDUCT.md
+LICENSE
+README.md
+
+bootstrap.ps1
+install.sh
+
+{{ if ne .chezmoi.os "darwin" }}
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 .hushlogin
-.vimrc
-.zshrc
 {{ end }}
 
-bootstrap.ps1
-install.sh
-CODE_OF_CONDUCT.md
-LICENSE
-README.md
+{{ if ne .chezmoi.os "windows" }}
+AppData
+Documents
+{{ else }}
+.zshrc
+{{ end }}
