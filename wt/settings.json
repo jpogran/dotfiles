@@ -1,31 +1,35 @@
 {
   "$schema": "https://aka.ms/terminal-profiles-schema",
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "copyOnSelect": false,
   "copyFormatting": false,
-  "alwaysShowTabs": false,
   "theme": "dark",
   "disabledProfileSources": ["Windows.Terminal.Azure"],
-  "defaultProfile": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
   "profiles": {
     "defaults": {
-      "fontFace": "Cascadia Code PL"
+      "fontFace": "Cascadia Code PL",
+      "cursorShape": "filledBox",
+      "padding": "4, 4, 4, 4",
+      "backgroundImageAlignment": "bottomRight",
+      "backgroundImageStretchMode": "none",
+      "backgroundImageOpacity": 0.5
     },
     "list": [
       {
-        "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,
-        "name": "PowerShell 7",
-        "source": "Windows.Terminal.PowershellCore"
+        "name": "pwsh",
+        "source": "Windows.Terminal.PowershellCore",
+        "commandline": "pwsh.exe -nologo",
+        "backgroundImage": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/Chibi_Avatar.png",
+        "backgroundImageStretchMode": "uniform",
+        "colorScheme": "Darkly"
       },
       {
         "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
-        "name": "PowerShell 7 Preview",
+        "name": "pwsh-pre",
         "source": "Windows.Terminal.PowershellCore",
-        "hidden": false,
-        "colorScheme": "retrowave",
-        "backgroundImage": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/Chibi_Avatar.png",
-        "backgroundImageStretchMode": "uniform",
-        "backgroundImageOpacity": 0.3
+        "hidden": false
       },
       {
         "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -34,36 +38,50 @@
         "hidden": false
       },
       {
-        "guid": "{b2341927-4912-4fca-ab12-39ef4bcd590e}",
-        "hidden": false,
-        "name": "PowerShell Puppet",
-        "source": "Windows.Terminal.PowershellCore",
-        "backgroundImage": "C:/Users/james/src/puppet-vscode/images/puppet-vscode-sm.png",
-        "icon": "C:/Users/james/src/puppet-vscode/images/puppet-vscode-sm.png",
-        "backgroundImageAlignment": "bottomRight",
-        "backgroundImageStretchMode": "none",
-        "backgroundImageOpacity": 0.3
-      },
-      {
-        "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-        "hidden": false,
-        "name": "Ubuntu-18.04",
+        "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
+        "name": "ubuntu-20.04",
         "source": "Windows.Terminal.Wsl",
-        "startingDirectory": "//wsl$/Ubuntu-18.04/home/james",
+        "startingDirectory": "//wsl$/Ubuntu-20.04/home/james",
         "backgroundImage": "https://raw.githubusercontent.com/jpogran/profile/master/terminal/img/ubuntu.png",
-        "backgroundImageAlignment": "bottomRight",
-        "backgroundImageStretchMode": "none",
-        "backgroundImageOpacity": 0.2
+        "hidden": false
       },
       {
         "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
         "name": "Command Prompt",
         "commandline": "cmd.exe",
         "hidden": true
+      },
+      {
+        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+        "name": "Azure Cloud Shell",
+        "source": "Windows.Terminal.Azure",
+        "hidden": true
       }
     ]
   },
+
   "schemes": [
+    {
+      "name": "Darkly",
+      "background": "#212021",
+      "foreground": "#FFFCFF",
+      "black": "#212021",
+      "red": "#D92D20",
+      "green": "#01A252",
+      "yellow": "#FBED02",
+      "blue": "#01A0E4",
+      "purple": "#A16A94",
+      "cyan": "#55C4CF",
+      "white": "#A5A2A2",
+      "brightBlack": "#493F3F",
+      "brightRed": "#FF6E6D",
+      "brightGreen": "#6CD18E",
+      "brightYellow": "#FFFF85",
+      "brightBlue": "#6ECEFF",
+      "brightPurple": "#D29BC6",
+      "brightCyan": "#95F2FF",
+      "brightWhite": "#FFFCFF"
+    },
     {
       "name": "Monokai Pro",
       "background": "#000000",
@@ -129,17 +147,15 @@
       "yellow": "#fcee54"
     }
   ],
-  "keybindings": [
-    { "command": { "action": "copy", "singleLine": false }, "keys": "ctrl+c" },
-    { "command": "paste", "keys": "ctrl+v" },
-    { "command": "find", "keys": "ctrl+shift+f" },
-    {
-      "command": {
-        "action": "splitPane",
-        "split": "auto",
-        "splitMode": "duplicate"
-      },
-      "keys": "alt+shift+d"
-    }
+
+  "actions": [
+    { "keys": "ctrl+c",       "command": { "action": "copy", "singleLine": false } },
+    { "keys": "ctrl+v",       "command": "paste" },
+    { "keys": "ctrl+shift+f", "command": "find" },
+    { "keys": "alt+shift+d",  "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" } },
+    { "keys": "ctrl+n",       "command": { "action": "openNewTabDropdown" } },
+    { "keys": "alt+shift+d",  "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" } },
+    { "keys": "alt+p",        "command": { "action": "splitPane", "profile": "pwsh", "split": "auto" } },
+    { "keys": "alt+u",        "command": { "action": "splitPane", "profile": "ubuntu-20.04", "split": "auto" } }
   ]
 }

@@ -1,6 +1,9 @@
 [core]
   editor = code --wait
   commit = verbose
+  autocrlf = false
+  fscache = true
+  symlinks = false
 [user]
   name = James Pogran
   email = jpogran@outlook.com
@@ -28,12 +31,18 @@
 [alias]
   amend    = commit --amend --reuse-message=HEAD
   branches = branch -a
+  b        = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+  br       = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
   co       = checkout
   cob      = checkout -b
   cot      = checkout -t
   commit   = commit -v
   cm       = commit -v -m
+  d        = diff
+  ds       = diff --stat
+  dc       = diff --cached
   l        = log  -n 20 --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  last     = log -1 HEAD                       # last log message
   lg       = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
   ll       = log --oneline -n 20
   ln       = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
@@ -42,3 +51,12 @@
   tags     = tag -l
   remotes  = remote -v
   undo     = reset HEAD~1 --mixed
+  unstage  = reset HEAD --                  # git unstage fileA
+[init]
+  defaultBranch = main
+[pull]
+  rebase = true
+[credential]
+  helper = manager-core
+[init]
+  defaultBranch = main
