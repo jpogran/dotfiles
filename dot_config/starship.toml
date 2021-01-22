@@ -1,0 +1,23 @@
+scan_timeout = 10
+
+[cmd_duration]
+min_time = 500
+show_milliseconds = true
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+
+[git_commit]
+commit_hash_length = 4
+only_detached = false
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]](bold red))'
+
+[env_var]
+variable = "STARSHIP_SHELL"
+default = ""
+format = "[$env_value](bold bright-blue) "
