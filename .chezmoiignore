@@ -17,4 +17,5 @@ AppData
 Documents
 {{ else }}
 .zshrc
+.config/powershell
 {{ end }}
