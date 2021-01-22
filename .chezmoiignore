@@ -2,3 +2,9 @@
 Appdata
 Documents/PowerShell
 {{ end }}
+
+bootstrap.ps1
+install.sh
+CODE_OF_CONDUCT.md
+LICENSE
+README.md
