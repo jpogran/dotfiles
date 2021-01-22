@@ -5,6 +5,8 @@ Documents/PowerShell
 
 {{ if ne .chezmoi.os "linux" }}
 .hushlogin
+.vimrc
+.zshrc
 {{ end }}
 
 bootstrap.ps1
