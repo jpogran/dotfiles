@@ -1,3 +1,5 @@
+[init]
+  defaultBranch = main
 [core]
   editor = code --wait
   commit = verbose
@@ -20,6 +22,10 @@
   branch = auto
   interactive = auto
   diff = auto
+[pull]
+  rebase = true
+[credential]
+  helper = manager-core
 [rebase]
   autoStash = true
 [diff]
@@ -52,11 +58,3 @@
   remotes  = remote -v
   undo     = reset HEAD~1 --mixed
   unstage  = reset HEAD --                  # git unstage fileA
-[init]
-  defaultBranch = main
-[pull]
-  rebase = true
-[credential]
-  helper = manager-core
-[init]
-  defaultBranch = main
