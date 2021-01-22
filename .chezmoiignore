@@ -3,6 +3,10 @@ Appdata
 Documents/PowerShell
 {{ end }}
 
+{{ if ne .chezmoi.os "linux" }}
+.hushlogin
+{{ end }}
+
 bootstrap.ps1
 install.sh
 CODE_OF_CONDUCT.md
