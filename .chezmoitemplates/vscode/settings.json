@@ -76,5 +76,6 @@
   "gitlens.views.repositories.enabled": true,
 
   "powershell.codeFormatting.autoCorrectAliases": true,
-  "powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  "window.zoomLevel": 0
 }
