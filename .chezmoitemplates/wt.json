@@ -20,10 +20,7 @@
         "hidden": false,
         "name": "pwsh",
         "source": "Windows.Terminal.PowershellCore",
-        "commandline": "pwsh.exe -nologo",
-        "backgroundImage": "https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/Chibi_Avatar.png",
-        "backgroundImageStretchMode": "uniform",
-        "colorScheme": "Darkly"
+        "commandline": "pwsh.exe -nologo"
       },
       {
         "guid": "{a3a2e83a-884a-5379-baa8-16f193a13b21}",
