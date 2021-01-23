@@ -1,17 +1,23 @@
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "git/*") -Destination ${HOME}
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "ruby/*") -Destination ${HOME}
+# https://github.com/twpayne/chezmoi/releases/download/v1.8.10/chezmoi_1.8.10_windows_amd64.zip
 
-switch ($PSVersionTable.PSVersion.Major) {
-  7 {
-    New-Item -itemType Directory -Force -Path (Join-Path ${HOME} "/Documents/PowerShell") | Out-Null
-    Copy-Item -Force -Path (Join-Path $PSScriptRoot "pwsh/pwsh.ps1") -Destination (Join-Path ${HOME} "/Documents/PowerShell/Microsoft.PowerShell_profile.ps1")
-  }
-  5 {
-    New-Item -itemType Directory -Force -Path (Join-Path ${HOME} "/Documents/WindowsPowerShell") | Out-Null
-    Copy-Item -Force -Path (Join-Path $PSScriptRoot "pwsh/pwsh.ps1") -Destination (Join-Path ${HOME} "/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1")
-  }
-}
+$baseUrl      = "https://github.com/twpayne/chezmoi/releases"
+$arch         = "x86_64"
+$platform     = "windows_amd64"
+$ext          = "zip"
+$app          = "chezmoi"
+$version      = "1.8.10"
+$url          = "${baseUrl}/latest/download/${app}_${version}_${platform}.${ext}"
+$temppath     = Join-Path -Path ([IO.Path]::GetTempPath()) -ChildPath "${app}-${arch}-${platform}.${ext}"
+$appPath      = Join-Path $home 'bin'
 
-New-Item -itemType Directory -Force -Path (Join-Path $env:APPDATA "/Code/User") | Out-Null
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "vscode/settings.json") -Destination (Join-Path $env:APPDATA "/code/user/settings.json")
-Copy-Item -Force -Path (Join-Path $PSScriptRoot "vscode/keybindings.json") -Destination (Join-Path $env:APPDATA "/code/user/keybindings.json")
+Invoke-WebRequest -Uri $url -OutFile $temppath
+New-Item -Path $appPath -Force -ItemType Directory
+Expand-Archive -Path $temppath -DestinationPath $appPath -Force
+
+$envpath = "${appPath};" + $env:Path
+[System.Environment]::SetEnvironmentVariable(
+  'PATH',
+  $envpath,
+  [System.EnvironmentVariableTarget]::User
+)
+$env:Path = $envpath
