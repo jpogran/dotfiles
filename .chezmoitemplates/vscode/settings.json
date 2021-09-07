@@ -7,6 +7,8 @@
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.suggest.preview": true,
 
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "modifications",
@@ -34,6 +36,7 @@
   "terminal.integrated.windowsEnableConpty": true,
   "terminal.integrated.fontSize": 18,
 
+  "window.dialogStyle": "custom",
   "window.openFilesInNewWindow": "off",
   "window.menuBarVisibility": "toggle",
   "window.restoreWindows": "all",
@@ -60,6 +63,10 @@
 
   "typescript.format.enable": false,
   "typescript.tsc.autoDetect": "off",
+
+  "terraform.languageServer": {
+    "tcp_port": 30337
+  },
 
   "[git-commit]": {
     "editor.rulers": [72],
@@ -91,5 +98,6 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "security.workspace.trust.untrustedFiles": "open"
+  "security.workspace.trust.untrustedFiles": "open",
+  "go.toolsManagement.autoUpdate": true
 }
