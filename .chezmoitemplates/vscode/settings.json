@@ -1,7 +1,6 @@
 {
   "debug.openDebug": "neverOpen",
-
-  "editor.fontSize": 16,
+  "editor.fontSize": 12,
   "editor.fontFamily": "'CaskaydiaCove NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.minimap.enabled": false,
@@ -28,13 +27,13 @@
   "editor.renderFinalNewline": true,
   "editor.renderIndentGuides": true,
   "editor.renderLineHighlight": "line",
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "trailing",
   "editor.rulers": [80, 120],
 
   "git.enableStatusBarSync": false,
 
   "terminal.integrated.windowsEnableConpty": true,
-  "terminal.integrated.fontSize": 18,
+  // "terminal.integrated.fontSize": 18,
 
   "window.dialogStyle": "custom",
   "window.openFilesInNewWindow": "off",
@@ -50,7 +49,6 @@
   "workbench.statusBar.visible": true,
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.colorTheme": "GitHub Dark",
   "workbench.colorCustomizations": {
     "terminal.ansiBrightBlack": "#696562" // paramters show up in github dark clearer
   },
@@ -99,5 +97,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "security.workspace.trust.untrustedFiles": "open",
-  "go.toolsManagement.autoUpdate": true
+  "go.toolsManagement.autoUpdate": true,
+  "redhat.telemetry.enabled": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "simpleBrowser.focusLockIndicator.enabled": false,
+  "workbench.colorTheme": "GitHub Dark Default"
 }
