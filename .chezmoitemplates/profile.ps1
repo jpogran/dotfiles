@@ -34,6 +34,7 @@ $PSDefaultParameterValues['Install-Module:AllowClobber'] = $true
 $PSDefaultParameterValues['Install-Module:Force'] = $true
 $PSDefaultParameterValues['Install-Module:SkipPublisherCheck'] = $true
 $PSDefaultParameterValues['Install-Module:Scope'] = 'CurrentUser'
+$PSDefaultParameterValues['Install-Package:Repository'] = 'PSGallery'
 $PSDefaultParameterValues['Out-Default:OutVariable'] = 'LastResult'
 $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 
@@ -59,9 +60,10 @@ if ($env:STARSHIP_SHELL -eq 'powershell') {
   Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
 }
 
-&"${home}/bin/gvm" --format=powershell 1.16.8 | iex
+&"${home}/bin/gvm" --format=powershell 1.17.2 | Invoke-Expression
 
 function gvm{
   param($version)
-  &"${home}/bin/gvm" --format=powershell $version | iex
+  # https://github.com/andrewkroh/gvm
+  &"${home}/bin/gvm" --format=powershell $version | Invoke-Expression
 }
