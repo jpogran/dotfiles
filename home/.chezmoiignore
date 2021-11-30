@@ -10,5 +10,6 @@ AppData
 Documents
 {{ else }}
 .zshrc
+.config/Code
 .config/powershell
 {{ end }}
