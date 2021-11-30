@@ -1,8 +1,6 @@
+{{- $hostname := .chezmoi.hostname -}}
 {{- $codespaces := env "CODESPACES" | not | not -}}
 {{- $isWsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
-{{- $hostname := .chezmoi.hostname -}}
-
-sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 {{- if eq .chezmoi.os "windows" -}}
 [cd]
@@ -10,14 +8,13 @@ sourceDir = {{ .chezmoi.sourceDir | quote }}
   args = ["-nologo"]
 {{ end -}}
 
-[git]
-  autoCommit = true
-  autoPush = true
-
 [diff]
   exclude = ["scripts"]
   command = "code"
   args = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
+
+[git]
+  autoCommit = true
 
 [data]
   username = "jpogran"
