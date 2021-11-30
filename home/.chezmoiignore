@@ -11,5 +11,6 @@ Documents
 {{ else }}
 .zshrc
 .config/Code
+.config/gh
 .config/powershell
 {{ end }}
