@@ -13,8 +13,13 @@
   command = "code"
   args = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
 
+[edit]
+  command = "code"
+  args = ["--wait"]
+
 [git]
   autoCommit = true
+  autoPush = true
 
 [data]
   username = "jpogran"

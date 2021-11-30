@@ -1,71 +1,4 @@
 {
-  "debug.openDebug": "neverOpen",
-  "editor.fontSize": 12,
-  "editor.fontFamily": "'CaskaydiaCove NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace",
-  "editor.fontLigatures": true,
-  "editor.minimap.enabled": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.confirmDelete": false,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.suggest.preview": true,
-
-  "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "modifications",
-  "files.autoSave": "afterDelay",
-
-  "files.defaultLanguage": "markdown",
-  "files.encoding": "utf8",
-  "files.eol": "\n",
-
-  "editor.insertSpaces": true,
-  "editor.tabSize": 2,
-  "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": true,
-
-  "editor.renderControlCharacters": true,
-  "editor.renderFinalNewline": true,
-  "editor.renderIndentGuides": true,
-  "editor.renderLineHighlight": "line",
-  "editor.renderWhitespace": "trailing",
-  "editor.rulers": [80, 120],
-
-  "git.enableStatusBarSync": false,
-
-  "terminal.integrated.windowsEnableConpty": true,
-  // "terminal.integrated.fontSize": 18,
-
-  "window.dialogStyle": "custom",
-  "window.openFilesInNewWindow": "off",
-  "window.menuBarVisibility": "toggle",
-  "window.restoreWindows": "all",
-  "window.titleBarStyle": "custom",
-  "window.title": "${activeEditorShort}${separator}${rootName}${dirty}",
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.enablePreview": false,
-  "workbench.settings.editor": "json",
-  "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
-  "workbench.statusBar.visible": true,
-  "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "always",
-  "workbench.colorCustomizations": {
-    "terminal.ansiBrightBlack": "#696562" // paramters show up in github dark clearer
-  },
-
-  "gitlens.codeLens.scopes": ["document", "containers"],
-  "gitlens.statusBar.enabled": false,
-
-  "powershell.codeFormatting.autoCorrectAliases": true,
-  "powershell.integratedConsole.showOnStartup": false,
-
-  "typescript.format.enable": false,
-  "typescript.tsc.autoDetect": "off",
-
-  "terraform.languageServer": {
-    "tcp_port": 30337
-  },
-
   "[git-commit]": {
     "editor.rulers": [72],
     "editor.wordWrapColumn": 72,
@@ -81,6 +14,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
+    "editor.codeLens": false,
     "editor.wordWrapColumn": 80,
     "editor.wordWrap": "wordWrapColumn",
     "editor.quickSuggestions": false,
@@ -90,18 +24,87 @@
     "editor.codeLens": false
   },
   "[typescript]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.organizeImports": true
-    },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "security.workspace.trust.untrustedFiles": "open",
-  "go.toolsManagement.autoUpdate": true,
-  "redhat.telemetry.enabled": true,
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "simpleBrowser.focusLockIndicator.enabled": false,
-  "workbench.colorTheme": "GitHub Dark Default"
+  "editor.codeActionsOnSave": {
+    // "source.fixAll": true,
+    // "source.organizeImports": true
+  },
+  "debug.openDebug": "neverOpen",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.fontFamily": "'CaskaydiaCove NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeLensFontFamily": "'CaskaydiaCove NF', Consolas, 'Courier New', monospace",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.dragAndDrop": false,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.indentation": true,
+  "editor.hover.above": false,
+  "editor.insertSpaces": true,
+  "editor.smoothScrolling": true,
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.trimAutoWhitespace": true,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.formatOnSave": false,
+  "editor.formatOnType": false,
+  // "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.minimap.enabled": false,
+  "editor.renderControlCharacters": true,
+  "editor.renderFinalNewline": true,
+  "editor.renderLineHighlight": "line",
+  "editor.renderWhitespace": "trailing",
+  "editor.rulers": [80, 120],
+  "editor.suggest.preview": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "onFocusChange",
+  "files.defaultLanguage": "markdown",
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": false,
+  "git.enableStatusBarSync": false,
+  "git.allowForcePush": false,
+  "git.autofetch": false,
+  "git.autorefresh": false,
+  "git.autoStash": false,
+  "gitlens.codeLens.scopes": ["document", "containers"],
+  "gitlens.statusBar.enabled": false,
+  "powershell.integratedConsole.showOnStartup": false,
+  "terminal.integrated.windowsEnableConpty": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell",
+      "color": "terminal.ansiBlue",
+      "args": ["-nologo"]
+    },
+    "Ubuntu-20.04 (WSL)": {
+      "path": "C:/Windows/System32/wsl.exe",
+      "icon": "terminal-ubuntu",
+      "color": "terminal.ansiYellow",
+      "args": ["-d", "Ubuntu-20.04"]
+    }
+  },
+  "typescript.format.enable": false,
+  "typescript.tsc.autoDetect": "off",
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.labelFormat": "short",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.settings.editor": "json",
+  "workbench.tree.indent": 18,
+  "workbench.tree.renderIndentGuides": "always",
+  "workbench.colorTheme": "GitHub Dark Default",
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }

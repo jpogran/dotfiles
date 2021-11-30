@@ -1,4 +1,5 @@
 {
+  "$help": "https://aka.ms/terminal-documentation",
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "actions": [
     {
@@ -25,25 +26,30 @@
       "keys": "alt+shift+d"
     }
   ],
-  "copyFormatting": "none",
-  "copyOnSelect": false,
-  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "confirmCloseAllTabs": false,
+  "copyFormatting": "none",
+  "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
   "disabledProfileSources": ["Windows.Terminal.Azure"],
   "experimental.detectURLs": true,
   "focusFollowMouse": true,
+  "initialCols": 120,
   "largePasteWarning": false,
   "multiLinePasteWarning": false,
   "profiles": {
     "defaults": {
       "antialiasingMode": "cleartype",
+      "bellStyle": "taskbar",
+      "colorScheme": "Dark+",
+      "cursorShape": "filledBox",
       "font": {
         "face": "CaskaydiaCove NF",
         "size": 12
       },
       "intenseTextStyle": "all",
+      "opacity": 80,
       "padding": "1, 8, 8, 8",
-      "useAcrylic": true
+      "unfocusedAppearance": {},
+      "useAcrylic": false
     },
     "list": [
       {
@@ -59,13 +65,14 @@
         "name": "Command Prompt"
       },
       {
-        "antialiasingMode": "grayscale",
-        "colorScheme": "Monokai Pro",
+        "name": "pwsh",
+        "colorScheme": "Dark Pastel",
         "commandline": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -nologo",
+        "cursorColor": "#FFFFFF",
         "cursorShape": "filledBox",
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,
-        "name": "PowerShell",
+        "intenseTextStyle": "none",
         "source": "Windows.Terminal.PowershellCore"
       },
       {
@@ -75,25 +82,21 @@
         "source": "Windows.Terminal.PowershellCore"
       },
       {
-        "colorScheme": "UbuntuLegit",
-        "cursorShape": "filledBox",
-        "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
-        "hidden": false,
-        "name": "Ubuntu",
-        "source": "Windows.Terminal.Wsl",
-        "startingDirectory": "//wsl$/Ubuntu/home/james"
-      },
-      {
-        "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-        "hidden": true,
-        "name": "Azure Cloud Shell",
-        "source": "Windows.Terminal.Azure"
-      },
-      {
         "guid": "{2ece5bfe-50ed-5f3a-ab87-5cd4baafed2b}",
         "hidden": false,
         "name": "Git Bash",
         "source": "Git"
+      },
+      {
+        "colorScheme": "UbuntuLegit",
+        "commandline": "wsl.exe -d Ubuntu-20.04",
+        "font": {
+          "face": "Cascadia Mono PL"
+        },
+        "guid": "{4246b1a0-01ef-4991-a628-dc5d85ce651b}",
+        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+        "name": "Ubuntu-20.04",
+        "startingDirectory": "//wsl$/Ubuntu-20.04/home/james"
       }
     ]
   },
@@ -214,29 +217,6 @@
       "yellow": "#FFE50A"
     },
     {
-      "background": "#FFFFFF",
-      "black": "#3C5712",
-      "blue": "#17B2FF",
-      "brightBlack": "#749B36",
-      "brightBlue": "#27B2F6",
-      "brightCyan": "#13A8C0",
-      "brightGreen": "#89AF50",
-      "brightPurple": "#F2A20A",
-      "brightRed": "#F49B36",
-      "brightWhite": "#741274",
-      "brightYellow": "#991070",
-      "cursorColor": "#FFFFFF",
-      "cyan": "#3C96A6",
-      "foreground": "#000000",
-      "green": "#6AAE08",
-      "name": "Frost",
-      "purple": "#991070",
-      "red": "#8D0C0C",
-      "selectionBackground": "#FFFFFF",
-      "white": "#6E386E",
-      "yellow": "#991070"
-    },
-    {
       "background": "#000000",
       "black": "#000000",
       "blue": "#5555FF",
@@ -304,6 +284,29 @@
       "selectionBackground": "#FFFFFF",
       "white": "#A5A2A2",
       "yellow": "#FBED02"
+    },
+    {
+      "background": "#FFFFFF",
+      "black": "#3C5712",
+      "blue": "#17B2FF",
+      "brightBlack": "#749B36",
+      "brightBlue": "#27B2F6",
+      "brightCyan": "#13A8C0",
+      "brightGreen": "#89AF50",
+      "brightPurple": "#F2A20A",
+      "brightRed": "#F49B36",
+      "brightWhite": "#741274",
+      "brightYellow": "#991070",
+      "cursorColor": "#FFFFFF",
+      "cyan": "#3C96A6",
+      "foreground": "#000000",
+      "green": "#6AAE08",
+      "name": "Frost",
+      "purple": "#991070",
+      "red": "#8D0C0C",
+      "selectionBackground": "#FFFFFF",
+      "white": "#6E386E",
+      "yellow": "#991070"
     },
     {
       "background": "#000000",
