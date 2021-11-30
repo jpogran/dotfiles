@@ -1,14 +1,14 @@
 [core]
-  editor = code --wait
+  editor = {{ .editor }}
   commit = verbose
 [user]
-  name = James Pogran
-  email = jpogran@outlook.com
-  signingkey = 45CAED724A0A0B34
+	name = {{ .fullname }}
+	email = {{ .email }}
+  signingkey = {{ .sigkey }}
 [shell]
-  username = jpogran
+  username = {{ .username }}
 [github]
-  username = jpogran
+  username = {{ .username }}
 [commit]
   verbose = true
 [color]
@@ -17,14 +17,20 @@
   branch = auto
   interactive = auto
   diff = auto
-[rebase]
-  autoStash = true
 [diff]
   tool = vscode
   renames = copies
 [difftool "vscode"]
   prompt = false
   cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+  tool = vscode
+[mergetool "vscode"]
+  cmd = code --wait $MERGED
+[pull]
+  rebase = true
+[rebase]
+  autostash = true
 [alias]
   amend    = commit --amend --reuse-message=HEAD
   branches = branch -a

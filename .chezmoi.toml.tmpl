@@ -1,15 +1,8 @@
-{{/* boolean feature tags */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $transient := false -}}{{/* true if this machine is temporary, e.g. a cloud or VM instance */}}
-{{- "" -}}
-
-{{/* detect GitHub codespaces and VSCode remote containers */}}
-{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") -}}
-{{-   $headless = true -}}
-{{-   $transient = true -}}
-{{- end -}}
-
+{{- $codespaces := env "CODESPACES" | not | not -}}
+{{- $isWsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
 {{- $hostname := .chezmoi.hostname -}}
+
+sourceDir = {{ .chezmoi.sourceDir | quote }}
 
 {{- if eq .chezmoi.os "windows" -}}
 [cd]
@@ -17,8 +10,22 @@
   args = ["-nologo"]
 {{ end -}}
 
-remove = true
+[git]
+  autoCommit = true
+  autoPush = true
+
+[diff]
+  exclude = ["scripts"]
+  command = "code"
+  args = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
+
 [data]
-  headless = {{ $headless }}
-  transient = {{ $transient }}
+  username = "jpogran"
+  dotusername = "james.pogran"
+  name = "james"
+  fullname = "James Pogran"
+  email = "jpogran@outlook.com"
+  sigkey = "45CAED724A0A0B34"
+  editor = "code --wait"
+  codespaces = {{ $codespaces }}
   hostname = {{ $hostname | quote }}
