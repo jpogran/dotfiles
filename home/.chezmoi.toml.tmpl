@@ -5,29 +5,29 @@
 {{- if eq .chezmoi.os "windows" -}}
 [cd]
   command = "pwsh"
-  args = ["-nologo"]
+  args    = ["-nologo"]
 {{ end -}}
 
 [diff]
   exclude = ["scripts"]
   command = "code"
-  args = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
+  args    = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
 
 [edit]
   command = "code"
-  args = ["--wait"]
+  args    = ["--wait"]
 
 [git]
   autoCommit = true
-  autoPush = true
+  autoPush   = true
 
 [data]
-  username = "jpogran"
+  username    = "jpogran"
   dotusername = "james.pogran"
-  name = "james"
-  fullname = "James Pogran"
-  email = "jpogran@outlook.com"
-  sigkey = "45CAED724A0A0B34"
-  editor = "code --wait"
-  codespaces = {{ $codespaces }}
-  hostname = {{ $hostname | quote }}
+  name        = "james"
+  fullname    = "James Pogran"
+  email       = "jpogran@outlook.com"
+  sigkey      = "45CAED724A0A0B34"
+  editor      = "code --wait"
+  codespaces  = {{ $codespaces }}
+  hostname    = {{ $hostname | quote }}

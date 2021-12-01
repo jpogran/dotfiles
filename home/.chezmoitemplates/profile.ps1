@@ -28,15 +28,15 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
   }
 }
 
-$PSDefaultParameterValues['ConvertTo-Csv:NoTypeInformation'] = $true
-$PSDefaultParameterValues['Export-Csv:NoTypeInformation'] = $true
-$PSDefaultParameterValues['Install-Module:AllowClobber'] = $true
-$PSDefaultParameterValues['Install-Module:Force'] = $true
+$PSDefaultParameterValues['ConvertTo-Csv:NoTypeInformation']   = $true
+$PSDefaultParameterValues['Export-Csv:NoTypeInformation']      = $true
+$PSDefaultParameterValues['Install-Module:AllowClobber']       = $true
+$PSDefaultParameterValues['Install-Module:Force']              = $true
 $PSDefaultParameterValues['Install-Module:SkipPublisherCheck'] = $true
-$PSDefaultParameterValues['Install-Module:Scope'] = 'CurrentUser'
-$PSDefaultParameterValues['Install-Package:Repository'] = 'PSGallery'
-$PSDefaultParameterValues['Out-Default:OutVariable'] = 'LastResult'
-$PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
+$PSDefaultParameterValues['Install-Module:Scope']              = 'CurrentUser'
+$PSDefaultParameterValues['Install-Package:Repository']        = 'PSGallery'
+$PSDefaultParameterValues['Out-Default:OutVariable']           = 'LastResult'
+$PSDefaultParameterValues['Out-File:Encoding']                 = 'utf8'
 
 $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction += {
   [Environment]::CurrentDirectory = $ExecutionContext.SessionState.Path.CurrentFileSystemLocation

@@ -2,9 +2,9 @@
   editor = {{ .editor }}
   commit = verbose
 [user]
-	name = {{ .fullname }}
-	email = {{ .email }}
-  signingkey = {{ .sigkey }}
+	name       = {{ .fullname }}
+	email      = {{ .email }}
+	signingkey = {{ .sigkey }}
 [shell]
   username = {{ .username }}
 [github]
@@ -12,17 +12,17 @@
 [commit]
   verbose = true
 [color]
-  ui = auto
-  status = auto
-  branch = auto
+  ui          = auto
+  status      = auto
+  branch      = auto
   interactive = auto
-  diff = auto
+  diff        = auto
 [diff]
-  tool = vscode
+  tool    = vscode
   renames = copies
 [difftool "vscode"]
   prompt = false
-  cmd = code --wait --diff $LOCAL $REMOTE
+  cmd    = code --wait --diff $LOCAL $REMOTE
 [merge]
   tool = vscode
 [mergetool "vscode"]

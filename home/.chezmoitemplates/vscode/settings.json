@@ -73,8 +73,6 @@
   "files.trimTrailingWhitespace": false,
   "git.enableStatusBarSync": false,
   "git.allowForcePush": false,
-  "git.autofetch": false,
-  "git.autorefresh": false,
   "git.autoStash": false,
   "gitlens.codeLens.scopes": ["document", "containers"],
   "gitlens.statusBar.enabled": false,
