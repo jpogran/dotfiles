@@ -51,16 +51,18 @@ if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
 
-Invoke-Expression (&starship init powershell)
+# Invoke-Expression (&starship init powershell)
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\jandedobbeleer.omp.json | Invoke-Expression
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json | Invoke-Expression
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\agnosterplus.omp.json | Invoke-Expression
+# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\craver.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\hunk.omp.json | Invoke-Expression
 
 if ($env:STARSHIP_SHELL -eq 'powershell') {
   Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
 }
 
-&"${home}/bin/gvm" --format=powershell 1.17.2 | Invoke-Expression
+# &"${home}/bin/gvm" --format=powershell 1.17.2 | Invoke-Expression
 
 function gvm{
   param($version)
