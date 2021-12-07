@@ -48,4 +48,4 @@
   tags     = tag -l
   remotes  = remote -v
   undo     = reset HEAD~1 --mixed
-  ri       = rebase -i  $(git log --format=format:%H  -n 1 main)
+  ri       = rebase -i  $(git log --format=format:'%H'  -n 1 main)
