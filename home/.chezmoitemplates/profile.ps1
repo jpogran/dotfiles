@@ -56,7 +56,9 @@ if ($env:WT_SESSION) {
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json | Invoke-Expression
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\agnosterplus.omp.json | Invoke-Expression
 # oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\craver.omp.json | Invoke-Expression
-oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\hunk.omp.json | Invoke-Expression
+# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\hunk.omp.json | Invoke-Expression
+# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\space.omp.json | Invoke-Expression
+oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json | Invoke-Expression
 
 if ($env:STARSHIP_SHELL -eq 'powershell') {
   Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
