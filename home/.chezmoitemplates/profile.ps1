@@ -47,7 +47,13 @@ if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
 
+function Invoke-Starship-TransientFunction {
+  &starship module character
+}
+
 Invoke-Expression (&starship init powershell)
 # if ($env:STARSHIP_SHELL -eq 'powershell') {
 #   Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
 # }
+
+Enable-TransientPrompt
