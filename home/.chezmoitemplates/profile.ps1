@@ -1,11 +1,9 @@
 if ($host.Name -eq 'ConsoleHost') {
   Import-Module PSReadLine
 }
-Import-Module Terminal-Icons
 Import-Module posh-git
 
 $env:EDITOR    = "code -w"
-$env:Path      = "${home}\bin;" + $env:Path
 $env:StarShell = 'pwsh-' + $PSVersionTable.PSVersion.ToString()
 
 Set-Alias -Name count -Value Measure-Object
@@ -15,8 +13,6 @@ Set-Alias -Name time  -Value Measure-Command
 
 function .. { Set-Location -Path .. }
 function la { Get-ChildItem -Force }
-function be { bundle exec $args }
-function bi { bundle install $args }
 
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
   param($wordToComplete, $commandAst, $cursorPosition)
@@ -42,32 +38,16 @@ $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction += {
   [Environment]::CurrentDirectory = $ExecutionContext.SessionState.Path.CurrentFileSystemLocation
 }
 
-Set-PSReadLineOption     -PredictionSource History
+Set-PSReadLineOption     -PredictionSource HistoryAndPlugin
 Set-PSReadLineOption     -PredictionViewStyle ListView
-Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+# Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 Set-PSReadLineOption     -BellStyle Visual
-Set-PSReadLineOption     -HistorySearchCursorMovesToEnd
+# Set-PSReadLineOption     -HistorySearchCursorMovesToEnd
 if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
 
-# Invoke-Expression (&starship init powershell)
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\jandedobbeleer.omp.json | Invoke-Expression
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json | Invoke-Expression
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\agnosterplus.omp.json | Invoke-Expression
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\craver.omp.json | Invoke-Expression
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\hunk.omp.json | Invoke-Expression
-# oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\space.omp.json | Invoke-Expression
-oh-my-posh --init --shell pwsh --config ~\AppData\Local\Programs\oh-my-posh\themes\powerlevel10k_rainbow.omp.json | Invoke-Expression
-
-if ($env:STARSHIP_SHELL -eq 'powershell') {
-  Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
-}
-
-# &"${home}/bin/gvm" --format=powershell 1.17.2 | Invoke-Expression
-
-function gvm{
-  param($version)
-  # https://github.com/andrewkroh/gvm
-  &"${home}/bin/gvm" --format=powershell $version | Invoke-Expression
-}
+Invoke-Expression (&starship init powershell)
+# if ($env:STARSHIP_SHELL -eq 'powershell') {
+#   Set-PSReadLineOption -prompttext "`e[1;32m❯ ", '❯ '
+# }

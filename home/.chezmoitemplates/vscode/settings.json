@@ -1,84 +1,111 @@
 {
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
   "[git-commit]": {
     "editor.rulers": [72],
+    "editor.wordWrap": "wordWrapColumn",
     "editor.wordWrapColumn": 72,
-    "editor.wordWrap": "wordWrapColumn"
+    "workbench.editor.restoreViewState": false
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[hcl]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": true
+    }
   },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": true
+    }
+  },
+  "[terraform-vars]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": true
+    }
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[markdown]": {
-    "editor.codeLens": false,
-    "editor.wordWrapColumn": 80,
-    "editor.wordWrap": "wordWrapColumn",
-    "editor.quickSuggestions": false,
-    "files.trimTrailingWhitespace": false
-  },
-  "[powershell]": {
-    "editor.codeLens": false
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
-  "editor.codeActionsOnSave": {
-    // "source.fixAll": true,
-    // "source.organizeImports": true
-  },
+
   "debug.openDebug": "neverOpen",
   "diffEditor.ignoreTrimWhitespace": false,
-  "editor.fontFamily": "'CaskaydiaCove NF', 'Cascadia Code PL', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeLensFontFamily": "'CaskaydiaCove NF', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.dragAndDrop": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.emptySelectionClipboard": false,
+  "editor.foldingImportsByDefault": true,
+  "editor.fontFamily": "'CaskaydiaCove NF', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontSize": 16,
   "editor.fontLigatures": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.codeLensFontFamily": "'CaskaydiaCove NF', Consolas, 'Courier New', monospace",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.dragAndDrop": false,
+  "editor.formatOnSave": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.formatOnType": false,
   "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
   "editor.guides.highlightActiveIndentation": true,
   "editor.guides.indentation": true,
-  "editor.hover.above": false,
   "editor.insertSpaces": true,
-  "editor.smoothScrolling": true,
-  "editor.tabCompletion": "on",
-  "editor.tabSize": 2,
-  "editor.trimAutoWhitespace": true,
-  "editor.cursorSmoothCaretAnimation": true,
-  "editor.formatOnSave": false,
-  "editor.formatOnType": false,
-  // "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.matchBrackets": "always",
   "editor.minimap.enabled": false,
+  "editor.parameterHints.cycle": true,
   "editor.renderControlCharacters": true,
   "editor.renderFinalNewline": true,
-  "editor.renderLineHighlight": "line",
-  "editor.renderWhitespace": "trailing",
-  "editor.rulers": [80, 120],
+  "editor.renderLineHighlight": "all",
+  "editor.renderLineHighlightOnlyWhenFocus": true,
+  "editor.renderWhitespace": "selection",
+  "editor.rulers": [
+    {
+      "column": 80
+    },
+    {
+      "column": 120
+    }
+  ],
+  "editor.semanticHighlighting.enabled": true,
+  "editor.smoothScrolling": true,
+  "editor.suggest.localityBonus": true,
+  //
   "editor.suggest.preview": true,
-  "explorer.confirmDragAndDrop": false,
+  "editor.suggest.showStatusBar": true,
+  //
+  "editor.tabSize": 2,
+  "editor.tabCompletion": "on",
+  "editor.trimAutoWhitespace": true,
+  "explorer.compactFolders": true,
   "explorer.confirmDelete": false,
-  "files.autoSave": "onFocusChange",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.enableDragAndDrop": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
+  },
+  "extensions.closeExtensionDetailsOnViewChange": true,
+  "files.autoSave": "afterDelay",
   "files.defaultLanguage": "markdown",
   "files.encoding": "utf8",
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
-  "files.trimTrailingWhitespace": false,
+  "files.trimTrailingWhitespace": true,
   "git.enableStatusBarSync": false,
   "git.allowForcePush": false,
-  "git.autoStash": false,
-  "gitlens.codeLens.scopes": ["document", "containers"],
-  "gitlens.statusBar.enabled": false,
-  "powershell.integratedConsole.showOnStartup": false,
   "terminal.integrated.windowsEnableConpty": true,
   "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",
@@ -90,19 +117,22 @@
       "path": "C:/Windows/System32/wsl.exe",
       "icon": "terminal-ubuntu",
       "color": "terminal.ansiYellow",
-      "args": ["-d", "Ubuntu-20.04"]
+      "args": ["-d", "Ubuntu"]
     }
   },
-  "typescript.format.enable": false,
-  "typescript.tsc.autoDetect": "off",
-  "workbench.editor.decorations.badges": true,
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.labelFormat": "short",
-  "workbench.editor.tabSizing": "shrink",
+  "window.dialogStyle": "custom",
+  "window.menuBarVisibility": "toggle",
+  "workbench.colorTheme": "GitHub Light Default",
+  "workbench.preferredDarkColorTheme": "GitHub Dark Default",
+  "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
+  "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
+  "workbench.preferredLightColorTheme": "GitHub Light Default",
   "workbench.settings.editor": "json",
-  "workbench.tree.indent": 18,
+  "workbench.sideBar.location": "right",
+  "workbench.tree.indent": 24,
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.colorTheme": "GitHub Dark Default",
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "workbench.editor.highlightModifiedTabs": true,
+  "editor.largeFileOptimizations": false,
+  "go.toolsManagement.autoUpdate": true,
+  "redhat.telemetry.enabled": false
 }

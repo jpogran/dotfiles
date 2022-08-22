@@ -9,6 +9,7 @@
 AppData
 Documents
 {{ else }}
+.vimrc
 .zshrc
 .config/Code
 .config/gh
