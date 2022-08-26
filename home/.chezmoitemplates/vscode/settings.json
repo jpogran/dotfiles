@@ -122,7 +122,7 @@
   },
   "window.dialogStyle": "custom",
   "window.menuBarVisibility": "toggle",
-  "workbench.colorTheme": "GitHub Light Default",
+  "workbench.colorTheme": "GitHub Dark Default",
   "workbench.preferredDarkColorTheme": "GitHub Dark Default",
   "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
   "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
@@ -133,6 +133,5 @@
   "workbench.tree.renderIndentGuides": "always",
   "workbench.editor.highlightModifiedTabs": true,
   "editor.largeFileOptimizations": false,
-  "go.toolsManagement.autoUpdate": true,
-  "redhat.telemetry.enabled": false
+  "go.toolsManagement.autoUpdate": true
 }

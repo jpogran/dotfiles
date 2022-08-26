@@ -1,26 +1,29 @@
 [core]
   editor = {{ .editor }}
   commit = verbose
-{{- if eq .chezmoi.os "windows" -}}
-	sshCommand = c:/Program Files (x86)/OpenSSH/ssh.exe
+{{- if eq .chezmoi.os "windows" }}
+  sshCommand = c:/Program Files (x86)/OpenSSH/ssh.exe
 {{ end -}}
 [user]
-	name       = {{ .fullname }}
-	email      = {{ .email }}
-	signingkey = {{ .sigkey }}
+  name       = {{ .fullname }}
+  email      = {{ .email }}
+  signingkey = {{ .sigkey }}
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-{{- if eq .chezmoi.os "windows" -}}
-	program = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
+  allowedSignersFile = ~/.ssh/allowed_signers
+{{- if eq .chezmoi.os "windows" }}
+  program = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
 {{ end -}}
-	allowedSignersFile = ~/.ssh/allowed_signers
 [shell]
   username = {{ .username }}
 [github]
   username = {{ .username }}
 [commit]
   verbose = true
+  gpgsign = true
+[tag]
+  gpgsign = true
 [color]
   ui          = auto
   status      = auto
