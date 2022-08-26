@@ -10,7 +10,7 @@
 
 [diff]
   exclude = ["scripts"]
-  command = "code-insiders"
+  command = "code"
   args    = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
 
 [edit]
@@ -27,8 +27,8 @@
   name        = "james"
   fullname    = "James Pogran"
   email       = "jpogran@outlook.com"
-  sigkey      = "45CAED724A0A0B34"
-  editor      = "code-insiders --wait"
+  sigkey      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN/sU8H1V6foziQEk1HXsnzPFG07V1HjbV2Vp2ecS3Q0 jpogran@outlook.com"
+  editor      = "code --wait"
   codespaces  = {{ $codespaces }}
   hostname    = {{ $hostname | quote }}
 format = """
