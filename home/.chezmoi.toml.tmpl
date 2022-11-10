@@ -11,7 +11,7 @@
 [diff]
   exclude = ["scripts"]
   command = "code"
-  args    = ["--wait", "--diff", "{{ .Destination }}", "{{ .Target }}"]
+  args    = ["--wait", "--diff", "{{`{{ .Destination }}`}}", "{{`{{ .Target }}`}}"]
 
 [edit]
   command = "code"
