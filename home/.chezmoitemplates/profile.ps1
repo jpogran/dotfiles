@@ -46,4 +46,6 @@ if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
 
+$("$(brew --prefix)/bin/brew shellenv") | Invoke-Expression
+
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/dracula.omp.json" | Invoke-Expression
