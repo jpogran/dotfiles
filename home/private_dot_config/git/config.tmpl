@@ -7,7 +7,7 @@
 [user]
   name       = {{ .fullname }}
   email      = {{ .email }}
-  signingkey = {{ .sigkey }}
+  signingkey = {{ onepasswordRead "op://private/Github/public_key" }}
 [gpg]
   format = ssh
 [gpg "ssh"]
@@ -16,7 +16,7 @@
   program            = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 {{ end -}}
 {{- if eq .chezmoi.os "windows" }}
-  program = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
+  program            = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
 {{ end -}}
 [init]
   defaultBranch = "main"
