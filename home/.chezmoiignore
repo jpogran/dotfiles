@@ -1,3 +1,5 @@
+.oh-my-zsh/cache/**
+
 {{ if ne .chezmoi.os "darwin" }}
 {{ end }}
 
