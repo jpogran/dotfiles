@@ -18,6 +18,10 @@
 {{- if eq .chezmoi.os "windows" }}
   program = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
 {{ end -}}
+[init]
+  defaultBranch = "main"
+[push]
+  default = current
 [shell]
   username = {{ .username }}
 [github]
