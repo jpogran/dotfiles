@@ -11,6 +11,8 @@
 AppData
 Documents
 {{ else }}
+.oh-my-zsh
+.oh-my-zsh/**
 .vimrc
 .zshrc
 .config/Code
