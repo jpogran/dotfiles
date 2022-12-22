@@ -11,12 +11,16 @@ set -eufo pipefail
      "golangci-lint"
      "hugo"
      "jq"
+     "nvm"
      "oh-my-posh"
      "wget" -}}
 {{ $casks := list
+     "alfred"
      "1password-cli"
      "iterm2"
-     "powershell" -}}
+     "font-fira-code-nerd-font"
+     "powershell"
+     "visual-studio-code" -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
