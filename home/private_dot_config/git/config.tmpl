@@ -5,9 +5,9 @@
   sshCommand = c:/Program Files (x86)/OpenSSH/ssh.exe
 {{ end }}
 [user]
-  name       = {{ .fullname }}
-  email      = {{ .email }}
-  signingkey = {{ onepasswordRead "op://private/Github/public_key" }}
+  name       = {{ .fullname | quote }}
+  email      = {{ .email | quote }}
+  signingkey = {{ onepasswordRead "op://private/Github/public_key" | quote }}
 [gpg]
   format = ssh
 [gpg "ssh"]
