@@ -20,11 +20,11 @@ set -eufo pipefail
      "powershell"
      "visual-studio-code" -}}
 
+brew tap homebrew/cask-fonts
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
-brew tap homebrew/cask-fonts
 {{ range ($casks | sortAlpha | uniq) -}}
 cask "{{ . }}"
 {{ end -}}
