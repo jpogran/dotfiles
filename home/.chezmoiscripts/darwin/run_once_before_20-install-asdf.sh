@@ -1,2 +1,5 @@
 #!/bin/bash
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
+if [ ! -d "~/.asdf" ]
+then
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.2
+fi
