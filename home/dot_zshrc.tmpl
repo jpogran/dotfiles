@@ -4,6 +4,13 @@ export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+brew_prefix="$(brew --prefix)/bin"
+if [[ -x "$brew_prefix/vim" ]]; then
+  alias vim="$brew_prefix/vim"
+  alias vi="$brew_prefix/vim"
+fi
+unset brew_prefix
 {{- end }}
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -13,25 +20,19 @@ export EDITOR='code'
 fi
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 . "$HOME/.asdf/asdf.sh"
 . "$HOME/.asdf/completions/asdf.bash"
 
 alias cls=clear
+alias cd..="cd .."
+alias ..="cd .."
+alias ...="cd ../.."
 
 function ni() {
   mkdir -p "$(dirname "$1")/" && touch "$1"
 }
-
-bindkey -e
-bindkey '\e\e[C' forward-word
-bindkey '\e\e[D' backward-word
-
-# bindkey "[D" backward-word
-# bindkey "[C" forward-word
-# bindkey "^[a" beginning-of-line
-# bindkey "^[e" end-of-line
 
 eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/M365Princess.omp.json)"
