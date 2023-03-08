@@ -3,4 +3,4 @@
     url = "https://github.com/asdf-vm/asdf.git"
     refreshPeriod = "168h"
     [".asdf".clone]
-        args = ["--branch v0.11.2"]
+        args = ["--branch", "v0.11.2"]
