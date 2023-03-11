@@ -35,4 +35,38 @@ function ni() {
   mkdir -p "$(dirname "$1")/" && touch "$1"
 }
 
-eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/the-unnamed.omp.json)"
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# if the init script doesn't exist
+if ! zgenom saved; then
+
+  # specify plugins here
+  zgenom ohmyzsh
+
+  # Install ohmyzsh osx plugin if on macOS
+  if [[ "$(uname -s)" = Darwin ]]; then
+    zgenom oh-my-zsh plugins/brew
+    zgenom ohmyzsh plugins/macos
+  fi
+  # macOS helpers. This plugin is smart enough to detect when it isn't running
+  # on macOS and not load itself, so you can safely share the same plugin list
+  # across macOS and Linux/BSD.
+  zgenom load unixorn/tumult.plugin.zsh
+
+  # If zsh-syntax-highlighting is bundled after zsh-history-substring-search,
+  # they break, so get the order right.
+  zgenom load zdharma-continuum/fast-syntax-highlighting
+  zgenom load zsh-users/zsh-history-substring-search
+
+  zgenom load chrissicool/zsh-256color
+
+  # Load more completion files for zsh from the zsh-lovers github repo.
+  zgenom load zsh-users/zsh-completions src
+
+  # generate the init script from plugins above
+  zgenom save
+fi
+
+# eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/M365Princess.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/spaceship.omp.json)"
