@@ -29,7 +29,7 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 #################################################
 
 # Set the icon size of Dock items to 32 pixels
-defaults write com.apple.dock tilesize -int 32
+# defaults write com.apple.dock tilesize -int 32
 
 #################################################
 # Safari & WebKit                               #
@@ -93,22 +93,22 @@ defaults write com.apple.Terminal "Default Window Settings" -string Pro
 #    /usr/libexec/PlistBuddy -c "write 'New Bookmarks':0:'Scrollback Lines'" 10000 ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # Appearance/Dimming: Dim background windows
-defaults write com.googlecode.iterm2 DimBackgroundWindows -bool true
+# defaults write com.googlecode.iterm2 DimBackgroundWindows -bool true
 
 # Appearance/Dimming: Dimming amount
-defaults write com.googlecode.iterm2 SplitPaneDimmingAmount -float 0.15
+# defaults write com.googlecode.iterm2 SplitPaneDimmingAmount -float 0.15
 
 # Advanced: Scroll wheel sends arrow keys when in alternate screen mode. (ie. scrolling in bat)
-defaults write com.googlecode.iterm2 AlternateMouseScroll -int 1
+# defaults write com.googlecode.iterm2 AlternateMouseScroll -int 1
 
 # Profiles/Window: Settings for New Windows
 # /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Rows' 26" ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # Profiles/Terminal: Scrollback Buffer (10000 lines)
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Scrollback Lines' 10000" ~/Library/Preferences/com.googlecode.iterm2.plist
+# /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Scrollback Lines' 10000" ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # Profiles/Text: Enable Blinking Cursor
-/usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
+# /usr/libexec/PlistBuddy -c "set 'New Bookmarks':0:'Blinking Cursor' 1" ~/Library/Preferences/com.googlecode.iterm2.plist
 
 # Profile/Colors: Snazzy Theme
 # defaults read com.googlecode.iterm2 | grep -q "Snazzy" ||
