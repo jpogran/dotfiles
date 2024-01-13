@@ -46,4 +46,6 @@ if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
 
+$(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
+
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/M365Princess.omp.json" | Invoke-Expression
