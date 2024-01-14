@@ -48,4 +48,6 @@ if ($env:WT_SESSION) {
 
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 
+"$(brew --prefix asdf)/libexec/asdf.ps1"
+
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/M365Princess.omp.json" | Invoke-Expression

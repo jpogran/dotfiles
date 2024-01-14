@@ -3,4 +3,10 @@
     url = "https://github.com/asdf-vm/asdf.git"
     refreshPeriod = "168h"
     [".asdf".clone]
-        args = ["--branch", "v0.11.2"]
+        args = ["--branch", "v0.13.1"]
+[".nvm"]
+    type = "git-repo"
+    url = "https://github.com/nvm-sh/nvm.git"
+    refreshPeriod = "168h"
+    [".asdf".clone]
+        args = ["--branch", "0.39.7"]
