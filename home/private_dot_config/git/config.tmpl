@@ -69,3 +69,7 @@
   remotes  = remote -v
   undo     = reset HEAD~1 --mixed
   ri       = rebase -i  $(git log --format=format:'%H'  -n 1 main)
+[pager]
+	log = false
+[url "https://github.com/hashicorp"]
+	insteadOf = git@github.com:hashicorp
