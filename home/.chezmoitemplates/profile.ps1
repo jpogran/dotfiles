@@ -13,10 +13,10 @@ Set-Alias -Name time  -Value Measure-Command
 function .. { Set-Location -Path .. }
 function la { Get-ChildItem -Force }
 
-$PSDefaultParameterValues['ConvertTo-Csv:NoTypeInformation'] = $true
-$PSDefaultParameterValues['Export-Csv:NoTypeInformation'] = $true
-$PSDefaultParameterValues['Install-Module:AllowClobber'] = $true
-$PSDefaultParameterValues['Install-Module:Force'] = $true
+$PSDefaultParameterValues['ConvertTo-Csv:NoTypeInformation']   = $true
+$PSDefaultParameterValues['Export-Csv:NoTypeInformation']      = $true
+$PSDefaultParameterValues['Install-Module:AllowClobber']       = $true
+$PSDefaultParameterValues['Install-Module:Force']              = $true
 $PSDefaultParameterValues['Install-Module:SkipPublisherCheck'] = $true
 $PSDefaultParameterValues['Install-Module:Scope'] = 'CurrentUser'
 $PSDefaultParameterValues['Install-Package:Repository'] = 'PSGallery'
