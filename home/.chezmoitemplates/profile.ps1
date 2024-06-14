@@ -1,6 +1,6 @@
 #Requires -Version 7.2
 
-Set-StrictMode -Version Latest
+# Set-StrictMode -Version Latest
 # stop even on non-critical errors
 $global:ErrorActionPreference = "Stop"
 #$global:PSDefaultParameterValues["*:ErrorAction"] = $ErrorActionPreference
@@ -231,7 +231,7 @@ Set-PSReadLineKeyHandler -Key Alt+a `
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
-"$(brew --prefix asdf)/libexec/asdf.ps1"
+. "$(brew --prefix asdf)/libexec/asdf.ps1" 
 
 Set-NodeVersion 18
 
