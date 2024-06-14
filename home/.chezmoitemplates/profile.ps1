@@ -12,7 +12,7 @@ $global:InformationPreference = "Continue"
 # set env:LANG, which makes `git diff` and other originally Linux commands print stuff with correct encoding
 $env:LANG = "C.UTF-8"
 $env:EDITOR = "code -w"
-$env:PATH = "/opt/homebrew/opt/curl/bin:" + $PATH
+$env:PATH = "/opt/homebrew/opt/curl/bin:" + $env:PATH
 
 Import-Module posh-git
 
