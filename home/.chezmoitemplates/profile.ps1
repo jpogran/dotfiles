@@ -233,6 +233,6 @@ Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 . "$(brew --prefix asdf)/libexec/asdf.ps1"
 
-Set-NodeVersion -Version 18 | Out-Null
+Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
 
 oh-my-posh init pwsh | Invoke-Expression
