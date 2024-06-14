@@ -1,0 +1,25 @@
+packages:
+  darwin:
+    brews:
+    - 'asdf'
+    - 'bat'
+    - 'chezmoi'
+    - 'coreutils'
+    - 'curl'
+    - 'gh'
+    - 'git'
+    - 'gnupg'
+    - 'hugo'
+    - 'jq'
+    - 'neovim'
+    - 'nmap'
+    - 'nvm'
+    - 'oh-my-posh'
+    - 'starship'
+    - 'wget'
+    - 'zsh'
+    casks:
+    - '1password-cli'
+    - 'iterm2'
+    - 'powershell'
+    - 'font-fira-code-nerd-font'
