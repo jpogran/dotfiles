@@ -22,7 +22,16 @@ Set-Alias -Name mc    -Value Measure-Command
 Set-Alias -Name time  -Value Measure-Command
 
 function .. { Set-Location -Path .. }
-function la { Get-ChildItem -Force -Path $PSBoundParameters }
+function la {
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]
+    $Path
+  )
+
+  Get-ChildItem -Force -Path $Path
+}
 function rmf {
   rm -Recurse -Force @Args -ErrorAction Ignore
 }
@@ -67,7 +76,6 @@ Set-PSReadLineKeyHandler -Chord "Ctrl+p" -ScriptBlock {
 if ($env:WT_SESSION) {
   Set-PSReadLineKeyHandler -Chord Ctrl+h -Function BackwardDeleteWord
 }
-
 
 # if at the beginning of a line, add Tab (4 spaces), otherwise open autocomplete dropdown
 Set-PSReadLineKeyHandler -Key "Tab" -ScriptBlock {
@@ -118,7 +126,6 @@ Set-PSReadLineKeyHandler -Key "End" -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::AcceptSuggestion($key, $arg)
   }
 }
-
 
 Set-PSReadLineKeyHandler -Key RightArrow `
   -BriefDescription ForwardCharAndAcceptNextSuggestionWord `
@@ -223,10 +230,9 @@ Set-PSReadLineKeyHandler -Key Alt+a `
 
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
-$env:NVM_DIR = "$($HOME)/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 "$(brew --prefix asdf)/libexec/asdf.ps1"
+
+Set-NodeVersion 18
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/M365Princess.omp.json" | Invoke-Expression
