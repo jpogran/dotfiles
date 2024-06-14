@@ -22,7 +22,7 @@ Set-Alias -Name mc    -Value Measure-Command
 Set-Alias -Name time  -Value Measure-Command
 
 function .. { Set-Location -Path .. }
-function la { Get-ChildItem -Force }
+function la { Get-ChildItem -Force -Path $PSBoundParameters }
 function rmf {
   rm -Recurse -Force @Args -ErrorAction Ignore
 }
