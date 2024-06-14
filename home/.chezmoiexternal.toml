@@ -9,4 +9,4 @@
     url = "https://github.com/nvm-sh/nvm.git"
     refreshPeriod = "168h"
     [".nvm".clone]
-        args = ["--branch", "0.39.7"]
+        args = ["--tag", "0.39.7"]
