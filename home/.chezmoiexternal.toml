@@ -8,5 +8,5 @@
     type = "git-repo"
     url = "https://github.com/nvm-sh/nvm.git"
     refreshPeriod = "168h"
-    [".asdf".clone]
+    [".nvm".clone]
         args = ["--branch", "0.39.7"]
