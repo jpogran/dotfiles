@@ -235,4 +235,4 @@ Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 Set-NodeVersion 18
 
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/M365Princess.omp.json" | Invoke-Expression
+oh-my-posh init pwsh | Invoke-Expression
