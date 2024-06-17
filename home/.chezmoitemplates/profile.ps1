@@ -1,5 +1,8 @@
 #Requires -Version 7.2
 
+using namespace System
+using namespace System.Management.Automation
+
 # Set-StrictMode -Version Latest
 # stop even on non-critical errors
 $global:ErrorActionPreference = "Stop"
@@ -46,8 +49,19 @@ $PSDefaultParameterValues['Install-Package:Repository'] = 'PSGallery'
 $PSDefaultParameterValues['Out-Default:OutVariable'] = 'LastResult'
 $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 
-$ExecutionContext.SessionState.InvokeCommand.LocationChangedAction += {
+# $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction += {
+#   [Environment]::CurrentDirectory = $ExecutionContext.SessionState.Path.CurrentFileSystemLocation
+# }
+
+$handler = {
   [Environment]::CurrentDirectory = $ExecutionContext.SessionState.Path.CurrentFileSystemLocation
+}
+$currentAction = $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction
+if ($currentAction) {
+  $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction = [Delegate]::Combine($currentAction, $handler)
+}
+else {
+  $ExecutionContext.SessionState.InvokeCommand.LocationChangedAction = $handler
 }
 
 # See https://github.com/lzybkr/PSReadLine#usage
