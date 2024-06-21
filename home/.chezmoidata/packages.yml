@@ -1,7 +1,6 @@
 packages:
   darwin:
     brews:
-    - 'asdf'
     - 'bat'
     - 'coreutils'
     - 'curl'
@@ -12,7 +11,6 @@ packages:
     - 'jq'
     - 'neovim'
     - 'nmap'
-    - 'nvm'
     - 'oh-my-posh'
     - 'starship'
     - 'wget'
