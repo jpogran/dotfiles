@@ -230,7 +230,7 @@ Set-PSReadLineKeyHandler -Key Alt+a `
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
-. "$(brew --prefix asdf)/libexec/asdf.ps1"
+# . "$(brew --prefix asdf)/libexec/asdf.ps1"
 
 Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
 
