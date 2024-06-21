@@ -234,4 +234,6 @@ Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 # Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
 
+$env:PATH = "$HOME/.local/share/mise/shims:$($env:PATH)"
+
 Invoke-Expression (starship init powershell)

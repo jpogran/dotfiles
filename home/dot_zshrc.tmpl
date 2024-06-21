@@ -68,8 +68,8 @@ if ! zgenom saved; then
   zgenom save
 fi
 
-nvm use 18
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/M365Princess.omp.json)"
-# eval "$(oh-my-posh init zsh --config ~/spaceship.omp.json)"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
+
 eval "$(starship init zsh)"
