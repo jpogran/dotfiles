@@ -1,6 +1,7 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- $codespaces := env "CODESPACES" | not | not -}}
 {{- $isWsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
+{{- $isWorkMachine := eq .chezmoi.username "james.pogran" -}}
 
 {{- if eq .chezmoi.os "windows" -}}
 [cd]
@@ -25,12 +26,13 @@
   autoPush   = true
 
 [data]
-  username    = "jpogran"
-  dotusername = "james.pogran"
-  name        = "james"
-  fullname    = "James Pogran"
-  email       = "jpogran@outlook.com"
-  sigkey      = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIQOgKqcherblK3kxZGvZ32tIdSLI1iUMOnWX62bQiu"
-  editor      = "code --wait"
-  codespaces  = {{ $codespaces }}
-  hostname    = {{ $hostname | quote }}
+  username      = "jpogran"
+  dotusername   = "james.pogran"
+  name          = "james"
+  fullname      = "James Pogran"
+  email         = "jpogran@outlook.com"
+  sigkey        = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIQOgKqcherblK3kxZGvZ32tIdSLI1iUMOnWX62bQiu"
+  editor        = "code --wait"
+  codespaces    = {{ $codespaces }}
+  hostname      = {{ $hostname | quote }}
+  isWorkMachine = {{ $isWorkMachine }}

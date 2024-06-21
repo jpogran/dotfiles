@@ -10,3 +10,18 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 {{ end -}}
+
+{{ if .isWorkMachine -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.work.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.work.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.work.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}

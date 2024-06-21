@@ -234,5 +234,4 @@ Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
 
-# oh-my-posh init pwsh --config "$(brew --prefix oh-my-posh)/themes/amro.omp.json" | Invoke-Expression
 Invoke-Expression (&starship init powershell)

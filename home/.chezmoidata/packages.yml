@@ -3,7 +3,6 @@ packages:
     brews:
     - 'asdf'
     - 'bat'
-    - 'chezmoi'
     - 'coreutils'
     - 'curl'
     - 'gh'
@@ -23,3 +22,9 @@ packages:
     - 'iterm2'
     - 'powershell'
     - 'font-fira-code-nerd-font'
+  work:
+    taps:
+    - 'hashicorp/tap'
+    brews:
+    - 'hashicorp/tap/copywrite'
+    - 'hashicorp/tap/terraform'
