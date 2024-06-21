@@ -232,6 +232,6 @@ Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
 # . "$(brew --prefix asdf)/libexec/asdf.ps1"
 
-Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
+# Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
 
-Invoke-Expression (&starship init powershell)
+Invoke-Expression (starship init powershell)
