@@ -28,3 +28,4 @@ packages:
     brews:
     - 'hashicorp/tap/copywrite'
     - 'hashicorp/tap/terraform'
+    casks:
