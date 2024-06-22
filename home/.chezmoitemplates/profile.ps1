@@ -227,6 +227,8 @@ Set-PSReadLineKeyHandler -Key Alt+a `
   [Microsoft.PowerShell.PSConsoleReadLine]::SelectForwardChar($null, ($nextAst.Extent.EndOffset - $nextAst.Extent.StartOffset) - $endOffsetAdjustment)
 }
 
+$PSStyle.FileInfo.Directory = "`e[96;1m"
+
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
 
