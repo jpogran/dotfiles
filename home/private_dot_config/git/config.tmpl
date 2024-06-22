@@ -70,20 +70,6 @@
   undo     = reset HEAD~1 --mixed
   ri       = rebase -i  $(git log --format=format:'%H'  -n 1 main)
 
-	a = add
-	s = status
-	st = status
-	ci = commit
-	b = branch
-	co = checkout
-	re = remote
-	d = diff
-	dc = diff --cached
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	ls = ls-files
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lgi = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
 	# Pull Upstream
 	pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
 	# Commit Amend Reuse Message HEAD
@@ -92,11 +78,8 @@
 	pc = !"f() { remote=\"${1:-origin}\"; git push -u \"$remote\" $(git rev-parse --abbrev-ref HEAD); }; f"
 	# Push Current Force
 	pcf = !"f() { echo git pc \"$@\" -f; }; f"
-	# Mainly for YADM
-	untracked = !"f() { git status --porcelain=v1 -zunormal | xargs -0n1 printf \"%s\\n\" | grep -E '^\\?\\? \\.' | cut -c4-; }; f"
 	# Current branch
 	current = rev-parse --abbrev-ref HEAD
-	cof = !git for-each-ref --format='%(refname:short)' refs/heads | fzf | xargs git checkout
 [pager]
 	log = false
 [url "https://github.com/hashicorp"]
