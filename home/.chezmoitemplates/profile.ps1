@@ -23,6 +23,7 @@ Set-Alias -Name count -Value Measure-Object
 Set-Alias -Name ll    -Value Get-ChildItem
 Set-Alias -Name mc    -Value Measure-Command
 Set-Alias -Name time  -Value Measure-Command
+Set-Alias -Name bat  -Value Get-Content
 
 function .. { Set-Location -Path .. }
 function la {
