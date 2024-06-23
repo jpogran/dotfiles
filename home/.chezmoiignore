@@ -19,3 +19,5 @@ Documents
 .config/gh
 .config/powershell
 {{ end }}
+
+com.googlecode.iterm2.plist
