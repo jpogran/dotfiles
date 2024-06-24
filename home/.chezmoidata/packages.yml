@@ -45,11 +45,14 @@ packages:
       - { name: "Xcode", id: 497799835 }
   work:
     taps:
-    - 'hashicorp/tap'
+    - { name: 'hashicorp/tap', url: ''  }
+    - { name: 'hashicorp/internal', url: "git@github.com:hashicorp/homebrew-internal.git"  }
+    - { name: 'hashicorp/security', url: ''  }
+    - { name: "miniscruff/changie", url: "https://github.com/miniscruff/changie"  }
     brews:
-    - 'hashicorp/tap/copywrite'
-    - 'hashicorp/tap/terraform'
+    - "hashicorp/security/doormat-cli"
+    - "hashicorp/tap/copywrite"
+    - "hashicorp/tap/terraform"
+    - 'btop'
+    - 'changie'
     casks:
-
-# 640199958  Apple Developer                                    (10.6)
-#    497799835  Xcode                                              (15.4)

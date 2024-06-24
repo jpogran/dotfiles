@@ -17,6 +17,7 @@ EOF
 {{ end -}}
 
 {{ if eq .chezmoi.os "darwin" -}}
+{{ if ne .isWorkMachine true -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.personal.taps -}}
 tap {{ . | quote }}
@@ -32,11 +33,12 @@ mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
 {{ end -}}
+{{ end -}}
 
 {{ if .isWorkMachine -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.work.taps -}}
-tap {{ . | quote }}
+tap {{ .name | quote }}{{if .url }}, {{ .url | quote }}{{ end }}
 {{ end -}}
 {{ range .packages.work.brews -}}
 brew {{ . | quote }}
