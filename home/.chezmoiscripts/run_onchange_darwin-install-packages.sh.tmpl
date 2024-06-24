@@ -1,16 +1,33 @@
 #!/bin/bash
 {{ if eq .chezmoi.os "darwin" -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
-{{ range .packages.darwin.taps -}}
+{{ range .packages.universal.taps -}}
 tap {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.brews -}}
+{{ range .packages.universal.brews -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.casks -}}
+{{ range .packages.universal.casks -}}
 cask {{ . | quote }}
 {{ end -}}
-{{ range .packages.darwin.mas -}}
+{{ range .packages.universal.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end -}}
+EOF
+{{ end -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.personal.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.personal.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.personal.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .packages.personal.mas -}}
 mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
