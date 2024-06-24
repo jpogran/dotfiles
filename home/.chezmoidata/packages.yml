@@ -23,13 +23,13 @@ packages:
     casks:
     - '1password-cli'
     # - 'cleanmymac'
-    # - 'discord'
-    # - 'gemini'
+    - 'discord'
+    - 'gemini'
     - 'iterm2'
     - 'powershell'
     - 'font-fira-code-nerd-font'
-    # - 'slack'
-    # - 'visual-studio-code'
+    - 'slack'
+    - 'visual-studio-code'
     - 'visual-studio-code@insiders'
     - 'zoom'
     mas:
