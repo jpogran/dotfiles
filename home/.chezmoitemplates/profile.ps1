@@ -34,8 +34,11 @@ function la {
     $Path
   )
 
-  Get-ChildItem -Force -Path $Path
+  $PSBoundParameters.Add('Force', $true);
+
+  Get-ChildItem @PSBoundParameters | Format-Table -AutoSize
 }
+
 function rmf {
   rm -Recurse -Force @Args -ErrorAction Ignore
 }
