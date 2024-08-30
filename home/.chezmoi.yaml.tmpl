@@ -1,0 +1,54 @@
+{{- $hostname := .chezmoi.hostname -}}
+{{- $codespaces := env "CODESPACES" | not | not -}}
+{{- $isWsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
+{{- $isWorkMachine := eq .chezmoi.username "james.pogran" -}}
+
+data:
+  username: jpogran
+  dotusername: james.pogran
+  name: james
+  fullname: James Pogran
+  email: jpogran@outlook.com
+  editor: code --wait
+  codespaces    : {{ $codespaces }}
+  hostname      : {{ $hostname | quote }}
+  isWorkMachine : {{ $isWorkMachine }}
+
+cd:
+  command : "pwsh"
+  args :
+    - "-NoLogo"
+    - "-NoProfile"
+diff:
+  exclude:
+    - scripts
+  command: code
+  args:
+    - '--wait'
+    - '--diff'
+    - '{{`{{ .Destination }}`}}'
+    - '{{`{{ .Target }}`}}'
+edit:
+  command: code
+  args:
+    - '--wait'
+hooks:
+  read-source-state:
+    pre:
+      command: .local/share/chezmoi/.install-password-manager.sh
+git:
+  autoCommit: true
+  autoPush: true
+interpreters.ps1:
+  command : "pwsh"
+  args :
+    - "-NoLogo"
+    - "-NoProfile"
+merge:
+  command: "code"
+  args:
+    - --wait
+    - --merge
+    - "{{ "{{ .Destination }}" }}"
+    - "{{ "{{ .Source }}" }}"
+    - "{{ "{{ .Target }}" }}"
