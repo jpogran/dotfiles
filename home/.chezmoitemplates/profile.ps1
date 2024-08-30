@@ -24,6 +24,18 @@ if ($env:USERPROFILE) {
   $env:HOMEPATH = $env:USERPROFILE | Split-Path -NoQualifier
 }
 
+
+# The XDG standard says use the variable and tells us how to calculate a fallback
+# $DataHome = [Environment]::GetFolderPath("LocalApplicationData") # $ENV:XDG_DATA_HOME    .local/share  # scripts and modules
+# $ConfigHome = [Environment]::GetFolderPath("ApplicationData")    # $ENV:XDG_CONFIG_HOME  .config       # profile and settings
+
+$DataHome = if ($ENV:XDG_CONFIG_HOME -and $ENV:XDG_DATA_HOME) {
+  $ENV:XDG_DATA_HOME
+}
+else {
+  [IO.Path]::Combine($HOME, ".local", "share")
+}
+
 . "$($DataHome)/powershell/Scripts/utility.ps1"
 . "$($DataHome)/powershell/Scripts/psreadline.ps1"
 Import-Module posh-git
