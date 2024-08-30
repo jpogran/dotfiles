@@ -1,8 +1,0 @@
-{
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "files.associations": {
-    "*.yaml.tmpl": "yaml"
-  }
-}

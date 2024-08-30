@@ -4,12 +4,6 @@
 {{- $isWorkMachine := eq .chezmoi.username "james.pogran" -}}
 
 data:
-  username: jpogran
-  dotusername: james.pogran
-  name: james
-  fullname: James Pogran
-  email: jpogran@outlook.com
-  editor: code --wait
   codespaces    : {{ $codespaces }}
   hostname      : {{ $hostname | quote }}
   isWorkMachine : {{ $isWorkMachine }}
