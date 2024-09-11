@@ -1,6 +1,7 @@
 .oh-my-zsh/cache/**
 
 {{ if ne .chezmoi.os "darwin" }}
+.hushlogin
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
