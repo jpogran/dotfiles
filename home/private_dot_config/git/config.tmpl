@@ -1,15 +1,15 @@
 [core]
-  editor = {{ .editor }}
-  commit = verbose
+  editor             = {{ .editor }}
+  commit             = verbose
 {{- if eq .chezmoi.os "windows" }}
-  sshCommand = c:/Program Files (x86)/OpenSSH/ssh.exe
+  sshCommand         = c:/Program Files (x86)/OpenSSH/ssh.exe
 {{ end }}
 [user]
-  name       = {{ .fullname | quote }}
-  email      = {{ .email | quote }}
-  signingkey = {{ onepasswordRead "op://private/Github/public_key" | quote }}
+  name               = {{ .fullname | quote }}
+  email              = {{ .email | quote }}
+  signingkey         = {{ onepasswordRead "op://private/Github/public_key" | quote }}
 [gpg]
-  format = ssh
+  format             = ssh
 [gpg "ssh"]
   allowedSignersFile = ~/.ssh/allowed_signers
 {{- if eq .chezmoi.os "darwin" }}
@@ -19,68 +19,96 @@
   program            = c:/Program Files (x86)/OpenSSH/ssh-keygen.exe
 {{ end -}}
 [init]
-  defaultBranch = "main"
+  defaultBranch      = "main"
 [push]
-  default = current
+  default            = current
 [shell]
-  username = {{ .username }}
+  username           = {{ .username }}
 [github]
-  username = {{ .username }}
+  username           = {{ .username }}
 [commit]
-  verbose = true
-  gpgsign = true
+  verbose            = true
+  gpgsign            = true
 [tag]
-  gpgsign = true
+  gpgsign            = true
 [color]
-  ui          = auto
-  status      = auto
-  branch      = auto
-  interactive = auto
-  diff        = auto
+  ui                 = auto
+  status             = auto
+  branch             = auto
+  interactive        = auto
+  diff               = auto
+[color "branch"]
+  current            = red reverse
+  local              = blue
+  remote             = green
+[color "diff"]
+  meta               = yellow
+  frag               = magenta
+  old                = red bold
+  new                = green
+  plain              = white
+[color "status"]
+  added              = yellow
+  changed            = green
+  untracked          = cyan
 [diff]
-  tool    = vscode
-  renames = copies
+  tool               = vscode
+  renames            = copies
 [difftool "vscode"]
-  prompt = false
-  cmd    = code --wait --diff $LOCAL $REMOTE
+  prompt             = false
+  cmd                = code --wait --diff $LOCAL $REMOTE
 [merge]
-  tool = vscode
+  tool               = vscode
 [mergetool "vscode"]
-  cmd = code --wait $MERGED
+  cmd                = code --wait $MERGED
+[push]
+  default            = current
 [pull]
-  rebase = true
+  rebase             = true
+  default            = current
+[branch]
+  autosetuprebase    = always
 [rebase]
-  autostash = true
+  autostash          = true
+[rerere]
+  enabled            = false
 [alias]
-  amend    = commit --amend --reuse-message=HEAD
-  branches = branch -a
-  co       = checkout
-  cob      = checkout -b
-  cot      = checkout -t
-  commit   = commit -v
-  cm       = commit -v -m
-  l        = log  -n 10 --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
-  lg       = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
-  ll       = log --oneline -n 20
-  ln       = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
-  s        = status -s
-  st       = status
-  tags     = tag -l
-  remotes  = remote -v
-  undo     = reset HEAD~1 --mixed
-  ri       = rebase -i  $(git log --format=format:'%H'  -n 1 main)
+  amend              = commit --amend --reuse-message=HEAD
+  branches           = branch -a
+  co                 = checkout
+  cob                = checkout -b
+  cot                = checkout -t
+  commit             = commit -v
+  cm                 = commit -v -m
+
+  l                  = log  -n 10 --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  lg                 = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  ll                 = log --oneline -n 20
+  ln                 = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
+  # commits in short form, with colors and branch/tag annotations, and file changes
+  lf                 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+  s                  = status -s
+  st                 = status
+  tags               = tag -l
+  remotes            = remote -v
+  undo               = reset HEAD~1 --mixed
+  ri                 = rebase -i  $(git log --format=format:'%H'  -n 1 main)
 
 	# Pull Upstream
-	pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+	pu                 = !"git fetch origin -v && git merge origin/main"
 	# Commit Amend Reuse Message HEAD
-	carmh = commit --amend --reuse-message=HEAD
+	carmh              = commit --amend --reuse-message=HEAD
 	# Push Current
-	pc = !"f() { remote=\"${1:-origin}\"; git push -u \"$remote\" $(git rev-parse --abbrev-ref HEAD); }; f"
+	pc                 = !"f() { remote=\"${1:-origin}\"; git push -u \"$remote\" $(git rev-parse --abbrev-ref HEAD); }; f"
 	# Push Current Force
-	pcf = !"f() { echo git pc \"$@\" -f; }; f"
+	pcf                = !"f() { echo git pc \"$@\" -f; }; f"
 	# Current branch
-	current = rev-parse --abbrev-ref HEAD
+	current            = rev-parse --abbrev-ref HEAD
 [pager]
-	log = false
+	log                = false
 [url "https://github.com/hashicorp"]
-	insteadOf = git@github.com:hashicorp
+	insteadOf          = git@github.com:hashicorp
+
+# https://github.com/durdn/cfg/blob/master/.gitconfig
+# https://www.durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
