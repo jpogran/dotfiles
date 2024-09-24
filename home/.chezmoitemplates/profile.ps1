@@ -12,11 +12,10 @@ $global:PSNativeCommandUseErrorActionPreference = $true
 # show Information log stream
 $global:InformationPreference = "Continue"
 
-# set env:LANG, which makes `git diff` and other originally Linux commands print stuff with correct encoding
-$env:LANG = "C.UTF-8"
 $env:EDITOR = "code -w"
-$env:PATH = "/opt/homebrew/opt/curl/bin:" + $env:PATH
-
+# set env:LANG, which makes `git diff` and other originally Linux commands print stuff with correct encoding
+$env:LANG = "UTF-8"
+$env:LESSCHARSET = 'UTF-8'
 $OutputEncoding = [Console]::OutputEncoding = [Console]::InputEncoding = [System.Text.UTF8Encoding]::new()
 
 $env:HOMEDRIVE = $env:SystemDrive
@@ -24,20 +23,18 @@ if ($env:USERPROFILE) {
   $env:HOMEPATH = $env:USERPROFILE | Split-Path -NoQualifier
 }
 
-
 # The XDG standard says use the variable and tells us how to calculate a fallback
 # $DataHome = [Environment]::GetFolderPath("LocalApplicationData") # $ENV:XDG_DATA_HOME    .local/share  # scripts and modules
 # $ConfigHome = [Environment]::GetFolderPath("ApplicationData")    # $ENV:XDG_CONFIG_HOME  .config       # profile and settings
-
 $DataHome = if ($ENV:XDG_CONFIG_HOME -and $ENV:XDG_DATA_HOME) {
   $ENV:XDG_DATA_HOME
 }
 else {
   [IO.Path]::Combine($HOME, ".local", "share")
 }
-
 . "$($DataHome)/powershell/Scripts/utility.ps1"
 . "$($DataHome)/powershell/Scripts/psreadline.ps1"
+
 Import-Module posh-git
 
 $alias:count = 'Measure-Object'
@@ -75,13 +72,10 @@ $PSDefaultParameterValues = @{
 
 $PSStyle.FileInfo.Directory = "`e[96;1m"
 
+$env:PATH = "/opt/homebrew/opt/curl/bin:$($env:PATH)"
+$env:PATH = "$HOME/.local/share/mise/shims:$($env:PATH)"
+
 $(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
 Invoke-Expression (& { (gh completion -s powershell | Out-String) })
-
-# . "$(brew --prefix asdf)/libexec/asdf.ps1"
-
-# Set-NodeVersion -Version 18 -InformationAction SilentlyContinue
-
-$env:PATH = "$HOME/.local/share/mise/shims:$($env:PATH)"
 
 Invoke-Expression (starship init powershell)
