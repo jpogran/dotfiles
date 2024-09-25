@@ -5,8 +5,8 @@
   sshCommand         = c:/Program Files (x86)/OpenSSH/ssh.exe
 {{ end }}
 [user]
-  name               = {{ .fullname | quote }}
-  email              = {{ .email | quote }}
+  name               = {{ .data.fullname | quote }}
+  email              = {{ .data.email | quote }}
   signingkey         = {{ onepasswordRead "op://private/Github/public_key" | quote }}
 [gpg]
   format             = ssh
@@ -23,9 +23,9 @@
 [push]
   default            = current
 [shell]
-  username           = {{ .username }}
+  username           = {{ .data.username }}
 [github]
-  username           = {{ .username }}
+  username           = {{ .data.username }}
 [commit]
   verbose            = true
   gpgsign            = true
