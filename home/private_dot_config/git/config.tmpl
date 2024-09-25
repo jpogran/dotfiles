@@ -1,5 +1,5 @@
 [core]
-  editor             = {{ .editor }}
+  editor             = {{ .data.editor }}
   commit             = verbose
 {{- if eq .chezmoi.os "windows" }}
   sshCommand         = c:/Program Files (x86)/OpenSSH/ssh.exe
