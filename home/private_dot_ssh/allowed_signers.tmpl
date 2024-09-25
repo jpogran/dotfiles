@@ -1,1 +1,1 @@
-{{ .data.email }} {{ .data.sigkey }}
+{{ .data.email }} {{ onepasswordRead "op://private/Github/public_key" | quote }}
