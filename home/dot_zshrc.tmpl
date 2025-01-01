@@ -49,6 +49,7 @@ function ni() {
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export PATH="$HOME/.local/share/mise/shims:$PATH"
+; export PATH="$HOME/.local/share/mise/shims:$PATH"
+echo 'eval "$(/opt/homebrew/bin/mise activate zsh)"' >> ~/.zshrc
 
 eval "$(starship init zsh)"
