@@ -38,8 +38,3 @@ interpreters.ps1:
   args :
     - "-NoLogo"
     - "-NoProfile"
-merge:
-  command: "bash"
-  args:
-    - "-c"
-    - "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}"
