@@ -6,11 +6,11 @@ mouse-hide-while-typing = true
 window-padding-balance = true
 bold-is-bright = true
 
-background-opacity = 0.96
-unfocused-split-opacity = 0.65
-macos-titlebar-style = transparent
-
 font-size = 18
 font-family = FiraCode Nerd Font Mono
 
 theme = GitHub Dark
+background-opacity = 0.96
+background-blur-radius = 25
+unfocused-split-opacity = 0.65
+macos-titlebar-style = transparent
