@@ -8,6 +8,7 @@ packages:
     - 'chezmoi'
     - 'coreutils'
     - 'curl'
+    - 'fish'
     - 'gh'
     - 'git'
     - 'gnupg'
