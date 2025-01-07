@@ -1,6 +1,7 @@
 [tools]
 node = '20'
 golang = '1.23'
+hugo-extended = "0.128.0"
 
 [settings]
 experimental = true
