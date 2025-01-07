@@ -39,10 +39,7 @@ interpreters.ps1:
     - "-NoLogo"
     - "-NoProfile"
 merge:
-  command: "code"
+  command: "bash"
   args:
-    - --wait
-    - --merge
-    - "{{ "{{ .Destination }}" }}"
-    - "{{ "{{ .Source }}" }}"
-    - "{{ "{{ .Target }}" }}"
+  - "-c"
+  - "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}"
