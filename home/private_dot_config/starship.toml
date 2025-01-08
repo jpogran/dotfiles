@@ -1,2 +1,30 @@
-# ~/.config/starship.toml
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
+# Prompt-wide configuration options
+command_timeout = 750
+
+palette = 'github_dark'
+
+# Palettes
+[palettes.github_dark]
+surface0 = "#0d1117"
+surface1 = "#1b1f23"
+text = "#c9d1d9"
+accent = "#F78166"
+black = "#0d1117"
+blue = "#58a6ff"
+cyan = "#76e3ea"
+green = "#3fb950"
+magenta = "#bc8cff"
+red = "#ff7b72"
+white = "#b1bac4"
+yellow = "#d29922"
+bright_black = "#161b22"
+bright_blue = "#79c0ff"
+bright_cyan = "#b3f0ff"
+bright_green = "#56d364"
+bright_magenta = "#d2a8ff"
+bright_red = "#ffa198"
+bright_white = "#b1bac4"
+bright_yellow = "#e3b341"
