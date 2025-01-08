@@ -37,10 +37,6 @@
   branch             = auto
   interactive        = auto
   diff               = auto
-	pager              = true
-	showBranch         = auto
-	interactive        = auto
-	grep               = auto
 [color "branch"]
   current            = red reverse
   local              = blue
@@ -65,14 +61,14 @@
   tool               = vscode
 [mergetool "vscode"]
   cmd                = code --wait $MERGED
+[push]
+  default            = current
 [pull]
   rebase             = true
   default            = current
 [branch]
-  sort               = -committerdate
   autosetuprebase    = always
 [rebase]
-  autosquash         = true
   autostash          = true
 [rerere]
   enabled            = false

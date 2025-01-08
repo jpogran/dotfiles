@@ -7,6 +7,8 @@ set -U fish_greeting
 # https://mise.jdx.dev/ide-integration.html#vscode
 # set -x PATH $PATH ~/.local/share/mise/shims
 
+set -x PATH $PATH ~/Applications/bin ~/.npm/bin ~/.cargo/bin
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     mise activate fish | source
