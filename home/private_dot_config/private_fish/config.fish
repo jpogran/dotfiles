@@ -12,6 +12,8 @@ set -x EDITOR 'code --wait'
 # set -x PATH $PATH ~/.local/share/mise/shims
 # set -x PATH $PATH ~/Applications/bin ~/.npm/bin ~/.cargo/bin
 
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
 fish_add_path /opt/homebrew/opt/libpq/bin
 set -gx LDFLAGS "-L/opt/homebrew/opt/libpq/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
