@@ -19,7 +19,9 @@ set -gx LDFLAGS "-L/opt/homebrew/opt/libpq/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
 
 if status is-interactive
+{{ if .isWorkMachine -}}
     eval "$(tfcdev rc)"
+{{ end -}}
     # echo "$(doormat login && doormat artifactory create-token | jq -r '.access_token')" \
     #   | docker login -u "${USER}@hashicorp.com" --password-stdin docker.artifactory.hashicorp.engineering
 
