@@ -2,7 +2,7 @@
 Host github.com
 	AddKeysToAgent yes
 	ForwardAgent yes
-{{ else -}}
+{{- else -}}
 Host *
 {{ end -}}
 {{- if eq .chezmoi.os "darwin" }}
