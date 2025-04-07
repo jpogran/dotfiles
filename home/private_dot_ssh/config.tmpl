@@ -1,4 +1,5 @@
-Host *
+Host github.com
+	ForwardAgent yes
 {{- if eq .chezmoi.os "darwin" }}
 	IdentityAgent ~/.1password/agent.sock
 {{ end -}}
