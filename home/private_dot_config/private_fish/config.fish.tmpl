@@ -7,6 +7,8 @@ set -U fish_greeting
 
 set -x EDITOR 'code --wait'
 
+set -x SSH_AUTH_SOCK ~/.1password/agent.sock
+
 # Add the shims to the end of PATH as fallback for VS Code
 # https://mise.jdx.dev/ide-integration.html#vscode
 # set -x PATH $PATH ~/.local/share/mise/shims
