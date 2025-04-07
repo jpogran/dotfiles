@@ -7,7 +7,7 @@
 [user]
   name               = {{ .data.fullname | quote }}
   email              = {{ .data.email | quote }}
-  signingkey         = {{ onepasswordRead "op://private/Github/public_key" | quote }}
+  signingkey         = {{ onepasswordRead "op://private/GithubPersonal/public_key" | quote }}
 [gpg]
   format             = ssh
 [gpg "ssh"]
