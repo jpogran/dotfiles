@@ -1,43 +1,43 @@
 packages:
   universal:
     taps:
-    - "homebrew/bundle"
-    - "homebrew/cask-fonts"
+      - "homebrew/bundle"
+      - "homebrew/cask-fonts"
     brews:
-    - 'bat'
-    - 'chezmoi'
-    - 'coreutils'
-    - 'curl'
-    - 'fish'
-    - 'gh'
-    - 'git'
-    - 'gnupg'
-    - 'jq'
-    - 'mas'
-    - 'mise'
-    - 'neovim'
-    - 'nmap'
-    - 'starship'
-    - 'wget'
-    - 'zsh'
+      - "bat"
+      - "chezmoi"
+      - "coreutils"
+      - "curl"
+      - "fish"
+      - "gh"
+      - "git"
+      - "gnupg"
+      - "jq"
+      - "mas"
+      - "mise"
+      - "neovim"
+      - "nmap"
+      - "starship"
+      - "wget"
+      - "zsh"
     casks:
-    - '1password-cli'
-    - 'iterm2'
-    - 'powershell'
-    - 'font-fira-code-nerd-font'
-    - 'visual-studio-code'
-    - 'visual-studio-code@insiders'
+      - "1password-cli"
+      - "iterm2"
+      - "powershell"
+      - "font-fira-code-nerd-font"
+      - "visual-studio-code"
+      - "visual-studio-code@insiders"
     mas:
   personal:
     taps:
     brews:
-    - 'hugo'
+      - "hugo"
     casks:
-    # - 'cleanmymac'
-    - 'discord'
-    - 'gemini'
-    - 'slack'
-    - 'zoom'
+      # - 'cleanmymac'
+      - "discord"
+      - "gemini"
+      - "slack"
+      - "zoom"
     mas:
       - { name: "1Password for Safari", id: 1569813296 }
       - { name: "Developer", id: 640199958 }
@@ -46,14 +46,25 @@ packages:
       - { name: "Xcode", id: 497799835 }
   work:
     taps:
-    - { name: 'hashicorp/tap', url: ''  }
-    - { name: 'hashicorp/internal', url: "git@github.com:hashicorp/homebrew-internal.git"  }
-    - { name: 'hashicorp/security', url: ''  }
-    - { name: "miniscruff/changie", url: "https://github.com/miniscruff/changie"  }
+      - { name: "hashicorp/tap", url: "" }
+      - {
+          name: "hashicorp/internal",
+          url: "git@github.com:hashicorp/homebrew-internal.git",
+        }
+      - { name: "hashicorp/security", url: "" }
+      - {
+          name: "miniscruff/changie",
+          url: "https://github.com/miniscruff/changie",
+        }
     brews:
-    - "hashicorp/security/doormat-cli"
-    - "hashicorp/tap/copywrite"
-    - "hashicorp/tap/terraform"
-    - 'btop'
-    - 'changie'
+      - "hashicorp/security/doormat-cli"
+      - "hashicorp/internal/tfcdev"
+      - "hashicorp/tap/copywrite"
+      - "hashicorp/tap/terraform"
+      - "btop"
+      - "changie"
+      - "cmake"
+      - "libpq"
+      - "pkg-config"
+      - "watchman"
     casks:

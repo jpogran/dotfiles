@@ -1,5 +1,4 @@
 #!/bin/bash
-{{ if eq .chezmoi.os "darwin" -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.universal.taps -}}
 tap {{ . | quote }}
@@ -14,9 +13,7 @@ cask {{ . | quote }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
-{{ end -}}
 
-{{ if eq .chezmoi.os "darwin" -}}
 {{ if ne .isWorkMachine true -}}
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.personal.taps -}}
@@ -32,7 +29,6 @@ cask {{ . | quote }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{ end -}}
 EOF
-{{ end -}}
 {{ end -}}
 
 {{ if .isWorkMachine -}}
