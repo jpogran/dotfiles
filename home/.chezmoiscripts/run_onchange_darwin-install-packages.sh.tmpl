@@ -1,5 +1,5 @@
 #!/bin/bash
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.universal.taps -}}
 tap {{ . | quote }}
 {{ end -}}
@@ -15,7 +15,7 @@ mas {{ .name | quote }}, id: {{ .id }}
 EOF
 
 {{ if ne .isWorkMachine true -}}
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.personal.taps -}}
 tap {{ . | quote }}
 {{ end -}}
@@ -32,7 +32,7 @@ EOF
 {{ end -}}
 
 {{ if .isWorkMachine -}}
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.work.taps -}}
 tap {{ .name | quote }}{{if .url }}, {{ .url | quote }}{{ end }}
 {{ end -}}
