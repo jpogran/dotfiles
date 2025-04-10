@@ -24,9 +24,9 @@ if status is-interactive
 {{ if .isWorkMachine -}}
     eval "$(tfcdev rc)"
 
-    echo "$(doormat login && doormat artifactory create-token | jq -r '.access_token')" | docker login -u "$USER@hashicorp.com" --password-stdin docker.artifactory.hashicorp.engineering
-    set BUNDLE_ARTIFACTORY__HASHICORP__ENGINEERING "$USER%40hashicorp.com:$(doormat login && doormat artifactory create-token | jq -r '.access_token')"
-    ; set_artifactory_var &
+    ; echo "$(doormat login && doormat artifactory create-token | jq -r '.access_token')" | docker login -u "$USER@hashicorp.com" --password-stdin docker.artifactory.hashicorp.engineering
+    ; set BUNDLE_ARTIFACTORY__HASHICORP__ENGINEERING "$USER%40hashicorp.com:$(doormat login && doormat artifactory create-token | jq -r '.access_token')"
+    ; ; set_artifactory_var &
 {{ end -}}
 
     mise activate fish | source
