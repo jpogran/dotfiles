@@ -22,6 +22,7 @@ set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
 
 if status is-interactive
 {{ if .isWorkMachine -}}
+    set -gx GITHUB_TOKEN (op read "op://private/atlas-github-token/token")
     if not set -q ACCESS_TOKEN
         set ACCESS_TOKEN $(doormat artifactory create-token | jq -r .access_token)
     end
