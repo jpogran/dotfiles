@@ -21,7 +21,7 @@ set -gx LDFLAGS "-L/opt/homebrew/opt/libpq/lib"
 set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
 
 if status is-interactive
-    {{ if .isWorkMachine -}}set_atlas_env{{ end }}
+    # {{ if .isWorkMachine -}}set_atlas_env{{ end }}
 
     mise activate fish | source
 
