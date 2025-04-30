@@ -1,5 +1,6 @@
 function set_atlas_env
-    set -gx GITHUB_TOKEN $(op read 'op://private/atlas-github-token/token')
+    # set -gx GITHUB_TOKEN $(op read 'op://private/atlas-github-token/token')
+    set -gx GITHUB_TOKEN $(gh auth token
     set ACCESS_TOKEN $(doormat login && doormat artifactory create-token | jq -r .access_token)
     set -gx ATLAS_JANUS_ENGINE_PATH ~/src/hashicorp/janus-rails-engine
     set -gx USER "james.pogran"
