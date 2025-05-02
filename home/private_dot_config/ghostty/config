@@ -7,10 +7,14 @@ window-padding-balance = true
 bold-is-bright = true
 
 font-size = 18
-font-family = FiraCode Nerd Font Mono
+font-family = FiraCode Nerd Font Mono Ret
 
-theme = GitHub Dark
+theme = carbonfox
 background-opacity = 0.96
 background-blur-radius = 25
 unfocused-split-opacity = 0.65
 macos-titlebar-style = transparent
+
+
+keybind = ctrl+page_up=scroll_page_up
+keybind = ctrl+page_down=scroll_page_down
