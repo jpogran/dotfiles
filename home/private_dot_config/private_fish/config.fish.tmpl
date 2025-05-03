@@ -1,35 +1,9 @@
 #!/usr/bin/env fish
 
-set -x LC_ALL en_US.UTF-8
-set -x LANG en_US.UTF-8
-
-set -U fish_greeting
-
-set -x EDITOR 'code --wait'
-
-set -x SSH_AUTH_SOCK ~/.1password/agent.sock
-
-# Add the shims to the end of PATH as fallback for VS Code
-# https://mise.jdx.dev/ide-integration.html#vscode
-# set -x PATH $PATH ~/.local/share/mise/shims
-# set -x PATH $PATH ~/Applications/bin ~/.npm/bin ~/.cargo/bin
-
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/sbin
-fish_add_path /opt/homebrew/opt/libpq/bin
-set -gx LDFLAGS "-L/opt/homebrew/opt/libpq/lib"
-set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
-
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+# ~/.config/fish/conf.d runs first
+#
+# https://fishshell.com/docs/current/tutorial.html
+# https://github.com/jorgebucaran/fish-shell-cookbook
 
 if status is-interactive
-    # {{ if .isWorkMachine -}}set_atlas_env{{ end }}
-
-    mise activate fish | source
-
-    brew shellenv | source
-
-    op completion fish | source
-
-    starship init fish | source
 end
