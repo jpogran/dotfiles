@@ -1,6 +1,31 @@
+set -q FSH_ABBRS_INITIALIZED; and return
+
 abbr cls clear
 abbr cd.. cd ..
 abbr .. cd ..
+
+# system
+if type -q bat
+    abbr cat bat
+end
+
+# git
+abbr --add g git
+
+# Git abbreviations
+abbr -a g git
+abbr -a gst 'git status'
+abbr -a gb 'git branch'
+abbr -a gc 'git commit'
+abbr -a gco 'git checkout'
+abbr -a gd 'git diff'
+abbr -a gl 'git pull'
+abbr -a gp 'git push'
+abbr -a ga 'git add'
+abbr -a gaa 'git add --all'
+abbr -a glog 'git log --oneline --decorate --graph'
+abbr -a gf 'git fetch --all'
+abbr -a grb 'git rebase'
 
 # golang
 abbr -a -- gob 'go build'
@@ -31,3 +56,5 @@ abbr -a -- rd 'rails db:migrate'
 abbr -a -- rdb 'rails db:rollback'
 abbr -a -- rds 'rails db:seed'
 abbr -a -- rdm 'rails db:migrate && rails db:seed'
+
+set -g FSH_ABBRS_INITIALIZED true
