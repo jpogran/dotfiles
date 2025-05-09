@@ -6,6 +6,7 @@ data:
   name: james
   username: jpogran
 
+  shell: "fish"
   # Platform-specific settings
   macos:
     terminal: "iterm2"
