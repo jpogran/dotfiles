@@ -1,6 +1,8 @@
 [tools]
-node = '20'
-golang = '1.23'
+node = '{{ .data.versions.node }}'
+golang = '{{ .data.versions.go }}'
+python = '{{ .data.versions.python }}'
+rust = '{{ .data.versions.rust }}'
 hugo-extended = "0.128.0"
 
 [settings]

@@ -4,15 +4,15 @@
 # Prompt-wide configuration options
 command_timeout = 750
 
-palette = 'github_dark'
+palette = '{{ .data.theme.name }}'
 
 # Palettes
-[palettes.github_dark]
-surface0 = "#0d1117"
+[palettes.{{ .data.theme.name }}]
+surface0 = "{{ .data.theme.colors.surface }}"
 surface1 = "#1b1f23"
-text = "#c9d1d9"
-accent = "#F78166"
-black = "#0d1117"
+text = "{{ .data.theme.colors.text }}"
+accent = "{{ .data.theme.colors.accent }}"
+black = "{{ .data.theme.colors.surface }}"
 blue = "#58a6ff"
 cyan = "#76e3ea"
 green = "#3fb950"

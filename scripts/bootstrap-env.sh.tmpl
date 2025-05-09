@@ -1,0 +1,237 @@
+#!/bin/bash
+# Cross-platform bootstrapping script for setting up a new machine
+# Usage: ./bootstrap-env.sh [--minimal]
+
+set -e
+
+# Determine OS
+OS="unknown"
+case "$(uname -s)" in
+  Darwin*)  OS="darwin" ;;
+  Linux*)   OS="linux" ;;
+  CYGWIN*)  OS="windows" ;;
+  MINGW*)   OS="windows" ;;
+  MSYS*)    OS="windows" ;;
+esac
+
+echo "Detected OS: $OS"
+
+# Set up colors for output
+if [ -t 1 ]; then
+  NORMAL=$(tput sgr0)
+  RED=$(tput setaf 1)
+  GREEN=$(tput setaf 2)
+  YELLOW=$(tput setaf 3)
+  BLUE=$(tput setaf 4)
+else
+  NORMAL=""
+  RED=""
+  GREEN=""
+  YELLOW=""
+  BLUE=""
+fi
+
+# Print a formatted message
+msg() {
+  echo "${GREEN}==>${NORMAL} $1"
+}
+
+# Print a warning message
+warn() {
+  echo "${YELLOW}Warning:${NORMAL} $1"
+}
+
+# Print an error message
+error() {
+  echo "${RED}Error:${NORMAL} $1"
+}
+
+# Print a step message
+step() {
+  echo "${BLUE}-->${NORMAL} $1"
+}
+
+# Check if a command exists
+command_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+# Install Homebrew (macOS and Linux)
+install_homebrew() {
+  if ! command_exists brew; then
+    msg "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    # Add Homebrew to PATH
+    if [ "$OS" = "darwin" ]; then
+      if [ -d "/opt/homebrew/bin" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      else
+        eval "$(/usr/local/bin/brew shellenv)"
+      fi
+    elif [ "$OS" = "linux" ]; then
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+  else
+    step "Homebrew is already installed"
+  fi
+}
+
+# Install mise for development tool management
+install_mise() {
+  if ! command_exists mise; then
+    msg "Installing mise..."
+
+    if command_exists brew; then
+      brew install mise
+    else
+      curl https://mise.jdx.dev/install.sh | sh
+    fi
+  else
+    step "mise is already installed"
+  fi
+}
+
+# Install essential dev tools based on OS
+install_essentials() {
+  msg "Installing essential development tools..."
+
+  case "$OS" in
+    darwin)
+      # macOS tools
+      step "Installing macOS essentials..."
+      brew install git fish starship
+      ;;
+
+    linux)
+      # Linux tools
+      step "Installing Linux essentials..."
+      if command_exists apt-get; then
+        sudo apt-get update
+        sudo apt-get install -y build-essential git curl fish
+      elif command_exists dnf; then
+        sudo dnf install -y git curl fish
+      elif command_exists pacman; then
+        sudo pacman -Syu git curl fish
+      else
+        warn "Unsupported Linux package manager. Please install git, fish, and starship manually."
+      fi
+
+      # Install starship if it's not already installed
+      if ! command_exists starship; then
+        curl -sS https://starship.rs/install.sh | sh
+      fi
+      ;;
+
+    windows)
+      # Windows tools
+      step "Installing Windows essentials..."
+      warn "For Windows, we recommend using winget or chocolatey to install Git, PowerShell, and Windows Terminal"
+      ;;
+  esac
+}
+
+# Setup 1Password CLI
+setup_1password() {
+  msg "Setting up 1Password CLI..."
+
+  if ! command_exists op; then
+    case "$OS" in
+      darwin)
+        brew install 1password-cli
+        ;;
+      linux)
+        # Check for package manager and install
+        if command_exists apt-get; then
+          curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+            sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | \
+            sudo tee /etc/apt/sources.list.d/1password.list
+          sudo apt-get update && sudo apt-get install 1password-cli
+        elif command_exists dnf; then
+          sudo rpm --import https://downloads.1password.com/linux/keys/1password.asc
+          sudo sh -c 'echo -e "[1password]\nname=1Password\nbaseurl=https://downloads.1password.com/linux/rpm\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://downloads.1password.com/linux/keys/1password.asc" > /etc/yum.repos.d/1password.repo'
+          sudo dnf install 1password-cli
+        else
+          warn "Please install 1Password CLI manually from https://1password.com/downloads/command-line/"
+        fi
+        ;;
+      windows)
+        warn "For Windows, please install 1Password CLI manually from https://1password.com/downloads/command-line/"
+        ;;
+    esac
+  else
+    step "1Password CLI is already installed"
+  fi
+
+  # Set up 1Password SSH agent if on macOS or Linux
+  if [ "$OS" = "darwin" ] || [ "$OS" = "linux" ]; then
+    mkdir -p ~/.1password
+    if [ "$OS" = "darwin" ]; then
+      ln -sf ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock ~/.1password/agent.sock
+    elif [ "$OS" = "linux" ]; then
+      ln -sf ~/.config/1Password/ssh/agent.sock ~/.1password/agent.sock
+    fi
+  fi
+}
+
+# Install and set up chezmoi
+setup_chezmoi() {
+  msg "Setting up chezmoi..."
+
+  if ! command_exists chezmoi; then
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+    export PATH="$PATH:$HOME/.local/bin"
+  else
+    step "chezmoi is already installed"
+  fi
+
+  # Initialize chezmoi with the dotfiles repository
+  step "Initializing chezmoi with dotfiles repository..."
+  chezmoi init {{ .data.username }} --apply
+}
+
+# Main function to orchestrate the bootstrap process
+main() {
+  msg "Starting bootstrapping process for $OS..."
+
+  # Check for minimal flag
+  MINIMAL=false
+  if [ "$1" = "--minimal" ]; then
+    MINIMAL=true
+    warn "Running in minimal mode - only essential tools will be installed"
+  fi
+
+  # Create essential directories
+  mkdir -p ~/.config
+  mkdir -p ~/.local/bin
+  mkdir -p ~/.local/share
+
+  # Install Homebrew (macOS and Linux only)
+  if [ "$OS" = "darwin" ] || [ "$OS" = "linux" ]; then
+    install_homebrew
+  fi
+
+  # Install essential tools
+  install_essentials
+
+  # Install mise for development tool management
+  if [ "$MINIMAL" = "false" ]; then
+    install_mise
+  fi
+
+  # Set up 1Password CLI
+  if [ "$MINIMAL" = "false" ]; then
+    setup_1password
+  fi
+
+  # Set up chezmoi and apply dotfiles
+  setup_chezmoi
+
+  # Show completion message
+  msg "Bootstrap completed successfully!"
+  msg "You may need to restart your terminal for all changes to take effect."
+}
+
+# Run the main function with all arguments
+main "$@"

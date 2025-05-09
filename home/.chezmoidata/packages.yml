@@ -3,31 +3,49 @@ packages:
     taps:
       - "homebrew/bundle"
       - "homebrew/cask-fonts"
+      - "homebrew/services"
     brews:
-      - "bat"
-      - "chezmoi"
+      - "bat"            # Better cat
+      - "chezmoi"        # Dotfiles manager
       - "coreutils"
       - "curl"
-      - "fish"
-      - "gh"
-      - "git"
+      - "eza"            # Modern ls replacement
+      - "fd"             # Better find
+      - "fish"           # Fish shell
+      - "fzf"            # Fuzzy finder
+      - "gh"             # GitHub CLI
+      - "git"            # Version control
+      - "git-delta"      # Better git diffs
       - "gnupg"
-      - "jq"
+      - "go"             # Go language
+      - "jq"             # JSON processor
       - "mas"
-      - "mise"
-      - "neovim"
+      - "mise"           # Development tool manager
+      - "neovim"         # Modern vim
       - "nmap"
-      - "starship"
+      - "node"           # Node.js
+      - "python"         # Python
+      - "ripgrep"        # Better grep
+      - "rustup-init"    # Rust language
+      - "starship"       # Shell prompt
+      - "tmux"           # Terminal multiplexer
       - "wget"
+      - "zoxide"         # Better cd
       - "zsh"
     casks:
+      - "1password"      # Password manager
       - "1password-cli"
-      - "iterm2"
-      - "powershell"
+      - "arc"            # Web browser
+      - "font-fira-code"
       - "font-fira-code-nerd-font"
-      - "visual-studio-code"
+      - "font-jetbrains-mono"
+      - "font-jetbrains-mono-nerd-font"
+      - "iterm2"         # Terminal emulator
+      - "powershell"
+      - "visual-studio-code" # Code editor
       - "visual-studio-code@insiders"
     mas:
+      - { name: "Amphetamine", id: 937984704 }
   personal:
     taps:
     brews:

@@ -1,0 +1,64 @@
+# tmux configuration with theme integration
+# Templated with chezmoi
+
+# Use 256 colors
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
+
+# Set prefix to Ctrl+Space
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
+
+# Enable mouse support
+set -g mouse on
+
+# Start window numbering at 1
+set -g base-index 1
+set -g pane-base-index 1
+set-window-option -g pane-base-index 1
+set-option -g renumber-windows on
+
+# Theme settings based on preferences
+# Use the theme colors from our central data file
+set -g status-style "bg={{ .data.theme.colors.surface }} fg={{ .data.theme.colors.text }}"
+set -g pane-border-style "fg={{ .data.theme.colors.surface }}"
+set -g pane-active-border-style "fg={{ .data.theme.colors.accent }}"
+set -g message-style "bg={{ .data.theme.colors.surface }} fg={{ .data.theme.colors.accent }}"
+
+# Status bar configuration
+set -g status-interval 1
+set -g status-left "#[fg={{ .data.theme.colors.accent }},bold]#S #[fg={{ .data.theme.colors.text }}]• "
+set -g status-right "#[fg={{ .data.theme.colors.text }}]%Y-%m-%d %H:%M"
+set -g status-left-length 30
+set -g status-right-length 50
+
+# Window status format
+set-window-option -g window-status-current-format "#[fg={{ .data.theme.colors.accent }},bold]#I:#W#F"
+set-window-option -g window-status-format "#I:#W#F"
+
+# Keybindings for pane and window management
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
+# Vim-like pane navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Reload tmux config with r
+bind r source-file ~/.tmux.conf \; display "Config reloaded!"
+
+# Platform-specific settings
+{{ if eq .chezmoi.os "darwin" -}}
+# macOS specific settings
+set -g default-command "reattach-to-user-namespace -l {{ .data.shell | default "fish" }}"
+{{ else if eq .chezmoi.os "linux" -}}
+# Linux specific settings
+set -g default-command "{{ .data.shell | default "fish" }}"
+{{ else if eq .chezmoi.os "windows" -}}
+# Windows specific settings
+set -g default-command "powershell.exe"
+{{ end -}}

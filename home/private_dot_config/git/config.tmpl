@@ -38,15 +38,15 @@
   interactive        = auto
   diff               = auto
 [color "branch"]
-  current            = red reverse
-  local              = blue
-  remote             = green
+  current            = {{ if eq .data.theme.name "github_dark" }}red reverse{{ else }}red reverse{{ end }}
+  local              = {{ if eq .data.theme.name "github_dark" }}blue{{ else }}blue{{ end }}
+  remote             = {{ if eq .data.theme.name "github_dark" }}green{{ else }}green{{ end }}
 [color "diff"]
-  meta               = yellow
-  frag               = magenta
-  old                = red bold
-  new                = green
-  plain              = white
+  meta               = {{ if eq .data.theme.name "github_dark" }}yellow{{ else }}yellow{{ end }}
+  frag               = {{ if eq .data.theme.name "github_dark" }}magenta{{ else }}magenta{{ end }}
+  old                = {{ if eq .data.theme.name "github_dark" }}red bold{{ else }}red bold{{ end }}
+  new                = {{ if eq .data.theme.name "github_dark" }}green{{ else }}green{{ end }}
+  plain              = {{ if eq .data.theme.name "github_dark" }}white{{ else }}white{{ end }}
 [color "status"]
   added              = yellow
   changed            = green

@@ -1,3 +1,4 @@
+// filepath: /Users/james/.local/share/chezmoi/home/dot_vimrc.tmpl
 syntax on
 
 set ruler
@@ -19,6 +20,23 @@ endif
 
 if has("multi_byte")
   set encoding=utf-8
+endif
+
+" Editor settings based on preferences
+set background=dark
+
+" Use the configured editor as the default
+if executable('{{ .data.editor | splitList " " | first }}')
+  let g:defaultEditor = '{{ .data.editor | splitList " " | first }}'
+endif
+
+{{ if eq .chezmoi.os "darwin" -}}
+" macOS specific settings
+set clipboard=unnamed
+{{ else if eq .chezmoi.os "linux" -}}
+" Linux specific settings
+set clipboard=unnamedplus
+{{ end }}
   set list listchars=tab:»·,trail:·
 else
   set list listchars=tab:>-,trail:.

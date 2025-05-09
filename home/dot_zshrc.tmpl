@@ -16,7 +16,7 @@ unset brew_prefix
 if [[ -n $SSH_CONNECTION ]]; then
 export EDITOR='vim'
 else
-export EDITOR='code'
+export EDITOR='{{ .data.editor }}'
 fi
 
 export NVM_DIR="$HOME/.nvm"

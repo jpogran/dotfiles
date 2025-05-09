@@ -1,0 +1,79 @@
+-- init.lua.tmpl for NeoVim configuration
+-- This file is templated with chezmoi
+
+-- Import Vim settings as a base
+vim.cmd('set runtimepath^=~/.vim runtimepath+=~/.vim/after')
+vim.cmd('let &packpath = &runtimepath')
+vim.cmd('source ~/.vimrc')
+
+-- Set theme colors from our central config
+local theme = {
+  accent = "{{ .data.theme.colors.accent }}",
+  surface = "{{ .data.theme.colors.surface }}",
+  text = "{{ .data.theme.colors.text }}"
+}
+
+-- Platform-specific settings
+{{ if eq .chezmoi.os "darwin" -}}
+-- macOS specific settings
+vim.g.clipboard = {
+  name = 'macOS-clipboard',
+  copy = {['+'] = 'pbcopy', ['*'] = 'pbcopy'},
+  paste = {['+'] = 'pbpaste', ['*'] = 'pbpaste'},
+  cache_enabled = 0,
+}
+{{ else if eq .chezmoi.os "linux" -}}
+-- Linux specific settings
+vim.g.clipboard = {
+  name = 'linux-clipboard',
+  copy = {['+'] = 'xclip -selection clipboard', ['*'] = 'xclip -selection clipboard'},
+  paste = {['+'] = 'xclip -selection clipboard -o', ['*'] = 'xclip -selection clipboard -o'},
+  cache_enabled = 0,
+}
+{{ else if eq .chezmoi.os "windows" -}}
+-- Windows specific settings
+vim.g.clipboard = {
+  name = 'win32yank',
+  copy = {['+'] = 'win32yank.exe -i --crlf', ['*'] = 'win32yank.exe -i --crlf'},
+  paste = {['+'] = 'win32yank.exe -o --lf', ['*'] = 'win32yank.exe -o --lf'},
+  cache_enabled = 0,
+}
+{{ end -}}
+
+-- Basic settings
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.wrap = false
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = vim.fn.expand('~/.vim/undodir')
+vim.o.undofile = true
+vim.o.hlsearch = true
+vim.o.incsearch = true
+vim.o.termguicolors = true
+vim.o.scrolloff = 8
+vim.o.signcolumn = "yes"
+vim.o.updatetime = 50
+
+-- Use the editor from our central config
+vim.g.defaultEditor = '{{ .data.editor | splitList " " | first }}'
+
+-- Keymaps
+-- Use space as the leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Basic keymaps
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+
+-- Version management for tools
+{{ range $tool, $version := .data.versions }}
+vim.g.{{ $tool }}_version = '{{ $version }}'
+{{ end }}
+
+-- This is a sample init.lua that incorporates theme data from our central config
+-- When you customize NeoVim further, make sure to keep using the templated values
