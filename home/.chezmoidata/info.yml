@@ -1,31 +1,7 @@
 data:
-  editor: code --wait
-  dotusername: "james.pogran"
-  email: jpogran@outlook.com
+  editor: "code --wait"
+  email: "jpogran@outlook.com"
   fullname: "James Pogran"
   name: james
   username: jpogran
-
-  shell: "fish"
-  # Platform-specific settings
-  macos:
-    terminal: "iterm2"
-  linux:
-    terminal: "ghostty"
-  windows:
-    terminal: "windows-terminal"
-
-  # Theme settings
-  theme:
-    name: "github_dark"
-    colors:
-      accent: "#F78166"
-      surface: "#0d1117"
-      text: "#c9d1d9"
-
-  # Tool versions
-  versions:
-    node: "lts"
-    python: "3.11"
-    go: "latest"
-    rust: "stable"
+  work_username: "james.pogran"
