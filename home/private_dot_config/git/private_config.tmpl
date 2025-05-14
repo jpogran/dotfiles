@@ -1,0 +1,70 @@
+[branch]
+	sort = -committerdate
+	autosetuprebase = always
+[column]
+	ui = auto
+[commit]
+	gpgsign = true
+	verbose = true
+[core]
+	commit = verbose
+	editor = code --wait
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[help]
+	autocorrect = prompt
+[log]
+	date = iso
+[init]
+	defaultBranch = main
+[github]
+	username = jpogran
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[merge]
+	conflictstyle = zdiff3
+[pull]
+	rebase = true
+	ff = only
+[push]
+	default = simple
+	autoSetupRemote = true
+[rebase]
+	autoStash = true
+	updateRefs = true
+	autoSquash = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIQOgKqcherblK3kxZGvZ32tIdSLI1iUMOnWX62bQiu
+	name = James Pogran
+	email = jpogran@outlook.com
+[tag]
+	sort = version:refname
+[alias]
+	pushfwl            = push --force-if-includes
+  amend              = commit --amend --reuse-message=HEAD
+  branches           = branch -a
+  co                 = checkout
+  cob                = checkout -b
+  cot                = checkout -t
+  commit             = commit -v
+  cm                 = commit -v -m
+	s                  = status -s
+  st                 = status
+  tags               = tag -l
+  remotes            = remote -v
+  undo               = reset HEAD~1 --mixed
+	ri                 = !git rebase -i (git log --format=format:'%H'  -n 1 main)
+	l                  = log  -n 10 --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  lg                 = log --graph --pretty=\"%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)\"
+  ll                 = log --oneline -n 20
+  ln                 = "log --pretty=format:'%C(yellow)%h%C(reset) %s %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --name-only --date-order"
+  # commits in short form, with colors and branch/tag annotations, and file changes
+  lf                 = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat

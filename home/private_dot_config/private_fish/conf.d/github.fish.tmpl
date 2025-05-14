@@ -1,0 +1,5 @@
+#!/usr/bin/env fish
+
+if status is-interactive
+    set -Ux GITHUB_TOKEN (gh auth token)
+end

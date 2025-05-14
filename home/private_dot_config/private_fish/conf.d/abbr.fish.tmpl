@@ -1,0 +1,55 @@
+set -q FSH_ABBRS_INITIALIZED; and return
+
+abbr cls clear
+abbr cd.. cd ..
+abbr .. cd ..
+
+# system
+if type -q bat
+    abbr cat bat
+end
+
+# git
+abbr --add g git
+
+# Git abbreviations
+abbr -a g git
+abbr -a gst 'git status'
+abbr -a gb 'git branch'
+abbr -a gc 'git commit'
+abbr -a gco 'git checkout'
+abbr -a gd 'git diff'
+abbr -a gl 'git pull'
+abbr -a gp 'git push'
+abbr -a ga 'git add'
+abbr -a gaa 'git add --all'
+abbr -a glog 'git log --oneline --decorate --graph'
+abbr -a gf 'git fetch --all'
+abbr -a grb 'git rebase'
+
+# golang
+abbr -a -- gob 'go build'
+abbr -a -- goc 'go clean'
+abbr -a -- god 'go doc'
+abbr -a -- gof 'go fmt'
+abbr -a -- gofa 'go fmt ./...'
+abbr -a -- gog 'go get'
+abbr -a -- goi 'go install'
+abbr -a -- gol 'go list'
+abbr -a -- gop 'cd $GOPATH'
+abbr -a -- gopb 'cd $GOPATH/bin'
+abbr -a -- gops 'cd $GOPATH/src'
+abbr -a -- gor 'go run'
+abbr -a -- got 'go test'
+abbr -a -- gov 'go vet'
+
+# ruby
+abbr -a -- be 'bundle exec'
+abbr -a -- bi 'bundle install'
+abbr -a -- bu 'bundle update'
+abbr -a -- ber 'bundle exec rspec'
+abbr -a -- rake 'bundle exec rake'
+
+abbr -a npmi 'npm install'
+
+set -g FSH_ABBRS_INITIALIZED true
