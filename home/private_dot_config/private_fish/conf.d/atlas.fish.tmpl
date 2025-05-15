@@ -1,5 +1,5 @@
 if status is-interactive
-{{- if eq .isWorkMachine true }}
+{{- if .isWorkMachine }}
     if test (pwd) = ~/src/hashicorp/atlas/
         set -gx USER "james.pogran"
         set -gx GITHUB_TOKEN $(op read 'op://private/atlas2/token')
