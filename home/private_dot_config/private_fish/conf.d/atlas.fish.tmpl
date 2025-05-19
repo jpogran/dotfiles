@@ -1,5 +1,15 @@
-if status is-interactive
 {{- if .isWorkMachine }}
+#If you need to have libpq first in your PATH, run:
+# fish_add_path /opt/homebrew/opt/libpq/bin
+
+# For compilers to find libpq you may need to set:
+set -gx LDFLAGS "-L/opt/homebrew/opt/libpq/lib"
+set -gx CPPFLAGS "-I/opt/homebrew/opt/libpq/include"
+
+# For pkg-config to find libpq you may need to set:
+set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/libpq/lib/pkgconfig"
+
+if status is-interactive
     if test (pwd) = ~/src/hashicorp/atlas/
         set -gx USER "james.pogran"
         set -gx GITHUB_TOKEN $(op read 'op://private/atlas2/token')
@@ -11,5 +21,5 @@ if status is-interactive
         echo $ACCESS_TOKEN | docker login tf-cloud-local.artifactory.hashicorp.engineering --username "$USER@hashicorp.com" --password-stdin
         eval (tfcdev rc)
     end
-{{- end }}
 end
+{{- end }}
