@@ -47,6 +47,10 @@
 	email = jpogran@outlook.com
 [tag]
 	sort = version:refname
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [alias]
 	pushfwl            = push --force-if-includes
   amend              = commit --amend --reuse-message=HEAD
