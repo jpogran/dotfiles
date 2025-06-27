@@ -3,6 +3,10 @@ set -q FSH_ABBRS_INITIALIZED; and return
 abbr cls clear
 abbr cd.. cd ..
 abbr .. cd ..
+abbr -a .. 'cd ..'
+abbr -a ... 'cd ../..'
+abbr -a .... 'cd ../../..'
+
 
 # system
 if type -q bat

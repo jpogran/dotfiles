@@ -1,5 +1,6 @@
 [branch]
 	sort = -committerdate
+	autosetupmerge = always
 	autosetuprebase = always
 [column]
 	ui = auto
@@ -14,10 +15,16 @@
 	colorMoved = plain
 	mnemonicPrefix = true
 	renames = true
+[fetch]
+		prune = true
+		pruneTags = true
+[format]
+		signOff = true
 [help]
 	autocorrect = prompt
 [log]
 	date = iso
+	showSignature = true
 [init]
 	defaultBranch = main
 [github]

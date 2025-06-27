@@ -8,7 +8,11 @@ set -gx HOMEBREW_NO_ANALYTICS 1
 set -Ux LC_ALL en_US.UTF-8
 set -Ux LANG en_US.UTF-8
 
-set -Ux EDITOR 'code --wait'
+# Core environment
+set -gx EDITOR "code --wait"
+set -gx VISUAL $EDITOR
+set -gx PAGER less
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 set -q XDG_CONFIG_HOME; or set -Ux XDG_CONFIG_HOME $HOME/.config
