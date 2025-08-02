@@ -4,114 +4,49 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Replace the '❯' symbol in the prompt with '➜'
-[character]
-success_symbol = '[❯](bold green)'
-error_symbol = '[❯](bold red)'
-vicmd_symbol = '[❮](bold yellow)'
+# Performance optimizations
+scan_timeout = 30
+command_timeout = 500
 
-# Configure directory display
+# Disable unused modules for performance
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+# Enhanced git status
+# [git_status]
+# conflicted = "⚔️"
+# ahead = "🏎️💨×${count}"
+# behind = "🐢×${count}"
+# diverged = "🔱🏎️💨×${ahead_count}🐢×${behind_count}"
+# untracked = "🛤️×${count}"
+# stashed = "📦"
+# modified = "📝×${count}"
+# staged = "🗃️×${count}"
+# renamed = "📛×${count}"
+# deleted = "🗑️×${count}"
+
+# Directory truncation
 [directory]
-style = 'bold cyan'
-truncation_length = 4
-truncate_to_repo = false
-truncation_symbol = '…/'
+truncation_length = 3
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
 
-# Git branch configuration
-[git_branch]
-symbol = '🌱 '
-style = 'bold purple'
-truncation_length = 10
-truncation_symbol = '…'
-
-# Git status configuration
-[git_status]
-style = 'bold yellow'
-ahead = '⇡${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-behind = '⇣${count}'
-deleted = '🗑'
-modified = '📝'
-staged = '[++\($count\)](green)'
-untracked = '🤷'
-
-# Show command duration if it exceeds threshold
-[cmd_duration]
-min_time = 2_000
-show_milliseconds = false
-style = 'bold yellow'
-format = 'took [$duration](bold yellow)'
-
-# Language-specific indicators
+# Show tool versions when relevant
 [nodejs]
-symbol = '⬢ '
-style = 'bold green'
-format = 'via [$symbol($version )]($style)'
-
-[python]
-symbol = '🐍 '
-style = 'bold yellow'
-format = 'via [$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
-
-[rust]
-symbol = '🦀 '
-style = 'bold red'
-format = 'via [$symbol($version )]($style)'
+format = "via [🤖 $version](bold green) "
+detect_extensions = ["js", "mjs", "cjs", "ts", "tsx", "vue"]
 
 [golang]
-symbol = '🐹 '
-style = 'bold cyan'
-format = 'via [$symbol($version )]($style)'
+format = "via [🐹 $version](bold cyan) "
 
-[docker_context]
-symbol = '🐳 '
-style = 'bold blue'
-format = 'via [$symbol$context]($style) '
+[rust]
+format = "via [🦀 $version](bold red) "
 
-# Package version
-[package]
-symbol = '📦 '
-style = 'bold red'
-format = 'via [$symbol$version]($style) '
-
-# Show battery level on low power
-[battery]
-full_symbol = '🔋'
-charging_symbol = '⚡️'
-discharging_symbol = '💀'
-
-[[battery.display]]
-threshold = 20
-style = 'bold red'
-
-# Kubernetes context
-[kubernetes]
-format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
-disabled = false
-
-[kubernetes.context_aliases]
-'dev.local.cluster.k8s' = 'dev'
-'.*/openshift-cluster/.*' = 'openshift'
-'gke_.*_(?P<var_cluster>[\w-]+)' = 'gke-$var_cluster'
-
-# Time display
-[time]
-disabled = false
-format = '🕙[\[ $time \]]($style) '
-time_format = '%T'
-style = 'bold white'
-
-# Memory usage
-[memory_usage]
-disabled = false
-threshold = 70
-symbol = '🐏'
-style = 'bold dimmed green'
-format = 'via $symbol [${ram_pct}]($style) '
-
-# Jobs indicator
-[jobs]
-symbol = '+ '
-style = 'bold blue'
-number_threshold = 1
-format = '[$symbol$number]($style) '
+[python]
+format = "via [🐍 $version](bold yellow) "
