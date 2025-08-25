@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euo pipefail
+
+# This script will re-run when packages.yaml changes
+# packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+echo "Installing Homebrew packages..."
+
+# Ensure Homebrew is available
+if ! command -v brew &>/dev/null; then
+    echo "Error: Homebrew is not installed. Please run the Homebrew installation script first."
+    exit 1
+fi
+
+# Install taps
+{{- if .homebrew.taps }}
+echo "Adding Homebrew taps..."
+{{- range .homebrew.taps }}
+brew tap {{ . | quote }}
+{{- end }}
+{{- end }}
+
+# Install formulae
+{{- if .homebrew.formulae }}
+echo "Installing Homebrew formulae..."
+{{- range .homebrew.formulae }}
+echo "  Installing {{ . }}..."
+brew list {{ . | quote }} &>/dev/null || brew install {{ . | quote }}
+{{- end }}
+{{- end }}
+
+# Install casks
+{{- if .homebrew.casks }}
+echo "Installing Homebrew casks..."
+{{- range .homebrew.casks }}
+echo "  Installing {{ . }}..."
+brew list --cask {{ . | quote }} &>/dev/null || brew install --cask {{ . | quote }}
+{{- end }}
+{{- end }}
+
+# Install Mac App Store apps
+{{- if .homebrew.mas }}
+if command -v mas &>/dev/null; then
+    echo "Installing Mac App Store apps..."
+    {{- range .homebrew.mas }}
+    echo "  Installing {{ .name }}..."
+    mas install {{ .id }}
+    {{- end }}
+else
+    echo "Warning: mas is not installed. Skipping Mac App Store apps."
+fi
+{{- end }}
+
+echo "Package installation complete!"
+
+# chezmoi:template:left-delimiter="{{" right-delimiter="}}"
