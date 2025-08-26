@@ -1,0 +1,106 @@
+#!/bin/bash
+set -eufo pipefail
+
+{{- if eq .chezmoi.os "darwin" }}
+echo "🍏  Setting macOS defaults"
+
+osascript -e 'tell application "System Preferences" to quit'
+
+# General System Settings
+
+echo "🌙  Configure appearance and general settings"
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"
+defaults write NSGlobalDomain _HIHideMenuBar -bool false
+defaults write NSGlobalDomain NSRecentDocumentsLimit -int 10
+
+echo "📚  Show the ~/Library folder"
+chflags nohidden ~/Library
+
+# Keyboard Layout
+
+echo "⌨️  Configure US keyboard layout"
+defaults write com.apple.HIToolbox AppleEnabledInputSources -array \
+  '<dict>
+    <key>InputSourceKind</key><string>Keyboard Layout</string>
+    <key>KeyboardLayout ID</key><integer>252</integer>
+    <key>KeyboardLayout Name</key><string>ABC</string>
+  </dict>'
+
+defaults write com.apple.HIToolbox AppleSelectedInputSources -array \
+  '<dict>
+    <key>InputSourceKind</key><string>Keyboard Layout</string>
+    <key>KeyboardLayout ID</key><integer>252</integer>
+    <key>KeyboardLayout Name</key><string>ABC</string>
+  </dict>'
+
+defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.ABC"
+
+# Dock & Desktop
+
+echo "�️  Configure Dock and Desktop settings"
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 80
+defaults write com.apple.dock orientation -string "bottom"
+defaults write com.apple.dock mineffect -string "genie"
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock launchanim -bool true
+defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.dock show-recents -bool false
+
+# Desktop & Stage Manager
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool false
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true
+defaults write com.apple.WindowManager GloballyEnabled -bool false
+defaults write com.apple.WindowManager StageManagerHideUnusedApplications -bool false
+defaults write com.apple.WindowManager AppWindowGroupingBehavior -int 0
+
+# Screenshots
+
+echo "📸  Configure screenshot settings"
+mkdir -p ~/Pictures/screenshots
+defaults write com.apple.screencapture location -string "~/Pictures/screenshots"
+
+# Control Center & Menu Bar
+
+echo "🎛️  Configure Control Center and Menu Bar"
+
+# Set Control Center module preferences
+CONTROL_CENTER_PLIST="~/Library/Preferences/ByHost/com.apple.controlcenter.plist"
+
+# Modules that don't show in Menu Bar (Control Center only)
+defaults write "$CONTROL_CENTER_PLIST" WiFi -int 8
+defaults write "$CONTROL_CENTER_PLIST" Bluetooth -int 8
+defaults write "$CONTROL_CENTER_PLIST" AirDrop -int 8
+defaults write "$CONTROL_CENTER_PLIST" StageManager -int 8
+
+# Modules that show when active in Menu Bar
+defaults write "$CONTROL_CENTER_PLIST" FocusModes -int 18
+defaults write "$CONTROL_CENTER_PLIST" ScreenMirroring -int 18
+defaults write "$CONTROL_CENTER_PLIST" Display -int 18
+defaults write "$CONTROL_CENTER_PLIST" Sound -int 18
+defaults write "$CONTROL_CENTER_PLIST" NowPlaying -int 18
+
+# Other modules - Control Center only
+defaults write "$CONTROL_CENTER_PLIST" AccessibilityShortcuts -int 2
+defaults write "$CONTROL_CENTER_PLIST" Hearing -int 2
+defaults write "$CONTROL_CENTER_PLIST" KeyboardBrightness -int 2
+
+# Battery settings
+defaults write "$CONTROL_CENTER_PLIST" Battery -int 2
+defaults write "$CONTROL_CENTER_PLIST" BatteryShowPercentage -bool true
+
+# Disabled modules
+defaults write "$CONTROL_CENTER_PLIST" MusicRecognition -int 0
+defaults write "$CONTROL_CENTER_PLIST" UserSwitcher -int 0
+
+# Menu Bar only modules - hide from Menu Bar
+defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible com.apple.Spotlight" -bool false
+defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible Siri" -bool false
+defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible com.apple.TimeMachine.TMMenuExtraHost" -bool false
+defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible WeatherWidget" -bool false
+
+{{ end -}}

@@ -6,13 +6,33 @@ echo "Checking for Homebrew..."
 if ! command -v brew &>/dev/null; then
     echo "Homebrew not found. Installing..."
     
+    # Set NONINTERACTIVE to avoid prompts
+    export NONINTERACTIVE=1
+    
+    # Note: Homebrew installation requires sudo password for creating directories.
+    # The password prompt cannot be avoided unless:
+    # 1. Running with passwordless sudo (security risk)
+    # 2. Pre-creating directories with proper permissions
+    # 3. Running in a CI environment with appropriate permissions
+    
+    echo "Note: You may be prompted for your password to install Homebrew."
+    echo "This is required to create directories in /usr/local or /opt/homebrew"
+    
     # Install Homebrew using the official installation script
+    # NONINTERACTIVE=1 skips the "Press RETURN to continue" prompt
+    # CI=1 can also be used to force non-interactive mode
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
     # Add Homebrew to PATH for Apple Silicon Macs
     if [[ -f "/opt/homebrew/bin/brew" ]]; then
         echo "Configuring Homebrew for Apple Silicon..."
         eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    
+    # Add Homebrew to PATH for Intel Macs
+    if [[ -f "/usr/local/bin/brew" ]]; then
+        echo "Configuring Homebrew for Intel Mac..."
+        eval "$(/usr/local/bin/brew shellenv)"
     fi
     
     echo "Homebrew installed successfully!"

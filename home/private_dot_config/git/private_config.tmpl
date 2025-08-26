@@ -10,6 +10,10 @@
 [core]
 	commit = verbose
 	editor = code --wait
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
 [diff]
 	algorithm = histogram
 	colorMoved = plain
@@ -24,15 +28,14 @@
 	autocorrect = prompt
 [log]
 	date = iso
-	showSignature = true
+	showSignature = false
 [init]
 	defaultBranch = main
-[github]
-	username = jpogran
 [gpg]
 	format = ssh
 [gpg "ssh"]
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	allowedSignersFile = ~/.config/git/allowed_signers
 [merge]
 	conflictstyle = zdiff3
 [pull]
@@ -48,17 +51,13 @@
 [rerere]
 	enabled = true
 	autoupdate = true
+[tag]
+	sort = version:refname
 [user]
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINIQOgKqcherblK3kxZGvZ32tIdSLI1iUMOnWX62bQiu
 	name = James Pogran
 	email = jpogran@outlook.com
-[tag]
-	sort = version:refname
-[credential "https://github.com"]
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[alias]
+[credential "https://github.com"][alias]
 	pushfwl            = push --force-if-includes
   amend              = commit --amend --reuse-message=HEAD
   branches           = branch -a

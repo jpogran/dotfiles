@@ -4,13 +4,45 @@ set -euo pipefail
 # This script will re-run when packages.yaml changes
 # packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
+{{- /* Detect if running in a VM */ -}}
+{{- $isVM := false -}}
+{{- if eq .chezmoi.os "darwin" -}}
+  {{- if contains "VirtualMac" (output "sh" "-c" "system_profiler SPHardwareDataType 2>/dev/null | grep 'Model Identifier' | cut -d: -f2 | xargs || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- else if contains "QEMU" (output "sh" "-c" "ioreg -l 2>/dev/null | grep -i 'manufacturer.*QEMU' | head -1 || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- else if contains "AppleVirtualPlatform" (output "sh" "-c" "ioreg -l 2>/dev/null | grep 'IOProviderClass.*AppleVirtualPlatform' | head -1 || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- else if contains "VirtualMac" (output "sh" "-c" "nvram 4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:boot-rom-version 2>/dev/null || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- end -}}
+{{- end -}}
+
 echo "Installing Homebrew packages..."
+{{- if $isVM }}
+echo "🖥️  Running in VM - Mac App Store apps will be skipped"
+{{- end }}
+
+# Add Homebrew to PATH for Apple Silicon Macs
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    echo "Configuring Homebrew path for Apple Silicon..."
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Add Homebrew to PATH for Intel Macs
+if [[ -f "/usr/local/bin/brew" ]]; then
+    echo "Configuring Homebrew path for Intel Mac..."
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # Ensure Homebrew is available
 if ! command -v brew &>/dev/null; then
-    echo "Error: Homebrew is not installed. Please run the Homebrew installation script first."
+    echo "Error: Homebrew is not installed or not in PATH."
+    echo "Please ensure Homebrew is installed first."
     exit 1
 fi
+
+echo "Using Homebrew at: $(which brew)"
 
 # Install taps
 {{- if .homebrew.taps }}
@@ -39,6 +71,9 @@ brew list --cask {{ . | quote }} &>/dev/null || brew install --cask {{ . | quote
 {{- end }}
 
 # Install Mac App Store apps
+{{- if $isVM }}
+echo "🖥️  Running in VM - skipping Mac App Store apps (not supported in VMs)"
+{{- else }}
 {{- if .homebrew.mas }}
 if command -v mas &>/dev/null; then
     echo "Installing Mac App Store apps..."
@@ -49,6 +84,7 @@ if command -v mas &>/dev/null; then
 else
     echo "Warning: mas is not installed. Skipping Mac App Store apps."
 fi
+{{- end }}
 {{- end }}
 
 echo "Package installation complete!"

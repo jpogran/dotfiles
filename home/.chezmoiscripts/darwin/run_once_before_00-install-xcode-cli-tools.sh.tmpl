@@ -6,19 +6,48 @@ echo "Checking for Xcode Command Line Tools..."
 if ! xcode-select -p &>/dev/null; then
     echo "Xcode Command Line Tools not found. Installing..."
     
-    # Trigger the installation UI
-    xcode-select --install
+    # Create the placeholder file to skip the license prompt
+    touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
     
-    # Wait for the installation to complete
-    echo "Waiting for Xcode Command Line Tools installation to complete..."
-    echo "Please follow the installation prompts in the popup window."
+    # Find the latest Command Line Tools package
+    PROD=$(softwareupdate -l | grep "\*.*Command Line Tools" | tail -n 1 | sed 's/^[^C]*//')
     
-    # Check every 5 seconds if the tools are installed
-    while ! xcode-select -p &>/dev/null; do
-        sleep 5
-    done
+    if [ -n "$PROD" ]; then
+        echo "Installing: $PROD"
+        # Install without prompts
+        softwareupdate -i "$PROD" --verbose
+    else
+        echo "Could not find Command Line Tools in software update catalog"
+        echo "Falling back to interactive installation..."
+        # Remove the placeholder file
+        rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+        # Trigger the installation UI as fallback
+        xcode-select --install
+        
+        # Wait for the installation to complete
+        echo "Waiting for Xcode Command Line Tools installation to complete..."
+        echo "Please follow the installation prompts in the popup window."
+        
+        # Check every 5 seconds if the tools are installed
+        while ! xcode-select -p &>/dev/null; do
+            sleep 5
+        done
+    fi
+    
+    # Clean up the placeholder file
+    rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    
+    # Accept the license automatically if needed
+    if [ -x /usr/bin/xcrun ]; then
+        xcrun --license accept 2>/dev/null || sudo xcrun --license accept 2>/dev/null || true
+    fi
     
     echo "Xcode Command Line Tools installed successfully!"
 else
     echo "Xcode Command Line Tools already installed at: $(xcode-select -p)"
+    
+    # Ensure license is accepted
+    if [ -x /usr/bin/xcrun ]; then
+        xcrun --license accept 2>/dev/null || sudo xcrun --license accept 2>/dev/null || true
+    fi
 fi

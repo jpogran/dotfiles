@@ -3,10 +3,32 @@
 {{- $isWsl := or (env "WSL_DISTRO_NAME") (env "IS_WSL") | not | not -}}
 {{- $isWorkMachine := eq .chezmoi.username "james.pogran" -}}
 
+{{- /* Detect if running in a VM */ -}}
+{{- $isVM := false -}}
+{{- if eq .chezmoi.os "darwin" -}}
+  {{- /* Check for VM environment variable */ -}}
+  {{- if env "VM_GUEST" -}}
+    {{- $isVM = true -}}
+  {{- /* Check hardware model for VirtualMac indicators */ -}}
+  {{- else if contains "VirtualMac" (output "sh" "-c" "system_profiler SPHardwareDataType 2>/dev/null | grep 'Model Identifier' | cut -d: -f2 | xargs || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- /* Check for QEMU virtual hardware in ioreg */ -}}
+  {{- else if contains "QEMU" (output "sh" "-c" "ioreg -l 2>/dev/null | grep -i 'manufacturer.*QEMU' | head -1 || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- /* Check for Apple Virtualization framework */ -}}
+  {{- else if contains "Apple Virtualization" (output "sh" "-c" "ioreg -l 2>/dev/null | grep 'IOProviderClass.*AppleVirtualPlatform' | head -1 || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- /* Check boot ROM for VirtualMac */ -}}
+  {{- else if contains "VirtualMac" (output "sh" "-c" "nvram 4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102:boot-rom-version 2>/dev/null || echo ''") -}}
+    {{- $isVM = true -}}
+  {{- end -}}
+{{- end -}}
+
 data:
   codespaces    : {{ $codespaces }}
   hostname      : {{ $hostname | quote }}
   isWorkMachine : {{ $isWorkMachine }}
+  isVM          : {{ $isVM }}
 git:
   autoCommit: true
   autoPush: true
