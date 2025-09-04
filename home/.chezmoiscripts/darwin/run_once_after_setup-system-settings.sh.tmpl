@@ -103,4 +103,70 @@ defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible Siri" -bool false
 defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible com.apple.TimeMachine.TMMenuExtraHost" -bool false
 defaults write "$CONTROL_CENTER_PLIST" "NSStatusItem Visible WeatherWidget" -bool false
 
+# Finder Settings
+
+echo "📁  Configure Finder settings"
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Don't show warning before changing an extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Show warning before removing from iCloud Drive
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool true
+
+# Show warning before emptying the Trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool true
+
+# Don't remove items from the Trash after 30 days
+defaults write com.apple.finder FXRemoveOldTrashItems -bool false
+
+# Keep folders on top in windows when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Don't keep folders on top on Desktop
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool false
+
+# When performing a search, search This Mac by default
+defaults write com.apple.finder FXDefaultSearchScope -string "SCev"
+
+# Set default Finder view to list view for all windows
+# Four-letter codes for view modes: 'icnv' (icon), 'Nlsv' (list), 'clmv' (column), 'Flwv' (gallery)
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+
+# Finder Sidebar Settings
+echo "📚  Configure Finder sidebar"
+
+# Favorites section
+defaults write com.apple.sidebarlists systemitems -dict-add ShowRecents -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowAirDrop -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowApplications -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowDesktop -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowDocuments -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowDownloads -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowMovies -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add ShowMusic -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add ShowPictures -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowHome -bool true
+
+# iCloud section
+defaults write com.apple.sidebarlists systemitems -dict-add ShowiCloudDrive -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowShared -bool true
+
+# Locations section
+defaults write com.apple.sidebarlists systemitems -dict-add ShowComputer -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add ShowHardDisks -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowExternalDisks -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowRemovableMedia -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowCloudStorage -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowBonjourComputers -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add ShowConnectedServers -bool true
+
+# Tags section
+defaults write com.apple.sidebarlists systemitems -dict-add ShowRecentTags -bool false
+
+# Restart Finder to apply changes
+killall Finder || true
+
 {{ end -}}

@@ -17,10 +17,17 @@ homebrew:
   casks:
     - 1password
     - 1password-cli
+    - claude
+    - discord
     - font-cascadia-code
     - font-fira-code-nerd-font
     - ghostty
+    - jordanbaird-ice
     - powershell
+    - raycast
+    - setapp
+    - slack
+    - stats
     - utm
     - visual-studio-code
   mas:
