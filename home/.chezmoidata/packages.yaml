@@ -17,6 +17,7 @@ homebrew:
   casks:
     - 1password
     - 1password-cli
+    - betterdisplay
     - claude
     - discord
     - font-cascadia-code
@@ -37,3 +38,10 @@ homebrew:
       id: 1099568401
     - name: "keymapp"
       id: 6472865291
+
+setapp:
+  apps:
+    - "CleanMyMac X"
+    - "CleanShot X"
+    - "iStat Menus"
+    - "DevUtils"
