@@ -141,27 +141,27 @@ configure_macos() {
     # Define module visibility (using associative arrays for clarity)
     declare -A cc_modules=(
         # Control Center only (8)
-        [WiFi]=8
-        [Bluetooth]=8
-        [AirDrop]=8
-        [StageManager]=8
+        ["WiFi"]=8
+        ["Bluetooth"]=8
+        ["AirDrop"]=8
+        ["StageManager"]=8
         
         # Show when active (18)
-        [FocusModes]=18
-        [ScreenMirroring]=18
-        [Display]=18
-        [Sound]=18
-        [NowPlaying]=18
+        ["FocusModes"]=18
+        ["ScreenMirroring"]=18
+        ["Display"]=18
+        ["Sound"]=18
+        ["NowPlaying"]=18
         
         # Always show (2)
-        [AccessibilityShortcuts]=2
-        [Hearing]=2
-        [KeyboardBrightness]=2
-        [Battery]=2
+        ["AccessibilityShortcuts"]=2
+        ["Hearing"]=2
+        ["KeyboardBrightness"]=2
+        ["Battery"]=2
         
         # Disabled (0)
-        [MusicRecognition]=0
-        [UserSwitcher]=0
+        ["MusicRecognition"]=0
+        ["UserSwitcher"]=0
     )
     
     for module in "${!cc_modules[@]}"; do
