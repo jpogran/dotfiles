@@ -138,35 +138,29 @@ configure_macos() {
     
     log_section "Control Center & Menu Bar Settings"
     
-    # Define module visibility (using associative arrays for clarity)
-    declare -A cc_modules=(
-        # Control Center only (8)
-        ["WiFi"]=8
-        ["Bluetooth"]=8
-        ["AirDrop"]=8
-        ["StageManager"]=8
-        
-        # Show when active (18)
-        ["FocusModes"]=18
-        ["ScreenMirroring"]=18
-        ["Display"]=18
-        ["Sound"]=18
-        ["NowPlaying"]=18
-        
-        # Always show (2)
-        ["AccessibilityShortcuts"]=2
-        ["Hearing"]=2
-        ["KeyboardBrightness"]=2
-        ["Battery"]=2
-        
-        # Disabled (0)
-        ["MusicRecognition"]=0
-        ["UserSwitcher"]=0
-    )
+    # Control Center module visibility settings
+    # Control Center only (8)
+    write_default com.apple.controlcenter "WiFi" int 8
+    write_default com.apple.controlcenter "Bluetooth" int 8
+    write_default com.apple.controlcenter "AirDrop" int 8
+    write_default com.apple.controlcenter "StageManager" int 8
     
-    for module in "${!cc_modules[@]}"; do
-        write_default com.apple.controlcenter "$module" int "${cc_modules[$module]}"
-    done
+    # Show when active (18)
+    write_default com.apple.controlcenter "FocusModes" int 18
+    write_default com.apple.controlcenter "ScreenMirroring" int 18
+    write_default com.apple.controlcenter "Display" int 18
+    write_default com.apple.controlcenter "Sound" int 18
+    write_default com.apple.controlcenter "NowPlaying" int 18
+    
+    # Always show (2)
+    write_default com.apple.controlcenter "AccessibilityShortcuts" int 2
+    write_default com.apple.controlcenter "Hearing" int 2
+    write_default com.apple.controlcenter "KeyboardBrightness" int 2
+    write_default com.apple.controlcenter "Battery" int 2
+    
+    # Disabled (0)
+    write_default com.apple.controlcenter "MusicRecognition" int 0
+    write_default com.apple.controlcenter "UserSwitcher" int 0
     
     # Battery percentage
     write_default com.apple.controlcenter BatteryShowPercentage bool true
@@ -202,39 +196,33 @@ configure_macos() {
         ShowStatusBar bool true
     
     # Sidebar visibility settings
-    declare -A sidebar_items=(
-        # Favorites
-        ["ShowRecents"]=true
-        ["ShowAirDrop"]=true
-        ["ShowApplications"]=true
-        ["ShowDesktop"]=true
-        ["ShowDocuments"]=true
-        ["ShowDownloads"]=true
-        ["ShowMovies"]=false
-        ["ShowMusic"]=false
-        ["ShowPictures"]=true
-        ["ShowHome"]=true
-        
-        # iCloud
-        ["ShowiCloudDrive"]=true
-        ["ShowShared"]=true
-        
-        # Locations
-        ["ShowComputer"]=false
-        ["ShowHardDisks"]=true
-        ["ShowExternalDisks"]=true
-        ["ShowRemovableMedia"]=true
-        ["ShowCloudStorage"]=true
-        ["ShowBonjourComputers"]=true
-        ["ShowConnectedServers"]=true
-        
-        # Tags
-        ["ShowRecentTags"]=false
-    )
+    # Favorites
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecents" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowAirDrop" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowApplications" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDesktop" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDocuments" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDownloads" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowMovies" -bool false
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowMusic" -bool false
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowPictures" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowHome" -bool true
     
-    for item in "${!sidebar_items[@]}"; do
-        defaults write com.apple.sidebarlists systemitems -dict-add "$item" -bool "${sidebar_items[$item]}"
-    done
+    # iCloud
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowiCloudDrive" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowShared" -bool true
+    
+    # Locations
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowComputer" -bool false
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowHardDisks" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowExternalDisks" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRemovableMedia" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowCloudStorage" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowBonjourComputers" -bool true
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowConnectedServers" -bool true
+    
+    # Tags
+    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecentTags" -bool false
     
     # ========================================================================
     # Apply Changes
