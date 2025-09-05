@@ -204,32 +204,32 @@ configure_macos() {
     # Sidebar visibility settings
     declare -A sidebar_items=(
         # Favorites
-        [ShowRecents]=true
-        [ShowAirDrop]=true
-        [ShowApplications]=true
-        [ShowDesktop]=true
-        [ShowDocuments]=true
-        [ShowDownloads]=true
-        [ShowMovies]=false
-        [ShowMusic]=false
-        [ShowPictures]=true
-        [ShowHome]=true
+        ["ShowRecents"]=true
+        ["ShowAirDrop"]=true
+        ["ShowApplications"]=true
+        ["ShowDesktop"]=true
+        ["ShowDocuments"]=true
+        ["ShowDownloads"]=true
+        ["ShowMovies"]=false
+        ["ShowMusic"]=false
+        ["ShowPictures"]=true
+        ["ShowHome"]=true
         
         # iCloud
-        [ShowiCloudDrive]=true
-        [ShowShared]=true
+        ["ShowiCloudDrive"]=true
+        ["ShowShared"]=true
         
         # Locations
-        [ShowComputer]=false
-        [ShowHardDisks]=true
-        [ShowExternalDisks]=true
-        [ShowRemovableMedia]=true
-        [ShowCloudStorage]=true
-        [ShowBonjourComputers]=true
-        [ShowConnectedServers]=true
+        ["ShowComputer"]=false
+        ["ShowHardDisks"]=true
+        ["ShowExternalDisks"]=true
+        ["ShowRemovableMedia"]=true
+        ["ShowCloudStorage"]=true
+        ["ShowBonjourComputers"]=true
+        ["ShowConnectedServers"]=true
         
         # Tags
-        [ShowRecentTags]=false
+        ["ShowRecentTags"]=false
     )
     
     for item in "${!sidebar_items[@]}"; do
