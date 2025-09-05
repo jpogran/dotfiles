@@ -10,6 +10,7 @@ homebrew:
     - htop
     - jq
     - mas
+    - mise
     - starship
     - wget
     - yq
