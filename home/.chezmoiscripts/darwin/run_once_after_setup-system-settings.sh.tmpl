@@ -1,345 +1,159 @@
 #!/bin/bash
 set -eufo pipefail
 
-{{- if eq .chezmoi.os "darwin" }}
-
 # ============================================================================
 # macOS System Preferences Configuration Script
 # ============================================================================
 
-# Color output helpers
-readonly RED='\033[0;31m'
-readonly GREEN='\033[0;32m'
-readonly YELLOW='\033[0;33m'
-readonly BLUE='\033[0;34m'
-readonly NC='\033[0m' # No Color
+# Close System Preferences to prevent conflicts
+osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
 
-# Logging functions
-log_section() { echo -e "\n${BLUE}==>${NC} $1"; }
-log_info() { echo -e "  ${BLUE}ℹ${NC}  $1"; }
-log_success() { echo -e "  ${GREEN}✓${NC}  $1"; }
-log_warning() { echo -e "  ${YELLOW}⚠${NC}  $1" >&2; }
-log_error() { echo -e "  ${RED}✗${NC}  $1" >&2; }
+# ========================================================================
+# General UI/UX Configuration
+# ========================================================================
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 2
+defaults write NSGlobalDomain AppleActionOnDoubleClick -string "Maximize"
+defaults write NSGlobalDomain _HIHideMenuBar -bool false
+defaults write NSGlobalDomain NSRecentDocumentsLimit -int 10
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Helper function to write defaults with error handling
-write_default() {
-    local domain="$1"
-    local key="$2"
-    local type="$3"
-    local value="$4"
-    
-    if defaults write "$domain" "$key" -"$type" "$value" 2>/dev/null; then
-        return 0
-    else
-        log_warning "Failed to set $domain $key"
-        return 1
+# Show ~/Library folder
+chflags nohidden ~/Library 2>/dev/null || true
+
+# ========================================================================
+# Keyboard Configuration
+# ========================================================================
+# Set US keyboard layout
+keyboard_layout='<dict>
+    <key>InputSourceKind</key><string>Keyboard Layout</string>
+    <key>KeyboardLayout ID</key><integer>252</integer>
+    <key>KeyboardLayout Name</key><string>ABC</string>
+</dict>'
+
+defaults write com.apple.HIToolbox AppleEnabledInputSources -array "$keyboard_layout"
+defaults write com.apple.HIToolbox AppleSelectedInputSources -array "$keyboard_layout"
+defaults write com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID -string "com.apple.keylayout.ABC"
+
+# ========================================================================
+# Dock Configuration
+# ========================================================================
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0.5
+defaults write com.apple.dock autohide-time-modifier -float 0.5
+defaults write com.apple.dock tilesize -int 48
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 80
+defaults write com.apple.dock orientation -string "bottom"
+defaults write com.apple.dock mineffect -string "genie"
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock launchanim -bool true
+defaults write com.apple.dock show-process-indicators -bool true
+defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock static-only -bool false
+defaults write com.apple.dock mru-spaces -bool false
+
+# Stage Manager settings
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool false
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool true
+defaults write com.apple.WindowManager GloballyEnabled -bool false
+defaults write com.apple.WindowManager StageManagerHideUnusedApplications -bool false
+defaults write com.apple.WindowManager AppWindowGroupingBehavior -int 0
+
+# ========================================================================
+# Finder Configuration
+# ========================================================================
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool true
+defaults write com.apple.finder WarnOnEmptyTrash -bool true
+defaults write com.apple.finder FXRemoveOldTrashItems -bool false
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool false
+defaults write com.apple.finder FXDefaultSearchScope -string "SCev"
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Sidebar visibility settings
+# Favorites
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecents" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowAirDrop" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowApplications" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowDesktop" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowDocuments" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowDownloads" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowMovies" -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowMusic" -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowPictures" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowHome" -bool true
+
+# iCloud
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowiCloudDrive" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowShared" -bool true
+
+# Locations
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowComputer" -bool false
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowHardDisks" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowExternalDisks" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowRemovableMedia" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowCloudStorage" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowBonjourComputers" -bool true
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowConnectedServers" -bool true
+
+# Tags
+defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecentTags" -bool false
+
+# ========================================================================
+# Screenshot Configuration
+# ========================================================================
+screenshot_dir="$HOME/Pictures/screenshots"
+mkdir -p "$screenshot_dir" 2>/dev/null || true
+
+defaults write com.apple.screencapture location -string "$screenshot_dir"
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+
+# ========================================================================
+# Control Center Configuration
+# ========================================================================
+# Control Center only (8)
+defaults write com.apple.controlcenter "WiFi" -int 8
+defaults write com.apple.controlcenter "Bluetooth" -int 8
+defaults write com.apple.controlcenter "AirDrop" -int 8
+defaults write com.apple.controlcenter "StageManager" -int 8
+
+# Show when active (18)
+defaults write com.apple.controlcenter "FocusModes" -int 18
+defaults write com.apple.controlcenter "ScreenMirroring" -int 18
+defaults write com.apple.controlcenter "Display" -int 18
+defaults write com.apple.controlcenter "Sound" -int 18
+defaults write com.apple.controlcenter "NowPlaying" -int 18
+
+# Always show (2)
+defaults write com.apple.controlcenter "AccessibilityShortcuts" -int 2
+defaults write com.apple.controlcenter "Hearing" -int 2
+defaults write com.apple.controlcenter "KeyboardBrightness" -int 2
+defaults write com.apple.controlcenter "Battery" -int 2
+
+# Disabled (0)
+defaults write com.apple.controlcenter "MusicRecognition" -int 0
+defaults write com.apple.controlcenter "UserSwitcher" -int 0
+
+# Battery percentage
+defaults write com.apple.controlcenter "BatteryShowPercentage" -bool true
+
+# Hide specific menu bar items
+defaults write com.apple.controlcenter "NSStatusItem Visible com.apple.Spotlight" -bool false
+defaults write com.apple.controlcenter "NSStatusItem Visible Siri" -bool false
+defaults write com.apple.controlcenter "NSStatusItem Visible com.apple.TimeMachine.TMMenuExtraHost" -bool false
+defaults write com.apple.controlcenter "NSStatusItem Visible WeatherWidget" -bool false
+
+# ========================================================================
+# Restart Services
+# ========================================================================
+services=(Finder Dock SystemUIServer ControlCenter)
+for service in "${services[@]}"; do
+    if pgrep -x "$service" > /dev/null 2>&1; then
+        killall "$service" 2>/dev/null || true
     fi
-}
-
-# Batch write defaults for better performance
-batch_write_defaults() {
-    local domain="$1"
-    shift
-    
-    while [[ $# -ge 3 ]]; do
-        write_default "$domain" "$1" "$2" "$3"
-        shift 3
-    done
-}
-
-# Main configuration function
-configure_macos() {
-    log_section "Starting macOS configuration"
-    
-    # Close System Preferences to prevent conflicts
-    osascript -e 'tell application "System Preferences" to quit' 2>/dev/null || true
-    
-    # ========================================================================
-    # General UI/UX
-    # ========================================================================
-    
-    log_section "General UI/UX Settings"
-    
-    batch_write_defaults NSGlobalDomain \
-        AppleInterfaceStyle string "Dark" \
-        AppleKeyboardUIMode int 2 \
-        AppleActionOnDoubleClick string "Maximize" \
-        _HIHideMenuBar bool false \
-        NSRecentDocumentsLimit int 10 \
-        AppleShowAllExtensions bool true
-    
-    # Show ~/Library folder
-    chflags nohidden ~/Library 2>/dev/null || log_warning "Could not unhide ~/Library"
-    
-    # ========================================================================
-    # Keyboard & Input
-    # ========================================================================
-    
-    log_section "Keyboard & Input Settings"
-    
-    # Set US keyboard layout
-    local keyboard_layout='<dict>
-        <key>InputSourceKind</key><string>Keyboard Layout</string>
-        <key>KeyboardLayout ID</key><integer>252</integer>
-        <key>KeyboardLayout Name</key><string>ABC</string>
-    </dict>'
-    
-    defaults write com.apple.HIToolbox AppleEnabledInputSources -array "$keyboard_layout"
-    defaults write com.apple.HIToolbox AppleSelectedInputSources -array "$keyboard_layout"
-    write_default com.apple.HIToolbox AppleCurrentKeyboardLayoutInputSourceID string "com.apple.keylayout.ABC"
-    
-    # ========================================================================
-    # Dock & Mission Control
-    # ========================================================================
-    
-    log_section "Dock & Mission Control Settings"
-    
-    batch_write_defaults com.apple.dock \
-        autohide bool true \
-        autohide-delay float 0.5 \
-        autohide-time-modifier float 0.5 \
-        tilesize int 48 \
-        magnification bool true \
-        largesize int 80 \
-        orientation string "bottom" \
-        mineffect string "genie" \
-        minimize-to-application bool true \
-        launchanim bool true \
-        show-process-indicators bool true \
-        show-recents bool false \
-        static-only bool false \
-        mru-spaces bool false
-    
-    # Stage Manager settings
-    batch_write_defaults com.apple.WindowManager \
-        StandardHideDesktopIcons bool false \
-        EnableStandardClickToShowDesktop bool true \
-        GloballyEnabled bool false \
-        StageManagerHideUnusedApplications bool false \
-        AppWindowGroupingBehavior int 0
-    
-    # ========================================================================
-    # Screenshots
-    # ========================================================================
-    
-    log_section "Screenshot Settings"
-    
-    local screenshot_dir="$HOME/Pictures/screenshots"
-    mkdir -p "$screenshot_dir" 2>/dev/null || log_warning "Could not create screenshot directory"
-    
-    batch_write_defaults com.apple.screencapture \
-        location string "$screenshot_dir" \
-        type string "png" \
-        disable-shadow bool true
-    
-    # ========================================================================
-    # Control Center & Menu Bar
-    # ========================================================================
-    
-    log_section "Control Center & Menu Bar Settings"
-    
-    # Control Center module visibility settings
-    # Control Center only (8)
-    write_default com.apple.controlcenter "WiFi" int 8
-    write_default com.apple.controlcenter "Bluetooth" int 8
-    write_default com.apple.controlcenter "AirDrop" int 8
-    write_default com.apple.controlcenter "StageManager" int 8
-    
-    # Show when active (18)
-    write_default com.apple.controlcenter "FocusModes" int 18
-    write_default com.apple.controlcenter "ScreenMirroring" int 18
-    write_default com.apple.controlcenter "Display" int 18
-    write_default com.apple.controlcenter "Sound" int 18
-    write_default com.apple.controlcenter "NowPlaying" int 18
-    
-    # Always show (2)
-    write_default com.apple.controlcenter "AccessibilityShortcuts" int 2
-    write_default com.apple.controlcenter "Hearing" int 2
-    write_default com.apple.controlcenter "KeyboardBrightness" int 2
-    write_default com.apple.controlcenter "Battery" int 2
-    
-    # Disabled (0)
-    write_default com.apple.controlcenter "MusicRecognition" int 0
-    write_default com.apple.controlcenter "UserSwitcher" int 0
-    
-    # Battery percentage
-    write_default com.apple.controlcenter BatteryShowPercentage bool true
-    
-    # Hide specific menu bar items
-    local menu_items=(
-        "com.apple.Spotlight"
-        "Siri"
-        "com.apple.TimeMachine.TMMenuExtraHost"
-        "WeatherWidget"
-    )
-    
-    for item in "${menu_items[@]}"; do
-        write_default com.apple.controlcenter "NSStatusItem Visible $item" bool false
-    done
-    
-    # ========================================================================
-    # Finder
-    # ========================================================================
-    
-    log_section "Finder Settings"
-    
-    batch_write_defaults com.apple.finder \
-        FXEnableExtensionChangeWarning bool false \
-        FXEnableRemoveFromICloudDriveWarning bool true \
-        WarnOnEmptyTrash bool true \
-        FXRemoveOldTrashItems bool false \
-        _FXSortFoldersFirst bool true \
-        _FXSortFoldersFirstOnDesktop bool false \
-        FXDefaultSearchScope string "SCev" \
-        FXPreferredViewStyle string "Nlsv" \
-        ShowPathbar bool true \
-        ShowStatusBar bool true
-    
-    # Sidebar visibility settings
-    # Favorites
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecents" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowAirDrop" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowApplications" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDesktop" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDocuments" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowDownloads" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowMovies" -bool false
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowMusic" -bool false
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowPictures" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowHome" -bool true
-    
-    # iCloud
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowiCloudDrive" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowShared" -bool true
-    
-    # Locations
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowComputer" -bool false
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowHardDisks" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowExternalDisks" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRemovableMedia" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowCloudStorage" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowBonjourComputers" -bool true
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowConnectedServers" -bool true
-    
-    # Tags
-    defaults write com.apple.sidebarlists systemitems -dict-add "ShowRecentTags" -bool false
-    
-    # ========================================================================
-    # Apply Changes
-    # ========================================================================
-    
-    log_section "Applying Changes"
-    
-    # Restart affected services
-    local services=(Finder Dock SystemUIServer ControlCenter)
-    for service in "${services[@]}"; do
-        if pgrep -x "$service" > /dev/null 2>&1; then
-            killall "$service" 2>/dev/null || log_warning "Could not restart $service"
-        fi
-    done
-    
-    log_success "System services restarted"
-}
-
-# Function to handle app permissions
-configure_app_permissions() {
-    log_section "App Permissions Setup"
-    
-    # Check if running interactively
-    if [[ ! -t 0 ]]; then
-        log_warning "Not running interactively - skipping permission prompts"
-        return 0
-    fi
-    
-    # Function to request specific permission
-    request_permission() {
-        local app_name="$1"
-        local app_path="$2"
-        local permission_type="$3"
-        local settings_pane="$4"
-        
-        if [[ -d "$app_path" ]]; then
-            log_info "$app_name detected - requires $permission_type permission"
-            
-            # Attempt to open System Settings
-            if open "$settings_pane" 2>/dev/null; then
-                echo "    Please grant $permission_type permission to $app_name"
-                echo "    Press Enter when done..."
-                read -r
-            else
-                log_warning "Could not open System Settings - please configure manually"
-            fi
-        fi
-    }
-    
-    # Ice (menu bar manager)
-    if [[ -d "/Applications/Ice.app" ]]; then
-        request_permission "Ice" "/Applications/Ice.app" "Accessibility" \
-            "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
-        
-        request_permission "Ice" "/Applications/Ice.app" "Screen Recording" \
-            "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture"
-    fi
-    
-    # Raycast
-    if [[ -d "/Applications/Raycast.app" ]]; then
-        request_permission "Raycast" "/Applications/Raycast.app" "Accessibility" \
-            "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility"
-    fi
-    
-    # Stats
-    if [[ -d "/Applications/Stats.app" ]]; then
-        log_info "Stats.app detected - no special permissions required"
-    fi
-    
-    log_success "App permissions configuration complete"
-}
-
-# Display summary
-display_summary() {
-    log_section "Configuration Summary"
-    
-    cat <<-EOF
-    
-    Applied settings:
-      • Dark mode enabled
-      • Dock auto-hide with magnification
-      • Screenshots → ~/Pictures/screenshots
-      • Finder list view by default
-      • Control Center optimized
-      • Menu bar cleaned up
-      • Keyboard set to US layout
-    
-    Manual steps may be required:
-      • Grant permissions to apps (Ice, Raycast)
-      • Sign in to iCloud services
-      • Configure additional privacy settings
-    
-EOF
-    
-    log_success "macOS configuration complete!"
-}
-
-# ============================================================================
-# Main Execution
-# ============================================================================
-
-main() {
-    echo -e "${BLUE}╔════════════════════════════════════════════╗${NC}"
-    echo -e "${BLUE}║     macOS System Configuration Script     ║${NC}"
-    echo -e "${BLUE}╚════════════════════════════════════════════╝${NC}"
-    
-    # Run configuration
-    configure_macos
-    
-    # Handle app permissions
-    configure_app_permissions
-    
-    # Show summary
-    display_summary
-}
-
-# Run main function
-main
-
-{{ end -}}
+done
