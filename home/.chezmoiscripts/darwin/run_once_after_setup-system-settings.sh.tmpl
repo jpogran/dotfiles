@@ -148,6 +148,17 @@ defaults write com.apple.controlcenter "NSStatusItem Visible Siri" -bool false
 defaults write com.apple.controlcenter "NSStatusItem Visible com.apple.TimeMachine.TMMenuExtraHost" -bool false
 defaults write com.apple.controlcenter "NSStatusItem Visible WeatherWidget" -bool false
 
+# turn on night shift
+nightlight schedule start
+
+
+# disable Xcode Cloud upsell
+defaults write com.apple.dt.Xcode XcodeCloudUpsellPromptEnabled -bool false
+
+# Disable "removing from iCloud Drive" warnings
+defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+
+
 # ========================================================================
 # Restart Services
 # ========================================================================
