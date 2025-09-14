@@ -21,6 +21,7 @@ homebrew:
     - betterdisplay
     - claude
     - discord
+    - firefox
     - font-cascadia-code
     - font-fira-code-nerd-font
     - ghostty
