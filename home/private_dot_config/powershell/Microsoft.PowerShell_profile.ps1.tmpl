@@ -83,8 +83,8 @@ $PSDefaultParameterValues = @{
 # Apply theme settings to PSReadLine if available
 if (Get-Module -ListAvailable -Name PSReadLine) {
   Set-PSReadLineOption -Colors @{
-    Command          = "#F78166"
-    Parameter        = "#C9D1D9"
+    Command          = "Blue"
+    Parameter        = "White"
     InlinePrediction = 'DarkGray'
     Default          = "#C9D1D9"
   }
@@ -99,6 +99,8 @@ $env:PATH = @(
   $env:PATH
 ) -join [IO.Path]::PathSeparator
 
-$(/opt/homebrew/bin/brew shellenv) | Invoke-Expression
-Invoke-Expression (& { (gh completion -s powershell | Out-String) })
+Invoke-Expression $(/opt/homebrew/bin/brew shellenv | Out-String)
+
+Invoke-Expression $(gh completion -s powershell | Out-String)
+
 Invoke-Expression (starship init powershell)

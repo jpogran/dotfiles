@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "*.tmpl": "ini",
+    "*ps1.tmpl": "powershell",
     "*.fish.tmpl": "shellscript",
   }
 }
