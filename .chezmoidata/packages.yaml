@@ -1,0 +1,40 @@
+packages:
+  darwin:
+    brews:
+    - bat
+    - curl
+    - fish
+    - gh
+    - git
+    - gnupg
+    - htop
+    - jq
+    - mas
+    - starship
+    - wget
+    - yq
+    - zsh
+    casks:
+    - 1password
+    - 1password-cli
+    - betterdisplay
+    - claude
+    - discord
+    - firefox
+    - font-cascadia-code
+    - font-fira-code-nerd-font
+    - ghostty
+    - powershell
+    - raycast
+    - setapp
+    - slack
+    - stats
+    - utm
+    - visual-studio-code
+    mas:
+      - name: "1Password for Safari"
+        id: 1569813296
+      - name: "Home Assistant"
+        id: 1099568401
+      - name: "keymapp"
+        id: 6472865291
