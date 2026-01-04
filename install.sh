@@ -65,7 +65,7 @@ fi
 # Execute chezmoi
 echo "🔧 Executing chezmoi..."
 if command -v chezmoi &> /dev/null; then
-    # chezmoi init
+    chezmoi init --apply github.com/jpogran/dotfiles --branch refactor
     echo "   Run 'chezmoi apply' to apply your dotfiles when ready"
 else
     echo "⚠️  Warning: chezmoi not found in PATH. You may need to restart your shell."
