@@ -1,0 +1,11 @@
+
+confirm-close-surface = false
+copy-on-select = true
+font-family = FiraCode-Retina
+font-family = FiraCode Nerd Font Mono # fallback
+font-feature = 'ss02', 'ss19', 'ss20'
+font-size = 18
+
+mouse-hide-while-typing = true
+
+theme = Carbonfox

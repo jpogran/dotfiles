@@ -1,0 +1,65 @@
+#!/bin/bash
+
+set -e
+
+echo "Setting up fish as default shell..."
+
+# Determine the fish path based on OS
+{{ if eq .chezmoi.os "darwin" -}}
+FISH_PATH="/opt/homebrew/bin/fish"
+if [ ! -f "$FISH_PATH" ]; then
+    # Try Intel Mac location
+    FISH_PATH="/usr/local/bin/fish"
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+FISH_PATH="/usr/bin/fish"
+{{ else -}}
+echo "Unsupported OS: {{ .chezmoi.os }}"
+exit 1
+{{ end -}}
+
+# Check if fish is installed
+if [ ! -f "$FISH_PATH" ]; then
+    echo "Fish shell not found at $FISH_PATH"
+    echo "Please install fish first:"
+    {{ if eq .chezmoi.os "darwin" -}}
+    echo "  brew install fish"
+    {{ else if eq .chezmoi.os "linux" -}}
+    echo "  sudo apt-get install fish  # For Debian/Ubuntu"
+    echo "  sudo dnf install fish       # For Fedora"
+    echo "  sudo pacman -S fish         # For Arch"
+    {{ end -}}
+    exit 1
+fi
+
+# Check if fish is already the default shell
+if [ "$SHELL" = "$FISH_PATH" ]; then
+    echo "Fish is already your default shell"
+    exit 0
+fi
+
+# Add fish to /etc/shells if not already there
+if ! grep -q "^$FISH_PATH$" /etc/shells 2>/dev/null; then
+    echo "Adding $FISH_PATH to /etc/shells (requires sudo)..."
+    echo "$FISH_PATH" | sudo tee -a /etc/shells > /dev/null
+fi
+
+# Change default shell to fish
+echo "Changing default shell to fish (requires password)..."
+{{ if eq .chezmoi.os "darwin" -}}
+# On macOS, use chsh with the path directly
+chsh -s "$FISH_PATH"
+{{ else if eq .chezmoi.os "linux" -}}
+# On Linux, chsh might require different syntax
+if command -v chsh >/dev/null 2>&1; then
+    chsh -s "$FISH_PATH"
+else
+    echo "chsh command not found. Please manually set your shell to: $FISH_PATH"
+    echo "You can try: sudo usermod -s $FISH_PATH $USER"
+    exit 1
+fi
+{{ end -}}
+
+echo "Successfully set fish as default shell!"
+echo "Please log out and log back in for the change to take effect."
+echo "Or start a new fish shell now with: $FISH_PATH"
